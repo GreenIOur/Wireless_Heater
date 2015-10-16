@@ -1,0 +1,2838 @@
+
+
+Microchip Technology PIC18 LITE Macro Assembler V1.34 build -361300703 
+                                                                                               Fri Oct 16 08:54:24 2015
+
+Microchip Technology Omniscient Code Generator (Lite mode) build 201502162209
+     1                           	processor	18F4550
+     2                           	fnconf	rparam,??,?,0
+     3                           	opt	pw 120
+     4                           	opt	lm
+     5                           	psect	text0,global,reloc=2,class=CODE,delta=1
+     6                           	psect	cinit,global,reloc=2,class=CODE,delta=1
+     7                           	psect	bssCOMRAM,global,class=COMRAM,space=1,delta=1
+     8                           	psect	cstackCOMRAM,global,class=COMRAM,space=1,delta=1
+     9                           	psect	text1,global,reloc=2,class=CODE,delta=1
+    10                           	psect	text2,global,reloc=2,class=CODE,delta=1
+    11                           	psect	text3,global,reloc=2,class=CODE,delta=1
+    12                           	psect	text4,global,reloc=2,class=CODE,delta=1
+    13                           	psect	text5,global,reloc=2,class=CODE,delta=1
+    14                           	psect	text6,global,reloc=2,class=CODE,delta=1
+    15                           	psect	text7,global,reloc=2,class=CODE,delta=1
+    16                           	psect	text8,global,reloc=2,class=CODE,delta=1
+    17                           	psect	text9,global,reloc=2,class=CODE,delta=1
+    18                           	psect	text10,global,reloc=2,class=CODE,delta=1
+    19                           	psect	text11,global,reloc=2,class=CODE,delta=1
+    20                           	psect	text12,global,reloc=2,class=CODE,delta=1
+    21                           	psect	text13,global,reloc=2,class=CODE,delta=1
+    22                           	psect	text14,global,reloc=2,class=CODE,delta=1
+    23                           	psect	text15,global,reloc=2,class=CODE,delta=1
+    24                           	psect	intsave_regs,global,class=BIGRAM,space=1,delta=1
+    25                           	psect	rparam,global,class=COMRAM,space=1,delta=1
+    26  0000                     _ADCON1bits	set	4033
+    27  0000                     _INTCONbits	set	4082
+    28  0000                     _OSCCONbits	set	4051
+    29  0000                     _LATC0	set	31832
+    30  0000                     _RC0	set	31760
+    31  0000                     _TRISC0	set	31904
+    32                           
+    33 ;;
+    34 ;;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+    35 ;;
+    36 ;; *************** function _main *****************
+    37 ;; Defined at:
+    38 ;;		line 10 in file "main.c"
+    39 ;; Parameters:    Size  Location     Type
+    40 ;;  argc            2   40[COMRAM] int 
+    41 ;;  argv            3   42[COMRAM] PTR PTR unsigned char 
+    42 ;; Auto vars:     Size  Location     Type
+    43 ;;  Sucess          1   48[COMRAM] unsigned char 
+    44 ;;  temperature     3   45[COMRAM] float 
+    45 ;;  reponse         1   49[COMRAM] unsigned char 
+    46 ;; Return value:  Size  Location     Type
+    47 ;;                  2   40[COMRAM] int 
+    48 ;; Registers used:
+    49 ;;		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, cstack
+    50 ;; Tracked objects:
+    51 ;;		On entry : 0/0
+    52 ;;		On exit  : 0/0
+    53 ;;		Unchanged: 0/0
+    54 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+    55 ;;      Params:         5       0       0       0       0       0       0       0       0
+    56 ;;      Locals:         5       0       0       0       0       0       0       0       0
+    57 ;;      Temps:          0       0       0       0       0       0       0       0       0
+    58 ;;      Totals:        10       0       0       0       0       0       0       0       0
+    59 ;;Total ram usage:       10 bytes
+    60 ;; Hardware stack levels required when called:    4
+    61 ;; This function calls:
+    62 ;;		_init_sensor
+    63 ;;		_read_temp
+    64 ;;		_search_Devices
+    65 ;; This function is called by:
+    66 ;;		Startup code after reset
+    67 ;; This function uses a non-reentrant model
+    68 ;;
+    69                           
+    70                           	psect	text0
+    71  007988                     __ptext0:
+    72                           	opt stack 0
+    73  007988                     _main:
+    74                           	opt stack 27
+    75                           
+    76                           ;main.c: 11: OSCCONbits.SCS = 0;
+    77                           
+    78                           ;incstack = 0
+    79  007988  0EFC               	movlw	-4
+    80  00798A  16D3               	andwf	4051,f,c	;volatile
+    81                           
+    82                           ;main.c: 12: ADCON1bits.PCFG = 0xF;
+    83  00798C  80C1               	bsf	4033,0,c	;volatile
+    84  00798E  82C1               	bsf	4033,1,c	;volatile
+    85  007990  84C1               	bsf	4033,2,c	;volatile
+    86  007992  86C1               	bsf	4033,3,c	;volatile
+    87                           
+    88                           ;main.c: 13: (INTCONbits.GIE = 1);
+    89  007994  8EF2               	bsf	intcon,7,c	;volatile
+    90                           
+    91                           ;main.c: 15: unsigned char reponse=1;
+    92  007996  0E01               	movlw	1
+    93  007998  6E32               	movwf	main@reponse,c
+    94                           
+    95                           ;main.c: 16: float temperature;
+    96                           ;main.c: 18: reponse=init_sensor();
+    97  00799A  ECE4  F03C         	call	_init_sensor	;wreg free
+    98  00799E  6E32               	movwf	main@reponse,c
+    99                           
+   100                           ;main.c: 19: if(reponse==0)
+   101  0079A0  5032               	movf	main@reponse,w,c
+   102  0079A2  A4D8               	btfss	status,2,c
+   103  0079A4  EF00  F000         	goto	start
+   104                           
+   105                           ;main.c: 20: {
+   106                           ;main.c: 21: unsigned char Sucess;
+   107                           ;main.c: 22: Sucess=search_Devices();
+   108  0079A8  EC1C  F03F         	call	_search_Devices	;wreg free
+   109  0079AC  6E31               	movwf	main@Sucess,c
+   110  0079AE  D000               	goto	l1366
+   111  0079B0                     l1366:
+   112                           
+   113                           ;main.c: 24: {
+   114                           ;main.c: 25: temperature=read_temp(DeviceAddress[0]);
+   115  0079B0  0E33               	movlw	_DeviceAddress& (0+255)
+   116  0079B2  EC9F  F03D         	call	_read_temp
+   117  0079B6  C01C  F02E         	movff	?_read_temp,main@temperature
+   118  0079BA  C01D  F02F         	movff	?_read_temp+1,main@temperature+1
+   119  0079BE  C01E  F030         	movff	?_read_temp+2,main@temperature+2
+   120                           
+   121                           ;main.c: 26: }while(1);
+   122  0079C2  D7F6               	goto	l1366
+   123                           
+   124                           ;main.c: 27: };
+   125                           ;main.c: 29: return (0);
+   126                           ;	Return value of _main is never used
+   127  0079C4  EF00  F000         	goto	start
+   128  0079C8                     __end_of_main:
+   129                           	opt stack 0
+   130                           intcon	equ	0xFF2
+   131                           status	equ	0xFD8
+   132                           
+   133                           	psect	cinit
+   134  007840                     __pcinit:
+   135                           	opt stack 0
+   136  007840                     start_initialization:
+   137                           	opt stack 0
+   138  007840                     __initialization:
+   139                           	opt stack 0
+   140                           
+   141                           ; Clear objects allocated to COMRAM (16 bytes)
+   142  007840  EE00  F033         	lfsr	0,__pbssCOMRAM
+   143  007844  0E10               	movlw	16
+   144  007846                     clear_0:
+   145  007846  6AEE               	clrf	postinc0,c
+   146  007848  06E8               	decf	wreg,f,c
+   147  00784A  E1FD               	bnz	clear_0
+   148  00784C                     end_of_initialization:
+   149                           	opt stack 0
+   150  00784C                     __end_of__initialization:
+   151                           	opt stack 0
+   152  00784C  0100               	movlb	0
+   153  00784E  EFC4  F03C         	goto	_main	;jump to C main() function
+   154                           intcon	equ	0xFF2
+   155                           postinc0	equ	0xFEE
+   156                           wreg	equ	0xFE8
+   157                           status	equ	0xFD8
+   158                           
+   159                           	psect	bssCOMRAM
+   160  000033                     __pbssCOMRAM:
+   161                           	opt stack 0
+   162  000033                     _DeviceAddress:
+   163                           	opt stack 0
+   164  000033                     	ds	16
+   165                           intcon	equ	0xFF2
+   166                           postinc0	equ	0xFEE
+   167                           wreg	equ	0xFE8
+   168                           status	equ	0xFD8
+   169                           
+   170                           	psect	cstackCOMRAM
+   171  000001                     __pcstackCOMRAM:
+   172                           	opt stack 0
+   173  000001                     ??_init_sensor:
+   174  000001                     ??_delay100ms:
+   175  000001                     ??_delay50ms:
+   176  000001                     ?___awdiv:
+   177                           	opt stack 0
+   178  000001                     ?___ftpack:
+   179                           	opt stack 0
+   180  000001                     write_Bit@WriteArg:
+   181                           	opt stack 0
+   182  000001                     read_Bit@result:
+   183                           	opt stack 0
+   184  000001                     ___awdiv@dividend:
+   185                           	opt stack 0
+   186  000001                     ___ftpack@arg:
+   187                           	opt stack 0
+   188                           
+   189                           ; 3 bytes @ 0x0
+   190  000001                     	ds	1
+   191  000002                     init_sensor@reponse:
+   192                           	opt stack 0
+   193  000002                     write_Byte@data:
+   194                           	opt stack 0
+   195  000002                     read_Byte@data:
+   196                           	opt stack 0
+   197                           
+   198                           ; 1 bytes @ 0x1
+   199  000002                     	ds	1
+   200  000003                     write_Byte@i:
+   201                           	opt stack 0
+   202  000003                     read_Byte@i:
+   203                           	opt stack 0
+   204  000003                     ___awdiv@divisor:
+   205                           	opt stack 0
+   206                           
+   207                           ; 2 bytes @ 0x2
+   208  000003                     	ds	1
+   209  000004                     ___ftpack@exp:
+   210                           	opt stack 0
+   211                           
+   212                           ; 1 bytes @ 0x3
+   213  000004                     	ds	1
+   214  000005                     ___awdiv@counter:
+   215                           	opt stack 0
+   216  000005                     ___ftpack@sign:
+   217                           	opt stack 0
+   218  000005                     address_Device@Adress:
+   219                           	opt stack 0
+   220                           
+   221                           ; 2 bytes @ 0x4
+   222  000005                     	ds	1
+   223  000006                     ??___ftpack:
+   224  000006                     ___awdiv@sign:
+   225                           	opt stack 0
+   226                           
+   227                           ; 1 bytes @ 0x5
+   228  000006                     	ds	1
+   229  000007                     address_Device@i:
+   230                           	opt stack 0
+   231  000007                     ___awdiv@quotient:
+   232                           	opt stack 0
+   233                           
+   234                           ; 2 bytes @ 0x6
+   235  000007                     	ds	2
+   236  000009                     ??_search_Devices:
+   237  000009                     ?___awtoft:
+   238                           	opt stack 0
+   239  000009                     ___awtoft@c:
+   240                           	opt stack 0
+   241                           
+   242                           ; 2 bytes @ 0x8
+   243  000009                     	ds	3
+   244  00000C                     ___awtoft@sign:
+   245                           	opt stack 0
+   246                           
+   247                           ; 1 bytes @ 0xB
+   248  00000C                     	ds	1
+   249  00000D                     ?___ftmul:
+   250                           	opt stack 0
+   251  00000D                     ___ftmul@f1:
+   252                           	opt stack 0
+   253  00000D                     search_Devices@list_Devices:
+   254                           	opt stack 0
+   255                           
+   256                           ; 8 bytes @ 0xC
+   257  00000D                     	ds	3
+   258  000010                     ___ftmul@f2:
+   259                           	opt stack 0
+   260                           
+   261                           ; 3 bytes @ 0xF
+   262  000010                     	ds	3
+   263  000013                     ??___ftmul:
+   264                           
+   265                           ; 0 bytes @ 0x12
+   266  000013                     	ds	2
+   267  000015                     search_Devices@LastConflictBitNum:
+   268                           	opt stack 0
+   269                           
+   270                           ; 1 bytes @ 0x14
+   271  000015                     	ds	1
+   272  000016                     search_Devices@CurrentConflictBitPos:
+   273                           	opt stack 0
+   274  000016                     ___ftmul@exp:
+   275                           	opt stack 0
+   276                           
+   277                           ; 1 bytes @ 0x15
+   278  000016                     	ds	1
+   279  000017                     search_Devices@mask:
+   280                           	opt stack 0
+   281  000017                     ___ftmul@f3_as_product:
+   282                           	opt stack 0
+   283                           
+   284                           ; 3 bytes @ 0x16
+   285  000017                     	ds	1
+   286  000018                     search_Devices@SelectedBit:
+   287                           	opt stack 0
+   288                           
+   289                           ; 1 bytes @ 0x17
+   290  000018                     	ds	1
+   291  000019                     search_Devices@i:
+   292                           	opt stack 0
+   293                           
+   294                           ; 2 bytes @ 0x18
+   295  000019                     	ds	1
+   296  00001A                     ___ftmul@cntr:
+   297                           	opt stack 0
+   298                           
+   299                           ; 1 bytes @ 0x19
+   300  00001A                     	ds	1
+   301  00001B                     ___ftmul@sign:
+   302                           	opt stack 0
+   303  00001B                     search_Devices@k:
+   304                           	opt stack 0
+   305                           
+   306                           ; 2 bytes @ 0x1A
+   307  00001B                     	ds	1
+   308  00001C                     ?_read_temp:
+   309                           	opt stack 0
+   310                           
+   311                           ; 3 bytes @ 0x1B
+   312  00001C                     	ds	1
+   313  00001D                     search_Devices@InputBitStatus:
+   314                           	opt stack 0
+   315                           
+   316                           ; 1 bytes @ 0x1C
+   317  00001D                     	ds	1
+   318  00001E                     search_Devices@j:
+   319                           	opt stack 0
+   320                           
+   321                           ; 2 bytes @ 0x1D
+   322  00001E                     	ds	1
+   323  00001F                     ??_read_temp:
+   324                           
+   325                           ; 0 bytes @ 0x1E
+   326  00001F                     	ds	1
+   327  000020                     search_Devices@bitnum:
+   328                           	opt stack 0
+   329                           
+   330                           ; 2 bytes @ 0x1F
+   331  000020                     	ds	1
+   332  000021                     read_temp@temperature:
+   333                           	opt stack 0
+   334                           
+   335                           ; 3 bytes @ 0x20
+   336  000021                     	ds	3
+   337  000024                     read_temp@templ:
+   338                           	opt stack 0
+   339                           
+   340                           ; 1 bytes @ 0x23
+   341  000024                     	ds	1
+   342  000025                     read_temp@temph:
+   343                           	opt stack 0
+   344                           
+   345                           ; 1 bytes @ 0x24
+   346  000025                     	ds	1
+   347  000026                     read_temp@temp:
+   348                           	opt stack 0
+   349                           
+   350                           ; 2 bytes @ 0x25
+   351  000026                     	ds	2
+   352  000028                     read_temp@DeviceAddress:
+   353                           	opt stack 0
+   354                           
+   355                           ; 1 bytes @ 0x27
+   356  000028                     	ds	1
+   357  000029                     
+   358                           ; 2 bytes @ 0x28
+   359  000029                     	ds	2
+   360  00002B                     
+   361                           ; 3 bytes @ 0x2A
+   362  00002B                     	ds	3
+   363  00002E                     main@temperature:
+   364                           	opt stack 0
+   365                           
+   366                           ; 3 bytes @ 0x2D
+   367  00002E                     	ds	3
+   368  000031                     main@Sucess:
+   369                           	opt stack 0
+   370                           
+   371                           ; 1 bytes @ 0x30
+   372  000031                     	ds	1
+   373  000032                     main@reponse:
+   374                           	opt stack 0
+   375                           
+   376                           ; 1 bytes @ 0x31
+   377  000032                     	ds	1
+   378                           intcon	equ	0xFF2
+   379                           postinc0	equ	0xFEE
+   380                           wreg	equ	0xFE8
+   381                           status	equ	0xFD8
+   382                           
+   383 ;; *************** function _search_Devices *****************
+   384 ;; Defined at:
+   385 ;;		line 98 in file "DS18B20/DS18B20.c"
+   386 ;; Parameters:    Size  Location     Type
+   387 ;;		None
+   388 ;; Auto vars:     Size  Location     Type
+   389 ;;  j               2   29[COMRAM] int 
+   390 ;;  InputBitStat    1   28[COMRAM] unsigned char 
+   391 ;;  SelectedBit     1   23[COMRAM] unsigned char 
+   392 ;;  k               2   26[COMRAM] int 
+   393 ;;  bitnum          2   31[COMRAM] int 
+   394 ;;  mask            1   22[COMRAM] unsigned char 
+   395 ;;  CurrentConfl    1   21[COMRAM] unsigned char 
+   396 ;;  i               2   24[COMRAM] int 
+   397 ;;  list_Devices    8   12[COMRAM] unsigned char [8]
+   398 ;;  LastConflict    1   20[COMRAM] unsigned char 
+   399 ;; Return value:  Size  Location     Type
+   400 ;;                  1    wreg      unsigned char 
+   401 ;; Registers used:
+   402 ;;		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, cstack
+   403 ;; Tracked objects:
+   404 ;;		On entry : 0/0
+   405 ;;		On exit  : 0/0
+   406 ;;		Unchanged: 0/0
+   407 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   408 ;;      Params:         0       0       0       0       0       0       0       0       0
+   409 ;;      Locals:        21       0       0       0       0       0       0       0       0
+   410 ;;      Temps:          4       0       0       0       0       0       0       0       0
+   411 ;;      Totals:        25       0       0       0       0       0       0       0       0
+   412 ;;Total ram usage:       25 bytes
+   413 ;; Hardware stack levels used:    1
+   414 ;; Hardware stack levels required when called:    2
+   415 ;; This function calls:
+   416 ;;		___awdiv
+   417 ;;		_init_sensor
+   418 ;;		_read_Bit
+   419 ;;		_write_Bit
+   420 ;;		_write_Byte
+   421 ;; This function is called by:
+   422 ;;		_main
+   423 ;; This function uses a non-reentrant model
+   424 ;;
+   425                           
+   426                           	psect	text1
+   427  007E38                     __ptext1:
+   428                           	opt stack 0
+   429  007E38                     _search_Devices:
+   430                           	opt stack 28
+   431                           
+   432                           ;DS18B20.c: 100: unsigned char list_Devices[8];
+   433                           ;DS18B20.c: 101: unsigned char LastConflictBitNum=0;
+   434                           
+   435                           ;incstack = 0
+   436  007E38  0E00               	movlw	0
+   437  007E3A  6E15               	movwf	search_Devices@LastConflictBitNum,c
+   438                           
+   439                           ;DS18B20.c: 102: for(int i=0;i<2;i++){
+   440  007E3C  0E00               	movlw	0
+   441  007E3E  6E1A               	movwf	search_Devices@i+1,c
+   442  007E40  0E00               	movlw	0
+   443  007E42  6E19               	movwf	search_Devices@i,c
+   444  007E44  BE1A               	btfsc	search_Devices@i+1,7,c
+   445  007E46  D008               	goto	l1240
+   446  007E48  501A               	movf	search_Devices@i+1,w,c
+   447  007E4A  E105               	bnz	u710
+   448  007E4C  0E02               	movlw	2
+   449  007E4E  5C19               	subwf	search_Devices@i,w,c
+   450  007E50  B0D8               	btfsc	status,0,c
+   451  007E52  D0D3               	goto	l1322
+   452  007E54  D001               	goto	l1240
+   453  007E56                     u710:
+   454  007E56  D0D1               	goto	l1322
+   455  007E58                     l1240:
+   456                           
+   457                           ;DS18B20.c: 103: unsigned char mask=0x01;
+   458  007E58  0E01               	movlw	1
+   459  007E5A  6E17               	movwf	search_Devices@mask,c
+   460                           
+   461                           ;DS18B20.c: 104: for(int k=0;k<8;k++)
+   462  007E5C  0E00               	movlw	0
+   463  007E5E  6E1C               	movwf	search_Devices@k+1,c
+   464  007E60  0E00               	movlw	0
+   465  007E62  6E1B               	movwf	search_Devices@k,c
+   466  007E64                     l1242:
+   467  007E64  BE1C               	btfsc	search_Devices@k+1,7,c
+   468  007E66  D008               	goto	l1246
+   469  007E68  501C               	movf	search_Devices@k+1,w,c
+   470  007E6A  E112               	bnz	l1252
+   471  007E6C  0E08               	movlw	8
+   472  007E6E  5C1B               	subwf	search_Devices@k,w,c
+   473  007E70  B0D8               	btfsc	status,0,c
+   474  007E72  D00E               	goto	l1252
+   475  007E74  D001               	goto	l1246
+   476  007E76  D00C               	goto	l1252
+   477  007E78                     l1246:
+   478                           
+   479                           ;DS18B20.c: 105: {
+   480                           ;DS18B20.c: 106: list_Devices[k]=0x00;
+   481  007E78  0E0D               	movlw	low search_Devices@list_Devices
+   482  007E7A  241B               	addwf	search_Devices@k,w,c
+   483  007E7C  6ED9               	movwf	fsr2l,c
+   484  007E7E  0E00               	movlw	high search_Devices@list_Devices
+   485  007E80  201C               	addwfc	search_Devices@k+1,w,c
+   486  007E82  6EDA               	movwf	fsr2h,c
+   487  007E84  0E00               	movlw	0
+   488  007E86  6EDF               	movwf	indf2,c
+   489  007E88  4A1B               	infsnz	search_Devices@k,f,c
+   490  007E8A  2A1C               	incf	search_Devices@k+1,f,c
+   491  007E8C  D7EB               	goto	l1242
+   492  007E8E  D000               	goto	l1252
+   493  007E90                     l1252:
+   494                           
+   495                           ;DS18B20.c: 107: }
+   496                           ;DS18B20.c: 108: if (init_sensor())
+   497  007E90  ECE4  F03C         	call	_init_sensor	;wreg free
+   498  007E94  0900               	iorlw	0
+   499  007E96  B4D8               	btfsc	status,2,c
+   500  007E98  D002               	goto	l1258
+   501  007E9A  D021               	goto	l1276
+   502                           
+   503                           ;DS18B20.c: 109: {
+   504                           ;DS18B20.c: 110: return 0;
+   505  007E9C  D0B0               	goto	l69
+   506  007E9E                     l1258:
+   507                           
+   508                           ;DS18B20.c: 111: }
+   509                           ;DS18B20.c: 112: write_Byte(0xF0);
+   510  007E9E  0EF0               	movlw	240
+   511  007EA0  EC52  F03C         	call	_write_Byte
+   512                           
+   513                           ;DS18B20.c: 113: int bitnum=1;
+   514  007EA4  0E00               	movlw	0
+   515  007EA6  6E21               	movwf	search_Devices@bitnum+1,c
+   516  007EA8  0E01               	movlw	1
+   517  007EAA  6E20               	movwf	search_Devices@bitnum,c
+   518                           
+   519                           ;DS18B20.c: 114: unsigned char CurrentConflictBitPos=0;
+   520  007EAC  0E00               	movlw	0
+   521  007EAE  6E16               	movwf	search_Devices@CurrentConflictBitPos,c
+   522                           
+   523                           ;DS18B20.c: 115: while(bitnum<65)
+   524  007EB0  D05D               	goto	l1304
+   525  007EB2                     l1264:
+   526                           
+   527                           ;DS18B20.c: 116: {
+   528                           ;DS18B20.c: 117: unsigned char SelectedBit=0;
+   529  007EB2  0E00               	movlw	0
+   530  007EB4  6E18               	movwf	search_Devices@SelectedBit,c
+   531                           
+   532                           ;DS18B20.c: 118: unsigned char InputBitStatus=0x00;
+   533  007EB6  0E00               	movlw	0
+   534  007EB8  6E1D               	movwf	search_Devices@InputBitStatus,c
+   535                           
+   536                           ;DS18B20.c: 119: if (read_Bit()==1)
+   537  007EBA  EC3A  F03C         	call	_read_Bit	;wreg free
+   538  007EBE  06E8               	decf	wreg,f,c
+   539  007EC0  A4D8               	btfss	status,2,c
+   540  007EC2  D002               	goto	l1270
+   541                           
+   542                           ;DS18B20.c: 120: {
+   543                           ;DS18B20.c: 121: InputBitStatus|=2;
+   544  007EC4  821D               	bsf	search_Devices@InputBitStatus,1,c
+   545  007EC6  D000               	goto	l1270
+   546  007EC8                     l1270:
+   547                           
+   548                           ;DS18B20.c: 122: }
+   549                           ;DS18B20.c: 123: if(read_Bit()==1)
+   550  007EC8  EC3A  F03C         	call	_read_Bit	;wreg free
+   551  007ECC  06E8               	decf	wreg,f,c
+   552  007ECE  A4D8               	btfss	status,2,c
+   553  007ED0  D002               	goto	l1274
+   554                           
+   555                           ;DS18B20.c: 124: {
+   556                           ;DS18B20.c: 125: InputBitStatus|=1;
+   557  007ED2  801D               	bsf	search_Devices@InputBitStatus,0,c
+   558  007ED4  D000               	goto	l1274
+   559  007ED6                     l1274:
+   560                           
+   561                           ;DS18B20.c: 126: }
+   562                           ;DS18B20.c: 133: if (InputBitStatus==3)
+   563  007ED6  0E03               	movlw	3
+   564  007ED8  181D               	xorwf	search_Devices@InputBitStatus,w,c
+   565  007EDA  A4D8               	btfss	status,2,c
+   566  007EDC  D002               	goto	l1280
+   567  007EDE                     l1276:
+   568                           
+   569                           ;DS18B20.c: 134: {
+   570                           ;DS18B20.c: 135: return 0;
+   571  007EDE  0E00               	movlw	0
+   572  007EE0  D08E               	goto	l69
+   573  007EE2                     l1280:
+   574                           
+   575                           ;DS18B20.c: 136: }
+   576                           ;DS18B20.c: 137: if(InputBitStatus>0)
+   577  007EE2  501D               	movf	search_Devices@InputBitStatus,w,c
+   578  007EE4  B4D8               	btfsc	status,2,c
+   579  007EE6  D003               	goto	l1284
+   580                           
+   581                           ;DS18B20.c: 138: {
+   582                           ;DS18B20.c: 139: SelectedBit=InputBitStatus>>1;
+   583  007EE8  90D8               	bcf	status,0,c
+   584  007EEA  301D               	rrcf	search_Devices@InputBitStatus,w,c
+   585  007EEC  D00B               	goto	L1
+   586  007EEE                     l1284:
+   587                           
+   588                           ;DS18B20.c: 141: else
+   589                           ;DS18B20.c: 142: {
+   590                           ;DS18B20.c: 143: if(bitnum==LastConflictBitNum)
+   591  007EEE  5015               	movf	search_Devices@LastConflictBitNum,w,c
+   592  007EF0  6E09               	movwf	??_search_Devices& (0+255),c
+   593  007EF2  6A0A               	clrf	(??_search_Devices+1)& (0+255),c
+   594  007EF4  5020               	movf	search_Devices@bitnum,w,c
+   595  007EF6  1809               	xorwf	??_search_Devices,w,c
+   596  007EF8  E107               	bnz	l1288
+   597  007EFA  5021               	movf	search_Devices@bitnum+1,w,c
+   598  007EFC  180A               	xorwf	??_search_Devices+1,w,c
+   599  007EFE  A4D8               	btfss	status,2,c
+   600  007F00  D003               	goto	l1288
+   601                           
+   602                           ;DS18B20.c: 144: {
+   603                           ;DS18B20.c: 145: SelectedBit=1;
+   604  007F02  0E01               	movlw	1
+   605  007F04                     L1:
+   606  007F04  6E18               	movwf	search_Devices@SelectedBit,c
+   607                           
+   608                           ;DS18B20.c: 146: }
+   609  007F06  D005               	goto	l1292
+   610  007F08                     l1288:
+   611                           
+   612                           ;DS18B20.c: 147: else
+   613                           ;DS18B20.c: 148: {
+   614                           ;DS18B20.c: 149: SelectedBit=0;
+   615  007F08  0E00               	movlw	0
+   616  007F0A  6E18               	movwf	search_Devices@SelectedBit,c
+   617                           
+   618                           ;DS18B20.c: 150: CurrentConflictBitPos=bitnum;
+   619  007F0C  C020  F016         	movff	search_Devices@bitnum,search_Devices@CurrentConflictBitPos
+   620  007F10  D000               	goto	l1292
+   621  007F12                     l1292:
+   622                           
+   623                           ;DS18B20.c: 151: }
+   624                           ;DS18B20.c: 152: }
+   625                           ;DS18B20.c: 153: write_Bit(SelectedBit);
+   626  007F12  5018               	movf	search_Devices@SelectedBit,w,c
+   627  007F14  EC6C  F03C         	call	_write_Bit
+   628                           
+   629                           ;DS18B20.c: 154: mask=0x01;
+   630  007F18  0E01               	movlw	1
+   631  007F1A  6E17               	movwf	search_Devices@mask,c
+   632                           
+   633                           ;DS18B20.c: 155: mask<<=(bitnum-1)%8;
+   634  007F1C  C020  F009         	movff	search_Devices@bitnum,??_search_Devices
+   635  007F20  0EFF               	movlw	-1
+   636  007F22  2609               	addwf	??_search_Devices,f,c
+   637  007F24  0E07               	movlw	7
+   638  007F26  1609               	andwf	??_search_Devices,f,c
+   639  007F28  2809               	incf	??_search_Devices,w,c
+   640  007F2A  6E0A               	movwf	(??_search_Devices+1)& (0+255),c
+   641  007F2C  D002               	goto	u800
+   642  007F2E                     u805:
+   643  007F2E  90D8               	bcf	status,0,c
+   644  007F30  3617               	rlcf	search_Devices@mask,f,c
+   645  007F32                     u800:
+   646  007F32  2E0A               	decfsz	(??_search_Devices+1)& (0+255),f,c
+   647  007F34  D7FC               	goto	u805
+   648                           
+   649                           ;DS18B20.c: 156: if (SelectedBit==1)
+   650  007F36  0418               	decf	search_Devices@SelectedBit,w,c
+   651  007F38  A4D8               	btfss	status,2,c
+   652  007F3A  D015               	goto	l1302
+   653                           
+   654                           ;DS18B20.c: 157: {
+   655                           ;DS18B20.c: 158: list_Devices[(bitnum-1)/8]|=mask;
+   656  007F3C  0EFF               	movlw	255
+   657  007F3E  2420               	addwf	search_Devices@bitnum,w,c
+   658  007F40  6E01               	movwf	___awdiv@dividend,c
+   659  007F42  0EFF               	movlw	255
+   660  007F44  2021               	addwfc	search_Devices@bitnum+1,w,c
+   661  007F46  6E02               	movwf	___awdiv@dividend+1,c
+   662  007F48  0E00               	movlw	0
+   663  007F4A  6E04               	movwf	___awdiv@divisor+1,c
+   664  007F4C  0E08               	movlw	8
+   665  007F4E  6E03               	movwf	___awdiv@divisor,c
+   666  007F50  EC54  F03D         	call	___awdiv	;wreg free
+   667  007F54  0E0D               	movlw	low search_Devices@list_Devices
+   668  007F56  2401               	addwf	?___awdiv,w,c
+   669  007F58  6ED9               	movwf	fsr2l,c
+   670  007F5A  0E00               	movlw	high search_Devices@list_Devices
+   671  007F5C  2002               	addwfc	?___awdiv+1,w,c
+   672  007F5E  6EDA               	movwf	fsr2h,c
+   673  007F60  5017               	movf	search_Devices@mask,w,c
+   674  007F62  12DF               	iorwf	indf2,f,c
+   675  007F64  D000               	goto	l1302
+   676  007F66                     l1302:
+   677                           
+   678                           ;DS18B20.c: 159: }
+   679                           ;DS18B20.c: 160: bitnum++;
+   680  007F66  4A20               	infsnz	search_Devices@bitnum,f,c
+   681  007F68  2A21               	incf	search_Devices@bitnum+1,f,c
+   682  007F6A  D000               	goto	l1304
+   683  007F6C                     l1304:
+   684  007F6C  BE21               	btfsc	search_Devices@bitnum+1,7,c
+   685  007F6E  D7A1               	goto	l1264
+   686  007F70  5021               	movf	search_Devices@bitnum+1,w,c
+   687  007F72  E104               	bnz	u820
+   688  007F74  0E41               	movlw	65
+   689  007F76  5C20               	subwf	search_Devices@bitnum,w,c
+   690  007F78  A0D8               	btfss	status,0,c
+   691  007F7A  D79B               	goto	l1264
+   692  007F7C                     u820:
+   693                           
+   694                           ;DS18B20.c: 161: }
+   695                           ;DS18B20.c: 162: LastConflictBitNum=CurrentConflictBitPos;
+   696  007F7C  C016  F015         	movff	search_Devices@CurrentConflictBitPos,search_Devices@LastConflictBitNum
+   697                           
+   698                           ;DS18B20.c: 163: for(int j=0;j<8;j++){
+   699  007F80  0E00               	movlw	0
+   700  007F82  6E1F               	movwf	search_Devices@j+1,c
+   701  007F84  0E00               	movlw	0
+   702  007F86  6E1E               	movwf	search_Devices@j,c
+   703  007F88                     l1308:
+   704  007F88  BE1F               	btfsc	search_Devices@j+1,7,c
+   705  007F8A  D008               	goto	l1312
+   706  007F8C  501F               	movf	search_Devices@j+1,w,c
+   707  007F8E  E12D               	bnz	l1318
+   708  007F90  0E08               	movlw	8
+   709  007F92  5C1E               	subwf	search_Devices@j,w,c
+   710  007F94  B0D8               	btfsc	status,0,c
+   711  007F96  D029               	goto	l1318
+   712  007F98  D001               	goto	l1312
+   713  007F9A  D027               	goto	l1318
+   714  007F9C                     l1312:
+   715                           
+   716                           ;DS18B20.c: 164: DeviceAddress[i][j]=list_Devices[j];
+   717  007F9C  0E0D               	movlw	low search_Devices@list_Devices
+   718  007F9E  241E               	addwf	search_Devices@j,w,c
+   719  007FA0  6ED9               	movwf	fsr2l,c
+   720  007FA2  0E00               	movlw	high search_Devices@list_Devices
+   721  007FA4  201F               	addwfc	search_Devices@j+1,w,c
+   722  007FA6  6EDA               	movwf	fsr2h,c
+   723  007FA8  C019  F009         	movff	search_Devices@i,??_search_Devices
+   724  007FAC  C01A  F00A         	movff	search_Devices@i+1,??_search_Devices+1
+   725  007FB0  90D8               	bcf	status,0,c
+   726  007FB2  3609               	rlcf	??_search_Devices,f,c
+   727  007FB4  360A               	rlcf	??_search_Devices+1,f,c
+   728  007FB6  90D8               	bcf	status,0,c
+   729  007FB8  3609               	rlcf	??_search_Devices,f,c
+   730  007FBA  360A               	rlcf	??_search_Devices+1,f,c
+   731  007FBC  90D8               	bcf	status,0,c
+   732  007FBE  3609               	rlcf	??_search_Devices,f,c
+   733  007FC0  360A               	rlcf	??_search_Devices+1,f,c
+   734  007FC2  0E33               	movlw	low _DeviceAddress
+   735  007FC4  6E0B               	movwf	(??_search_Devices+2)& (0+255),c
+   736  007FC6  0E00               	movlw	high _DeviceAddress
+   737  007FC8  6E0C               	movwf	(??_search_Devices+3)& (0+255),c
+   738  007FCA  5009               	movf	??_search_Devices,w,c
+   739  007FCC  260B               	addwf	??_search_Devices+2,f,c
+   740  007FCE  500A               	movf	??_search_Devices+1,w,c
+   741  007FD0  220C               	addwfc	??_search_Devices+3,f,c
+   742  007FD2  501E               	movf	search_Devices@j,w,c
+   743  007FD4  240B               	addwf	??_search_Devices+2,w,c
+   744  007FD6  6EE1               	movwf	fsr1l,c
+   745  007FD8  501F               	movf	search_Devices@j+1,w,c
+   746  007FDA  200C               	addwfc	??_search_Devices+3,w,c
+   747  007FDC  6EE2               	movwf	fsr1h,c
+   748  007FDE  CFDF FFE7          	movff	indf2,indf1
+   749  007FE2  4A1E               	infsnz	search_Devices@j,f,c
+   750  007FE4  2A1F               	incf	search_Devices@j+1,f,c
+   751  007FE6  D7D0               	goto	l1308
+   752  007FE8  D000               	goto	l1318
+   753  007FEA                     l1318:
+   754  007FEA  4A19               	infsnz	search_Devices@i,f,c
+   755  007FEC  2A1A               	incf	search_Devices@i+1,f,c
+   756  007FEE  BE1A               	btfsc	search_Devices@i+1,7,c
+   757  007FF0  D733               	goto	l1240
+   758  007FF2  501A               	movf	search_Devices@i+1,w,c
+   759  007FF4  E102               	bnz	l1322
+   760  007FF6  D72A               	goto	L2
+   761  007FF8  D000               	goto	l1322
+   762  007FFA                     l1322:
+   763                           
+   764                           ;DS18B20.c: 165: }
+   765                           ;DS18B20.c: 166: }
+   766                           ;DS18B20.c: 167: return 1;
+   767  007FFA  0E01               	movlw	1
+   768  007FFC  D000               	goto	l69
+   769  007FFE                     l69:
+   770  007FFE  0012               	return		;funcret
+   771  008000                     __end_of_search_Devices:
+   772                           	opt stack 0
+   773                           intcon	equ	0xFF2
+   774                           postinc0	equ	0xFEE
+   775                           wreg	equ	0xFE8
+   776                           indf1	equ	0xFE7
+   777                           fsr1h	equ	0xFE2
+   778                           fsr1l	equ	0xFE1
+   779                           indf2	equ	0xFDF
+   780                           fsr2h	equ	0xFDA
+   781                           fsr2l	equ	0xFD9
+   782                           status	equ	0xFD8
+   783                           
+   784 ;; *************** function ___awdiv *****************
+   785 ;; Defined at:
+   786 ;;		line 8 in file "/Applications/microchip/xc8/v1.34/sources/common/awdiv.c"
+   787 ;; Parameters:    Size  Location     Type
+   788 ;;  dividend        2    0[COMRAM] int 
+   789 ;;  divisor         2    2[COMRAM] int 
+   790 ;; Auto vars:     Size  Location     Type
+   791 ;;  quotient        2    6[COMRAM] int 
+   792 ;;  sign            1    5[COMRAM] unsigned char 
+   793 ;;  counter         1    4[COMRAM] unsigned char 
+   794 ;; Return value:  Size  Location     Type
+   795 ;;                  2    0[COMRAM] int 
+   796 ;; Registers used:
+   797 ;;		wreg, status,2, status,0
+   798 ;; Tracked objects:
+   799 ;;		On entry : 0/0
+   800 ;;		On exit  : 0/0
+   801 ;;		Unchanged: 0/0
+   802 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   803 ;;      Params:         4       0       0       0       0       0       0       0       0
+   804 ;;      Locals:         4       0       0       0       0       0       0       0       0
+   805 ;;      Temps:          0       0       0       0       0       0       0       0       0
+   806 ;;      Totals:         8       0       0       0       0       0       0       0       0
+   807 ;;Total ram usage:        8 bytes
+   808 ;; Hardware stack levels used:    1
+   809 ;; This function calls:
+   810 ;;		Nothing
+   811 ;; This function is called by:
+   812 ;;		_search_Devices
+   813 ;; This function uses a non-reentrant model
+   814 ;;
+   815                           
+   816                           	psect	text2
+   817  007AA8                     __ptext2:
+   818                           	opt stack 0
+   819  007AA8                     ___awdiv:
+   820                           	opt stack 29
+   821                           
+   822                           ;incstack = 0
+   823  007AA8  0E00               	movlw	0
+   824  007AAA  6E06               	movwf	___awdiv@sign,c
+   825  007AAC  AE04               	btfss	___awdiv@divisor+1,7,c
+   826  007AAE  D007               	goto	l1186
+   827  007AB0  6C03               	negf	___awdiv@divisor,c
+   828  007AB2  1E04               	comf	___awdiv@divisor+1,f,c
+   829  007AB4  B0D8               	btfsc	status,0,c
+   830  007AB6  2A04               	incf	___awdiv@divisor+1,f,c
+   831  007AB8  0E01               	movlw	1
+   832  007ABA  6E06               	movwf	___awdiv@sign,c
+   833  007ABC  D000               	goto	l1186
+   834  007ABE                     l1186:
+   835  007ABE  AE02               	btfss	___awdiv@dividend+1,7,c
+   836  007AC0  D007               	goto	l1192
+   837  007AC2  6C01               	negf	___awdiv@dividend,c
+   838  007AC4  1E02               	comf	___awdiv@dividend+1,f,c
+   839  007AC6  B0D8               	btfsc	status,0,c
+   840  007AC8  2A02               	incf	___awdiv@dividend+1,f,c
+   841  007ACA  0E01               	movlw	1
+   842  007ACC  1A06               	xorwf	___awdiv@sign,f,c
+   843  007ACE  D000               	goto	l1192
+   844  007AD0                     l1192:
+   845  007AD0  0E00               	movlw	0
+   846  007AD2  6E08               	movwf	___awdiv@quotient+1,c
+   847  007AD4  0E00               	movlw	0
+   848  007AD6  6E07               	movwf	___awdiv@quotient,c
+   849  007AD8  5003               	movf	___awdiv@divisor,w,c
+   850  007ADA  1004               	iorwf	___awdiv@divisor+1,w,c
+   851  007ADC  B4D8               	btfsc	status,2,c
+   852  007ADE  D021               	goto	l1214
+   853  007AE0  0E01               	movlw	1
+   854  007AE2  6E05               	movwf	___awdiv@counter,c
+   855  007AE4  D005               	goto	l1200
+   856  007AE6                     l1198:
+   857  007AE6  90D8               	bcf	status,0,c
+   858  007AE8  3603               	rlcf	___awdiv@divisor,f,c
+   859  007AEA  3604               	rlcf	___awdiv@divisor+1,f,c
+   860  007AEC  2A05               	incf	___awdiv@counter,f,c
+   861  007AEE  D000               	goto	l1200
+   862  007AF0                     l1200:
+   863  007AF0  BE04               	btfsc	___awdiv@divisor+1,7,c
+   864  007AF2  D002               	goto	l1202
+   865  007AF4  D7F8               	goto	l1198
+   866  007AF6  D000               	goto	l1202
+   867  007AF8                     l1202:
+   868  007AF8  90D8               	bcf	status,0,c
+   869  007AFA  3607               	rlcf	___awdiv@quotient,f,c
+   870  007AFC  3608               	rlcf	___awdiv@quotient+1,f,c
+   871  007AFE  5003               	movf	___awdiv@divisor,w,c
+   872  007B00  5C01               	subwf	___awdiv@dividend,w,c
+   873  007B02  5004               	movf	___awdiv@divisor+1,w,c
+   874  007B04  5802               	subwfb	___awdiv@dividend+1,w,c
+   875  007B06  A0D8               	btfss	status,0,c
+   876  007B08  D006               	goto	l1210
+   877  007B0A  5003               	movf	___awdiv@divisor,w,c
+   878  007B0C  5E01               	subwf	___awdiv@dividend,f,c
+   879  007B0E  5004               	movf	___awdiv@divisor+1,w,c
+   880  007B10  5A02               	subwfb	___awdiv@dividend+1,f,c
+   881  007B12  8007               	bsf	___awdiv@quotient,0,c
+   882  007B14  D000               	goto	l1210
+   883  007B16                     l1210:
+   884  007B16  90D8               	bcf	status,0,c
+   885  007B18  3204               	rrcf	___awdiv@divisor+1,f,c
+   886  007B1A  3203               	rrcf	___awdiv@divisor,f,c
+   887  007B1C  2E05               	decfsz	___awdiv@counter,f,c
+   888  007B1E  D7EC               	goto	l1202
+   889  007B20  D000               	goto	l1214
+   890  007B22                     l1214:
+   891  007B22  5006               	movf	___awdiv@sign,w,c
+   892  007B24  B4D8               	btfsc	status,2,c
+   893  007B26  D005               	goto	l1218
+   894  007B28  6C07               	negf	___awdiv@quotient,c
+   895  007B2A  1E08               	comf	___awdiv@quotient+1,f,c
+   896  007B2C  B0D8               	btfsc	status,0,c
+   897  007B2E  2A08               	incf	___awdiv@quotient+1,f,c
+   898  007B30  D000               	goto	l1218
+   899  007B32                     l1218:
+   900  007B32  C007  F001         	movff	___awdiv@quotient,?___awdiv
+   901  007B36  C008  F002         	movff	___awdiv@quotient+1,?___awdiv+1
+   902  007B3A  D000               	goto	l290
+   903  007B3C                     l290:
+   904  007B3C  0012               	return		;funcret
+   905  007B3E                     __end_of___awdiv:
+   906                           	opt stack 0
+   907                           intcon	equ	0xFF2
+   908                           postinc0	equ	0xFEE
+   909                           wreg	equ	0xFE8
+   910                           indf1	equ	0xFE7
+   911                           fsr1h	equ	0xFE2
+   912                           fsr1l	equ	0xFE1
+   913                           indf2	equ	0xFDF
+   914                           fsr2h	equ	0xFDA
+   915                           fsr2l	equ	0xFD9
+   916                           status	equ	0xFD8
+   917                           
+   918 ;; *************** function _read_temp *****************
+   919 ;; Defined at:
+   920 ;;		line 170 in file "DS18B20/DS18B20.c"
+   921 ;; Parameters:    Size  Location     Type
+   922 ;;  DeviceAddres    1    wreg     unsigned char 
+   923 ;; Auto vars:     Size  Location     Type
+   924 ;;  DeviceAddres    1   39[COMRAM] unsigned char 
+   925 ;;  temperature     3   32[COMRAM] float 
+   926 ;;  temp            2   37[COMRAM] int 
+   927 ;;  temph           1   36[COMRAM] unsigned char 
+   928 ;;  templ           1   35[COMRAM] unsigned char 
+   929 ;; Return value:  Size  Location     Type
+   930 ;;                  3   27[COMRAM] float 
+   931 ;; Registers used:
+   932 ;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
+   933 ;; Tracked objects:
+   934 ;;		On entry : 0/0
+   935 ;;		On exit  : 0/0
+   936 ;;		Unchanged: 0/0
+   937 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+   938 ;;      Params:         3       0       0       0       0       0       0       0       0
+   939 ;;      Locals:         8       0       0       0       0       0       0       0       0
+   940 ;;      Temps:          2       0       0       0       0       0       0       0       0
+   941 ;;      Totals:        13       0       0       0       0       0       0       0       0
+   942 ;;Total ram usage:       13 bytes
+   943 ;; Hardware stack levels used:    1
+   944 ;; Hardware stack levels required when called:    3
+   945 ;; This function calls:
+   946 ;;		___awtoft
+   947 ;;		___ftmul
+   948 ;;		_address_Device
+   949 ;;		_delay750ms
+   950 ;;		_init_sensor
+   951 ;;		_read_Byte
+   952 ;;		_write_Byte
+   953 ;; This function is called by:
+   954 ;;		_main
+   955 ;; This function uses a non-reentrant model
+   956 ;;
+   957                           
+   958                           	psect	text3
+   959  007B3E                     __ptext3:
+   960                           	opt stack 0
+   961  007B3E                     _read_temp:
+   962                           	opt stack 27
+   963                           
+   964                           ;incstack = 0
+   965                           ;read_temp@DeviceAddress stored from wreg
+   966  007B3E  6E28               	movwf	read_temp@DeviceAddress,c
+   967                           
+   968                           ;DS18B20.c: 172: unsigned char templ,temph;
+   969                           ;DS18B20.c: 173: int temp;
+   970                           ;DS18B20.c: 174: float temperature;
+   971                           ;DS18B20.c: 176: address_Device(DeviceAddress);
+   972  007B40  5028               	movf	read_temp@DeviceAddress,w,c
+   973  007B42  6E1F               	movwf	??_read_temp& (0+255),c
+   974  007B44  6A20               	clrf	(??_read_temp+1)& (0+255),c
+   975  007B46  C01F  F005         	movff	??_read_temp,address_Device@Adress
+   976  007B4A  C020  F006         	movff	??_read_temp+1,address_Device@Adress+1
+   977  007B4E  EC07  F03D         	call	_address_Device	;wreg free
+   978                           
+   979                           ;DS18B20.c: 177: write_Byte(0x44);
+   980  007B52  0E44               	movlw	68
+   981  007B54  EC52  F03C         	call	_write_Byte
+   982                           
+   983                           ;DS18B20.c: 178: delay750ms();
+   984  007B58  EC29  F03C         	call	_delay750ms	;wreg free
+   985                           
+   986                           ;DS18B20.c: 179: init_sensor();
+   987  007B5C  ECE4  F03C         	call	_init_sensor	;wreg free
+   988                           
+   989                           ;DS18B20.c: 180: address_Device(DeviceAddress);
+   990  007B60  5028               	movf	read_temp@DeviceAddress,w,c
+   991  007B62  6E1F               	movwf	??_read_temp& (0+255),c
+   992  007B64  6A20               	clrf	(??_read_temp+1)& (0+255),c
+   993  007B66  C01F  F005         	movff	??_read_temp,address_Device@Adress
+   994  007B6A  C020  F006         	movff	??_read_temp+1,address_Device@Adress+1
+   995  007B6E  EC07  F03D         	call	_address_Device	;wreg free
+   996                           
+   997                           ;DS18B20.c: 181: write_Byte(0xBE);
+   998  007B72  0EBE               	movlw	190
+   999  007B74  EC52  F03C         	call	_write_Byte
+  1000                           
+  1001                           ;DS18B20.c: 182: templ= read_Byte();
+  1002  007B78  ECA6  F03C         	call	_read_Byte	;wreg free
+  1003  007B7C  6E24               	movwf	read_temp@templ,c
+  1004                           
+  1005                           ;DS18B20.c: 183: temph=read_Byte();
+  1006  007B7E  ECA6  F03C         	call	_read_Byte	;wreg free
+  1007  007B82  6E25               	movwf	read_temp@temph,c
+  1008                           
+  1009                           ;DS18B20.c: 184: temp=temph;
+  1010  007B84  C025  F026         	movff	read_temp@temph,read_temp@temp
+  1011  007B88  6A27               	clrf	read_temp@temp+1,c
+  1012                           
+  1013                           ;DS18B20.c: 185: temp<<=8;
+  1014  007B8A  5026               	movf	read_temp@temp,w,c
+  1015  007B8C  6E27               	movwf	read_temp@temp+1,c
+  1016  007B8E  6A26               	clrf	read_temp@temp,c
+  1017                           
+  1018                           ;DS18B20.c: 186: temp|=templ;
+  1019  007B90  5024               	movf	read_temp@templ,w,c
+  1020  007B92  1226               	iorwf	read_temp@temp,f,c
+  1021                           
+  1022                           ;DS18B20.c: 187: temperature=temp*0.0625;
+  1023  007B94  C026  F009         	movff	read_temp@temp,___awtoft@c
+  1024  007B98  C027  F00A         	movff	read_temp@temp+1,___awtoft@c+1
+  1025  007B9C  EC88  F03C         	call	___awtoft	;wreg free
+  1026  007BA0  C009  F00D         	movff	?___awtoft,___ftmul@f1
+  1027  007BA4  C00A  F00E         	movff	?___awtoft+1,___ftmul@f1+1
+  1028  007BA8  C00B  F00F         	movff	?___awtoft+2,___ftmul@f1+2
+  1029  007BAC  0E00               	movlw	0
+  1030  007BAE  6E10               	movwf	___ftmul@f2,c
+  1031  007BB0  0E80               	movlw	128
+  1032  007BB2  6E11               	movwf	___ftmul@f2+1,c
+  1033  007BB4  0E3D               	movlw	61
+  1034  007BB6  6E12               	movwf	___ftmul@f2+2,c
+  1035  007BB8  ECA0  F03E         	call	___ftmul	;wreg free
+  1036  007BBC  C00D  F021         	movff	?___ftmul,read_temp@temperature
+  1037  007BC0  C00E  F022         	movff	?___ftmul+1,read_temp@temperature+1
+  1038  007BC4  C00F  F023         	movff	?___ftmul+2,read_temp@temperature+2
+  1039                           
+  1040                           ;DS18B20.c: 188: return temperature;
+  1041  007BC8  C021  F01C         	movff	read_temp@temperature,?_read_temp
+  1042  007BCC  C022  F01D         	movff	read_temp@temperature+1,?_read_temp+1
+  1043  007BD0  C023  F01E         	movff	read_temp@temperature+2,?_read_temp+2
+  1044  007BD4  D000               	goto	l85
+  1045  007BD6                     l85:
+  1046  007BD6  0012               	return		;funcret
+  1047  007BD8                     __end_of_read_temp:
+  1048                           	opt stack 0
+  1049                           intcon	equ	0xFF2
+  1050                           postinc0	equ	0xFEE
+  1051                           wreg	equ	0xFE8
+  1052                           indf1	equ	0xFE7
+  1053                           fsr1h	equ	0xFE2
+  1054                           fsr1l	equ	0xFE1
+  1055                           indf2	equ	0xFDF
+  1056                           fsr2h	equ	0xFDA
+  1057                           fsr2l	equ	0xFD9
+  1058                           status	equ	0xFD8
+  1059                           
+  1060 ;; *************** function _read_Byte *****************
+  1061 ;; Defined at:
+  1062 ;;		line 68 in file "DS18B20/DS18B20.c"
+  1063 ;; Parameters:    Size  Location     Type
+  1064 ;;		None
+  1065 ;; Auto vars:     Size  Location     Type
+  1066 ;;  i               2    2[COMRAM] int 
+  1067 ;;  data            1    1[COMRAM] unsigned char 
+  1068 ;; Return value:  Size  Location     Type
+  1069 ;;                  1    wreg      unsigned char 
+  1070 ;; Registers used:
+  1071 ;;		wreg, status,2, status,0, cstack
+  1072 ;; Tracked objects:
+  1073 ;;		On entry : 0/0
+  1074 ;;		On exit  : 0/0
+  1075 ;;		Unchanged: 0/0
+  1076 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  1077 ;;      Params:         0       0       0       0       0       0       0       0       0
+  1078 ;;      Locals:         3       0       0       0       0       0       0       0       0
+  1079 ;;      Temps:          0       0       0       0       0       0       0       0       0
+  1080 ;;      Totals:         3       0       0       0       0       0       0       0       0
+  1081 ;;Total ram usage:        3 bytes
+  1082 ;; Hardware stack levels used:    1
+  1083 ;; Hardware stack levels required when called:    1
+  1084 ;; This function calls:
+  1085 ;;		_read_Bit
+  1086 ;; This function is called by:
+  1087 ;;		_read_temp
+  1088 ;; This function uses a non-reentrant model
+  1089 ;;
+  1090                           
+  1091                           	psect	text4
+  1092  00794C                     __ptext4:
+  1093                           	opt stack 0
+  1094  00794C                     _read_Byte:
+  1095                           	opt stack 28
+  1096                           
+  1097                           ;DS18B20.c: 70: unsigned char data=0;
+  1098                           
+  1099                           ;incstack = 0
+  1100  00794C  0E00               	movlw	0
+  1101  00794E  6E02               	movwf	read_Byte@data,c
+  1102                           
+  1103                           ;DS18B20.c: 71: for (int i=0;i<8;i++)
+  1104  007950  0E00               	movlw	0
+  1105  007952  6E04               	movwf	read_Byte@i+1,c
+  1106  007954  0E00               	movlw	0
+  1107  007956  6E03               	movwf	read_Byte@i,c
+  1108  007958                     l802:
+  1109  007958  BE04               	btfsc	read_Byte@i+1,7,c
+  1110  00795A  D008               	goto	l806
+  1111  00795C  5004               	movf	read_Byte@i+1,w,c
+  1112  00795E  E111               	bnz	l814
+  1113  007960  0E08               	movlw	8
+  1114  007962  5C03               	subwf	read_Byte@i,w,c
+  1115  007964  B0D8               	btfsc	status,0,c
+  1116  007966  D00D               	goto	l814
+  1117  007968  D001               	goto	l806
+  1118  00796A  D00B               	goto	l814
+  1119  00796C                     l806:
+  1120                           
+  1121                           ;DS18B20.c: 72: {
+  1122                           ;DS18B20.c: 73: data>>=1;
+  1123  00796C  90D8               	bcf	status,0,c
+  1124  00796E  3202               	rrcf	read_Byte@data,f,c
+  1125                           
+  1126                           ;DS18B20.c: 74: if(read_Bit())
+  1127  007970  EC3A  F03C         	call	_read_Bit	;wreg free
+  1128  007974  0900               	iorlw	0
+  1129  007976  A4D8               	btfss	status,2,c
+  1130                           
+  1131                           ;DS18B20.c: 75: {
+  1132                           ;DS18B20.c: 76: data|=0x80;
+  1133  007978  8E02               	bsf	read_Byte@data,7,c
+  1134  00797A  4A03               	infsnz	read_Byte@i,f,c
+  1135  00797C  2A04               	incf	read_Byte@i+1,f,c
+  1136  00797E  D7EC               	goto	l802
+  1137  007980  D000               	goto	l814
+  1138  007982                     l814:
+  1139                           
+  1140                           ;DS18B20.c: 77: }
+  1141                           ;DS18B20.c: 78: }
+  1142                           ;DS18B20.c: 79: return data;
+  1143  007982  5002               	movf	read_Byte@data,w,c
+  1144  007984  D000               	goto	l54
+  1145  007986                     l54:
+  1146  007986  0012               	return		;funcret
+  1147  007988                     __end_of_read_Byte:
+  1148                           	opt stack 0
+  1149                           intcon	equ	0xFF2
+  1150                           postinc0	equ	0xFEE
+  1151                           wreg	equ	0xFE8
+  1152                           indf1	equ	0xFE7
+  1153                           fsr1h	equ	0xFE2
+  1154                           fsr1l	equ	0xFE1
+  1155                           indf2	equ	0xFDF
+  1156                           fsr2h	equ	0xFDA
+  1157                           fsr2l	equ	0xFD9
+  1158                           status	equ	0xFD8
+  1159                           
+  1160 ;; *************** function _read_Bit *****************
+  1161 ;; Defined at:
+  1162 ;;		line 52 in file "DS18B20/DS18B20.c"
+  1163 ;; Parameters:    Size  Location     Type
+  1164 ;;		None
+  1165 ;; Auto vars:     Size  Location     Type
+  1166 ;;  result          1    0[COMRAM] unsigned char 
+  1167 ;; Return value:  Size  Location     Type
+  1168 ;;                  1    wreg      unsigned char 
+  1169 ;; Registers used:
+  1170 ;;		wreg, status,2
+  1171 ;; Tracked objects:
+  1172 ;;		On entry : 0/0
+  1173 ;;		On exit  : 0/0
+  1174 ;;		Unchanged: 0/0
+  1175 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  1176 ;;      Params:         0       0       0       0       0       0       0       0       0
+  1177 ;;      Locals:         1       0       0       0       0       0       0       0       0
+  1178 ;;      Temps:          0       0       0       0       0       0       0       0       0
+  1179 ;;      Totals:         1       0       0       0       0       0       0       0       0
+  1180 ;;Total ram usage:        1 bytes
+  1181 ;; Hardware stack levels used:    1
+  1182 ;; This function calls:
+  1183 ;;		Nothing
+  1184 ;; This function is called by:
+  1185 ;;		_read_Byte
+  1186 ;;		_search_Devices
+  1187 ;; This function uses a non-reentrant model
+  1188 ;;
+  1189                           
+  1190                           	psect	text5
+  1191  007874                     __ptext5:
+  1192                           	opt stack 0
+  1193  007874                     _read_Bit:
+  1194                           	opt stack 29
+  1195                           
+  1196                           ;DS18B20.c: 54: unsigned char result = 0x00;
+  1197                           
+  1198                           ;incstack = 0
+  1199  007874  0E00               	movlw	0
+  1200  007876  6E01               	movwf	read_Bit@result,c
+  1201                           
+  1202                           ;DS18B20.c: 56: TRISC0=0;
+  1203  007878  9094               	bcf	3988,0,c	;volatile
+  1204                           
+  1205                           ;DS18B20.c: 57: LATC0=0;
+  1206  00787A  908B               	bcf	3979,0,c	;volatile
+  1207                           
+  1208                           ;DS18B20.c: 58: _delay((unsigned long)((6)*(20000000/4000000.0)));
+  1209  00787C  0E0A               	movlw	10
+  1210  00787E                     u877:
+  1211  00787E  2EE8               	decfsz	wreg,f,c
+  1212  007880  D7FE               	goto	u877
+  1213                           
+  1214                           ;DS18B20.c: 59: TRISC0=0;
+  1215  007882  9094               	bcf	3988,0,c	;volatile
+  1216                           
+  1217                           ;DS18B20.c: 60: LATC0=1;
+  1218  007884  808B               	bsf	3979,0,c	;volatile
+  1219                           
+  1220                           ;DS18B20.c: 61: _delay((unsigned long)((9)*(20000000/4000000.0)));
+  1221  007886  0E0F               	movlw	15
+  1222  007888                     u887:
+  1223  007888  2EE8               	decfsz	wreg,f,c
+  1224  00788A  D7FE               	goto	u887
+  1225                           
+  1226                           ;DS18B20.c: 62: TRISC0=1;
+  1227  00788C  8094               	bsf	3988,0,c	;volatile
+  1228                           
+  1229                           ;DS18B20.c: 63: result= RC0;
+  1230  00788E  0E00               	movlw	0
+  1231  007890  B082               	btfsc	3970,0,c	;volatile
+  1232  007892  0E01               	movlw	1
+  1233  007894  6E01               	movwf	read_Bit@result,c
+  1234                           
+  1235                           ;DS18B20.c: 64: _delay((unsigned long)((55)*(20000000/4000000.0)));
+  1236  007896  0E5B               	movlw	91
+  1237  007898                     u897:
+  1238  007898  2EE8               	decfsz	wreg,f,c
+  1239  00789A  D7FE               	goto	u897
+  1240  00789C  D000               	nop2		;nop
+  1241                           
+  1242                           ;DS18B20.c: 65: return result;
+  1243  00789E  5001               	movf	read_Bit@result,w,c
+  1244  0078A0  D000               	goto	l48
+  1245  0078A2                     l48:
+  1246  0078A2  0012               	return		;funcret
+  1247  0078A4                     __end_of_read_Bit:
+  1248                           	opt stack 0
+  1249                           intcon	equ	0xFF2
+  1250                           postinc0	equ	0xFEE
+  1251                           wreg	equ	0xFE8
+  1252                           indf1	equ	0xFE7
+  1253                           fsr1h	equ	0xFE2
+  1254                           fsr1l	equ	0xFE1
+  1255                           indf2	equ	0xFDF
+  1256                           fsr2h	equ	0xFDA
+  1257                           fsr2l	equ	0xFD9
+  1258                           status	equ	0xFD8
+  1259                           
+  1260 ;; *************** function _delay750ms *****************
+  1261 ;; Defined at:
+  1262 ;;		line 214 in file "DS18B20/DS18B20.c"
+  1263 ;; Parameters:    Size  Location     Type
+  1264 ;;		None
+  1265 ;; Auto vars:     Size  Location     Type
+  1266 ;;		None
+  1267 ;; Return value:  Size  Location     Type
+  1268 ;;		None               void
+  1269 ;; Registers used:
+  1270 ;;		wreg, cstack
+  1271 ;; Tracked objects:
+  1272 ;;		On entry : 0/0
+  1273 ;;		On exit  : 0/0
+  1274 ;;		Unchanged: 0/0
+  1275 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  1276 ;;      Params:         0       0       0       0       0       0       0       0       0
+  1277 ;;      Locals:         0       0       0       0       0       0       0       0       0
+  1278 ;;      Temps:          0       0       0       0       0       0       0       0       0
+  1279 ;;      Totals:         0       0       0       0       0       0       0       0       0
+  1280 ;;Total ram usage:        0 bytes
+  1281 ;; Hardware stack levels used:    1
+  1282 ;; Hardware stack levels required when called:    1
+  1283 ;; This function calls:
+  1284 ;;		_delay100ms
+  1285 ;;		_delay50ms
+  1286 ;; This function is called by:
+  1287 ;;		_read_temp
+  1288 ;; This function uses a non-reentrant model
+  1289 ;;
+  1290                           
+  1291                           	psect	text6
+  1292  007852                     __ptext6:
+  1293                           	opt stack 0
+  1294  007852                     _delay750ms:
+  1295                           	opt stack 28
+  1296                           
+  1297                           ;DS18B20.c: 216: delay100ms();
+  1298                           
+  1299                           ;incstack = 0
+  1300  007852  ECEC  F03D         	call	_delay100ms	;wreg free
+  1301                           
+  1302                           ;DS18B20.c: 217: delay100ms();
+  1303  007856  ECEC  F03D         	call	_delay100ms	;wreg free
+  1304                           
+  1305                           ;DS18B20.c: 218: delay100ms();
+  1306  00785A  ECEC  F03D         	call	_delay100ms	;wreg free
+  1307                           
+  1308                           ;DS18B20.c: 219: delay100ms();
+  1309  00785E  ECEC  F03D         	call	_delay100ms	;wreg free
+  1310                           
+  1311                           ;DS18B20.c: 220: delay100ms();
+  1312  007862  ECEC  F03D         	call	_delay100ms	;wreg free
+  1313                           
+  1314                           ;DS18B20.c: 221: delay100ms();
+  1315  007866  ECEC  F03D         	call	_delay100ms	;wreg free
+  1316                           
+  1317                           ;DS18B20.c: 222: delay100ms();
+  1318  00786A  ECEC  F03D         	call	_delay100ms	;wreg free
+  1319                           
+  1320                           ;DS18B20.c: 223: delay50ms();
+  1321  00786E  EC2B  F03D         	call	_delay50ms	;wreg free
+  1322  007872  0012               	return		;funcret
+  1323  007874                     __end_of_delay750ms:
+  1324                           	opt stack 0
+  1325                           intcon	equ	0xFF2
+  1326                           postinc0	equ	0xFEE
+  1327                           wreg	equ	0xFE8
+  1328                           indf1	equ	0xFE7
+  1329                           fsr1h	equ	0xFE2
+  1330                           fsr1l	equ	0xFE1
+  1331                           indf2	equ	0xFDF
+  1332                           fsr2h	equ	0xFDA
+  1333                           fsr2l	equ	0xFD9
+  1334                           status	equ	0xFD8
+  1335                           
+  1336 ;; *************** function _delay50ms *****************
+  1337 ;; Defined at:
+  1338 ;;		line 205 in file "DS18B20/DS18B20.c"
+  1339 ;; Parameters:    Size  Location     Type
+  1340 ;;		None
+  1341 ;; Auto vars:     Size  Location     Type
+  1342 ;;		None
+  1343 ;; Return value:  Size  Location     Type
+  1344 ;;		None               void
+  1345 ;; Registers used:
+  1346 ;;		wreg
+  1347 ;; Tracked objects:
+  1348 ;;		On entry : 0/0
+  1349 ;;		On exit  : 0/0
+  1350 ;;		Unchanged: 0/0
+  1351 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  1352 ;;      Params:         0       0       0       0       0       0       0       0       0
+  1353 ;;      Locals:         0       0       0       0       0       0       0       0       0
+  1354 ;;      Temps:          1       0       0       0       0       0       0       0       0
+  1355 ;;      Totals:         1       0       0       0       0       0       0       0       0
+  1356 ;;Total ram usage:        1 bytes
+  1357 ;; Hardware stack levels used:    1
+  1358 ;; This function calls:
+  1359 ;;		Nothing
+  1360 ;; This function is called by:
+  1361 ;;		_delay750ms
+  1362 ;; This function uses a non-reentrant model
+  1363 ;;
+  1364                           
+  1365                           	psect	text7
+  1366  007A56                     __ptext7:
+  1367                           	opt stack 0
+  1368  007A56                     _delay50ms:
+  1369                           	opt stack 28
+  1370                           
+  1371                           ;DS18B20.c: 207: _delay((unsigned long)((10)*(20000000/4000.0)));
+  1372                           
+  1373                           ;incstack = 0
+  1374  007A56  0E41               	movlw	65
+  1375  007A58  6E01               	movwf	??_delay50ms& (0+255),c
+  1376  007A5A  0EEE               	movlw	238
+  1377  007A5C                     u907:
+  1378  007A5C  2EE8               	decfsz	wreg,f,c
+  1379  007A5E  D7FE               	goto	u907
+  1380  007A60  2E01               	decfsz	??_delay50ms& (0+255),f,c
+  1381  007A62  D7FC               	goto	u907
+  1382  007A64  D000               	nop2	
+  1383                           
+  1384                           ;DS18B20.c: 208: _delay((unsigned long)((10)*(20000000/4000.0)));
+  1385  007A66  0E41               	movlw	65
+  1386  007A68  6E01               	movwf	??_delay50ms& (0+255),c
+  1387  007A6A  0EEE               	movlw	238
+  1388  007A6C                     u917:
+  1389  007A6C  2EE8               	decfsz	wreg,f,c
+  1390  007A6E  D7FE               	goto	u917
+  1391  007A70  2E01               	decfsz	??_delay50ms& (0+255),f,c
+  1392  007A72  D7FC               	goto	u917
+  1393  007A74  D000               	nop2	
+  1394                           
+  1395                           ;DS18B20.c: 209: _delay((unsigned long)((10)*(20000000/4000.0)));
+  1396  007A76  0E41               	movlw	65
+  1397  007A78  6E01               	movwf	??_delay50ms& (0+255),c
+  1398  007A7A  0EEE               	movlw	238
+  1399  007A7C                     u927:
+  1400  007A7C  2EE8               	decfsz	wreg,f,c
+  1401  007A7E  D7FE               	goto	u927
+  1402  007A80  2E01               	decfsz	??_delay50ms& (0+255),f,c
+  1403  007A82  D7FC               	goto	u927
+  1404  007A84  D000               	nop2	
+  1405                           
+  1406                           ;DS18B20.c: 210: _delay((unsigned long)((10)*(20000000/4000.0)));
+  1407  007A86  0E41               	movlw	65
+  1408  007A88  6E01               	movwf	??_delay50ms& (0+255),c
+  1409  007A8A  0EEE               	movlw	238
+  1410  007A8C                     u937:
+  1411  007A8C  2EE8               	decfsz	wreg,f,c
+  1412  007A8E  D7FE               	goto	u937
+  1413  007A90  2E01               	decfsz	??_delay50ms& (0+255),f,c
+  1414  007A92  D7FC               	goto	u937
+  1415  007A94  D000               	nop2	
+  1416                           
+  1417                           ;DS18B20.c: 211: _delay((unsigned long)((10)*(20000000/4000.0)));
+  1418  007A96  0E41               	movlw	65
+  1419  007A98  6E01               	movwf	??_delay50ms& (0+255),c
+  1420  007A9A  0EEE               	movlw	238
+  1421  007A9C                     u947:
+  1422  007A9C  2EE8               	decfsz	wreg,f,c
+  1423  007A9E  D7FE               	goto	u947
+  1424  007AA0  2E01               	decfsz	??_delay50ms& (0+255),f,c
+  1425  007AA2  D7FC               	goto	u947
+  1426  007AA4  D000               	nop2	
+  1427  007AA6  0012               	return		;funcret
+  1428  007AA8                     __end_of_delay50ms:
+  1429                           	opt stack 0
+  1430                           intcon	equ	0xFF2
+  1431                           postinc0	equ	0xFEE
+  1432                           wreg	equ	0xFE8
+  1433                           indf1	equ	0xFE7
+  1434                           fsr1h	equ	0xFE2
+  1435                           fsr1l	equ	0xFE1
+  1436                           indf2	equ	0xFDF
+  1437                           fsr2h	equ	0xFDA
+  1438                           fsr2l	equ	0xFD9
+  1439                           status	equ	0xFD8
+  1440                           
+  1441 ;; *************** function _delay100ms *****************
+  1442 ;; Defined at:
+  1443 ;;		line 191 in file "DS18B20/DS18B20.c"
+  1444 ;; Parameters:    Size  Location     Type
+  1445 ;;		None
+  1446 ;; Auto vars:     Size  Location     Type
+  1447 ;;		None
+  1448 ;; Return value:  Size  Location     Type
+  1449 ;;		None               void
+  1450 ;; Registers used:
+  1451 ;;		wreg
+  1452 ;; Tracked objects:
+  1453 ;;		On entry : 0/0
+  1454 ;;		On exit  : 0/0
+  1455 ;;		Unchanged: 0/0
+  1456 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  1457 ;;      Params:         0       0       0       0       0       0       0       0       0
+  1458 ;;      Locals:         0       0       0       0       0       0       0       0       0
+  1459 ;;      Temps:          1       0       0       0       0       0       0       0       0
+  1460 ;;      Totals:         1       0       0       0       0       0       0       0       0
+  1461 ;;Total ram usage:        1 bytes
+  1462 ;; Hardware stack levels used:    1
+  1463 ;; This function calls:
+  1464 ;;		Nothing
+  1465 ;; This function is called by:
+  1466 ;;		_delay750ms
+  1467 ;; This function uses a non-reentrant model
+  1468 ;;
+  1469                           
+  1470                           	psect	text8
+  1471  007BD8                     __ptext8:
+  1472                           	opt stack 0
+  1473  007BD8                     _delay100ms:
+  1474                           	opt stack 28
+  1475                           
+  1476                           ;DS18B20.c: 193: _delay((unsigned long)((10)*(20000000/4000.0)));
+  1477                           
+  1478                           ;incstack = 0
+  1479  007BD8  0E41               	movlw	65
+  1480  007BDA  6E01               	movwf	??_delay100ms& (0+255),c
+  1481  007BDC  0EEE               	movlw	238
+  1482  007BDE                     u957:
+  1483  007BDE  2EE8               	decfsz	wreg,f,c
+  1484  007BE0  D7FE               	goto	u957
+  1485  007BE2  2E01               	decfsz	??_delay100ms& (0+255),f,c
+  1486  007BE4  D7FC               	goto	u957
+  1487  007BE6  D000               	nop2	
+  1488                           
+  1489                           ;DS18B20.c: 194: _delay((unsigned long)((10)*(20000000/4000.0)));
+  1490  007BE8  0E41               	movlw	65
+  1491  007BEA  6E01               	movwf	??_delay100ms& (0+255),c
+  1492  007BEC  0EEE               	movlw	238
+  1493  007BEE                     u967:
+  1494  007BEE  2EE8               	decfsz	wreg,f,c
+  1495  007BF0  D7FE               	goto	u967
+  1496  007BF2  2E01               	decfsz	??_delay100ms& (0+255),f,c
+  1497  007BF4  D7FC               	goto	u967
+  1498  007BF6  D000               	nop2	
+  1499                           
+  1500                           ;DS18B20.c: 195: _delay((unsigned long)((10)*(20000000/4000.0)));
+  1501  007BF8  0E41               	movlw	65
+  1502  007BFA  6E01               	movwf	??_delay100ms& (0+255),c
+  1503  007BFC  0EEE               	movlw	238
+  1504  007BFE                     u977:
+  1505  007BFE  2EE8               	decfsz	wreg,f,c
+  1506  007C00  D7FE               	goto	u977
+  1507  007C02  2E01               	decfsz	??_delay100ms& (0+255),f,c
+  1508  007C04  D7FC               	goto	u977
+  1509  007C06  D000               	nop2	
+  1510                           
+  1511                           ;DS18B20.c: 196: _delay((unsigned long)((10)*(20000000/4000.0)));
+  1512  007C08  0E41               	movlw	65
+  1513  007C0A  6E01               	movwf	??_delay100ms& (0+255),c
+  1514  007C0C  0EEE               	movlw	238
+  1515  007C0E                     u987:
+  1516  007C0E  2EE8               	decfsz	wreg,f,c
+  1517  007C10  D7FE               	goto	u987
+  1518  007C12  2E01               	decfsz	??_delay100ms& (0+255),f,c
+  1519  007C14  D7FC               	goto	u987
+  1520  007C16  D000               	nop2	
+  1521                           
+  1522                           ;DS18B20.c: 197: _delay((unsigned long)((10)*(20000000/4000.0)));
+  1523  007C18  0E41               	movlw	65
+  1524  007C1A  6E01               	movwf	??_delay100ms& (0+255),c
+  1525  007C1C  0EEE               	movlw	238
+  1526  007C1E                     u997:
+  1527  007C1E  2EE8               	decfsz	wreg,f,c
+  1528  007C20  D7FE               	goto	u997
+  1529  007C22  2E01               	decfsz	??_delay100ms& (0+255),f,c
+  1530  007C24  D7FC               	goto	u997
+  1531  007C26  D000               	nop2	
+  1532                           
+  1533                           ;DS18B20.c: 198: _delay((unsigned long)((10)*(20000000/4000.0)));
+  1534  007C28  0E41               	movlw	65
+  1535  007C2A  6E01               	movwf	??_delay100ms& (0+255),c
+  1536  007C2C  0EEE               	movlw	238
+  1537  007C2E                     u1007:
+  1538  007C2E  2EE8               	decfsz	wreg,f,c
+  1539  007C30  D7FE               	goto	u1007
+  1540  007C32  2E01               	decfsz	??_delay100ms& (0+255),f,c
+  1541  007C34  D7FC               	goto	u1007
+  1542  007C36  D000               	nop2	
+  1543                           
+  1544                           ;DS18B20.c: 199: _delay((unsigned long)((10)*(20000000/4000.0)));
+  1545  007C38  0E41               	movlw	65
+  1546  007C3A  6E01               	movwf	??_delay100ms& (0+255),c
+  1547  007C3C  0EEE               	movlw	238
+  1548  007C3E                     u1017:
+  1549  007C3E  2EE8               	decfsz	wreg,f,c
+  1550  007C40  D7FE               	goto	u1017
+  1551  007C42  2E01               	decfsz	??_delay100ms& (0+255),f,c
+  1552  007C44  D7FC               	goto	u1017
+  1553  007C46  D000               	nop2	
+  1554                           
+  1555                           ;DS18B20.c: 200: _delay((unsigned long)((10)*(20000000/4000.0)));
+  1556  007C48  0E41               	movlw	65
+  1557  007C4A  6E01               	movwf	??_delay100ms& (0+255),c
+  1558  007C4C  0EEE               	movlw	238
+  1559  007C4E                     u1027:
+  1560  007C4E  2EE8               	decfsz	wreg,f,c
+  1561  007C50  D7FE               	goto	u1027
+  1562  007C52  2E01               	decfsz	??_delay100ms& (0+255),f,c
+  1563  007C54  D7FC               	goto	u1027
+  1564  007C56  D000               	nop2	
+  1565                           
+  1566                           ;DS18B20.c: 201: _delay((unsigned long)((10)*(20000000/4000.0)));
+  1567  007C58  0E41               	movlw	65
+  1568  007C5A  6E01               	movwf	??_delay100ms& (0+255),c
+  1569  007C5C  0EEE               	movlw	238
+  1570  007C5E                     u1037:
+  1571  007C5E  2EE8               	decfsz	wreg,f,c
+  1572  007C60  D7FE               	goto	u1037
+  1573  007C62  2E01               	decfsz	??_delay100ms& (0+255),f,c
+  1574  007C64  D7FC               	goto	u1037
+  1575  007C66  D000               	nop2	
+  1576                           
+  1577                           ;DS18B20.c: 202: _delay((unsigned long)((10)*(20000000/4000.0)));
+  1578  007C68  0E41               	movlw	65
+  1579  007C6A  6E01               	movwf	??_delay100ms& (0+255),c
+  1580  007C6C  0EEE               	movlw	238
+  1581  007C6E                     u1047:
+  1582  007C6E  2EE8               	decfsz	wreg,f,c
+  1583  007C70  D7FE               	goto	u1047
+  1584  007C72  2E01               	decfsz	??_delay100ms& (0+255),f,c
+  1585  007C74  D7FC               	goto	u1047
+  1586  007C76  D000               	nop2	
+  1587  007C78  0012               	return		;funcret
+  1588  007C7A                     __end_of_delay100ms:
+  1589                           	opt stack 0
+  1590                           intcon	equ	0xFF2
+  1591                           postinc0	equ	0xFEE
+  1592                           wreg	equ	0xFE8
+  1593                           indf1	equ	0xFE7
+  1594                           fsr1h	equ	0xFE2
+  1595                           fsr1l	equ	0xFE1
+  1596                           indf2	equ	0xFDF
+  1597                           fsr2h	equ	0xFDA
+  1598                           fsr2l	equ	0xFD9
+  1599                           status	equ	0xFD8
+  1600                           
+  1601 ;; *************** function _address_Device *****************
+  1602 ;; Defined at:
+  1603 ;;		line 82 in file "DS18B20/DS18B20.c"
+  1604 ;; Parameters:    Size  Location     Type
+  1605 ;;  Adress          2    4[COMRAM] PTR unsigned char 
+  1606 ;;		 -> RAM(2047), 
+  1607 ;; Auto vars:     Size  Location     Type
+  1608 ;;  i               2    6[COMRAM] int 
+  1609 ;; Return value:  Size  Location     Type
+  1610 ;;                  1    wreg      unsigned char 
+  1611 ;; Registers used:
+  1612 ;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
+  1613 ;; Tracked objects:
+  1614 ;;		On entry : 0/0
+  1615 ;;		On exit  : 0/0
+  1616 ;;		Unchanged: 0/0
+  1617 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  1618 ;;      Params:         2       0       0       0       0       0       0       0       0
+  1619 ;;      Locals:         2       0       0       0       0       0       0       0       0
+  1620 ;;      Temps:          0       0       0       0       0       0       0       0       0
+  1621 ;;      Totals:         4       0       0       0       0       0       0       0       0
+  1622 ;;Total ram usage:        4 bytes
+  1623 ;; Hardware stack levels used:    1
+  1624 ;; Hardware stack levels required when called:    2
+  1625 ;; This function calls:
+  1626 ;;		_init_sensor
+  1627 ;;		_write_Byte
+  1628 ;; This function is called by:
+  1629 ;;		_read_temp
+  1630 ;; This function uses a non-reentrant model
+  1631 ;;
+  1632                           
+  1633                           	psect	text9
+  1634  007A0E                     __ptext9:
+  1635                           	opt stack 0
+  1636  007A0E                     _address_Device:
+  1637                           	opt stack 27
+  1638                           
+  1639                           ;DS18B20.c: 84: if( init_sensor()==0)
+  1640                           
+  1641                           ;incstack = 0
+  1642  007A0E  ECE4  F03C         	call	_init_sensor	;wreg free
+  1643  007A12  0900               	iorlw	0
+  1644  007A14  A4D8               	btfss	status,2,c
+  1645  007A16  D01E               	goto	l60
+  1646                           
+  1647                           ;DS18B20.c: 85: {
+  1648                           ;DS18B20.c: 86: write_Byte(0x55);
+  1649  007A18  0E55               	movlw	85
+  1650  007A1A  EC52  F03C         	call	_write_Byte
+  1651                           
+  1652                           ;DS18B20.c: 87: for(int i=0;i<8;i++)
+  1653  007A1E  0E00               	movlw	0
+  1654  007A20  6E08               	movwf	address_Device@i+1,c
+  1655  007A22  0E00               	movlw	0
+  1656  007A24  6E07               	movwf	address_Device@i,c
+  1657  007A26                     l1118:
+  1658  007A26  BE08               	btfsc	address_Device@i+1,7,c
+  1659  007A28  D008               	goto	l1122
+  1660  007A2A  5008               	movf	address_Device@i+1,w,c
+  1661  007A2C  E113               	bnz	l60
+  1662  007A2E  0E08               	movlw	8
+  1663  007A30  5C07               	subwf	address_Device@i,w,c
+  1664  007A32  B0D8               	btfsc	status,0,c
+  1665  007A34  D00F               	goto	l60
+  1666  007A36  D001               	goto	l1122
+  1667  007A38  D00D               	goto	l60
+  1668  007A3A                     l1122:
+  1669                           
+  1670                           ;DS18B20.c: 88: {
+  1671                           ;DS18B20.c: 89: write_Byte(Adress[i]);
+  1672  007A3A  5007               	movf	address_Device@i,w,c
+  1673  007A3C  2405               	addwf	address_Device@Adress,w,c
+  1674  007A3E  6ED9               	movwf	fsr2l,c
+  1675  007A40  5008               	movf	address_Device@i+1,w,c
+  1676  007A42  2006               	addwfc	address_Device@Adress+1,w,c
+  1677  007A44  6EDA               	movwf	fsr2h,c
+  1678  007A46  50DF               	movf	indf2,w,c
+  1679  007A48  EC52  F03C         	call	_write_Byte
+  1680  007A4C  4A07               	infsnz	address_Device@i,f,c
+  1681  007A4E  2A08               	incf	address_Device@i+1,f,c
+  1682  007A50  D7EA               	goto	l1118
+  1683                           
+  1684                           ;DS18B20.c: 93: {
+  1685                           ;DS18B20.c: 94: return 0;
+  1686                           ;	Return value of _address_Device is never used
+  1687                           
+  1688                           ;DS18B20.c: 92: }else
+  1689                           
+  1690                           ;DS18B20.c: 90: }
+  1691                           ;DS18B20.c: 91: return 1;
+  1692                           ;	Return value of _address_Device is never used
+  1693  007A52  D000               	goto	l60
+  1694  007A54                     l60:
+  1695  007A54  0012               	return		;funcret
+  1696  007A56                     __end_of_address_Device:
+  1697                           	opt stack 0
+  1698                           intcon	equ	0xFF2
+  1699                           postinc0	equ	0xFEE
+  1700                           wreg	equ	0xFE8
+  1701                           indf1	equ	0xFE7
+  1702                           fsr1h	equ	0xFE2
+  1703                           fsr1l	equ	0xFE1
+  1704                           indf2	equ	0xFDF
+  1705                           fsr2h	equ	0xFDA
+  1706                           fsr2l	equ	0xFD9
+  1707                           status	equ	0xFD8
+  1708                           
+  1709 ;; *************** function _write_Byte *****************
+  1710 ;; Defined at:
+  1711 ;;		line 43 in file "DS18B20/DS18B20.c"
+  1712 ;; Parameters:    Size  Location     Type
+  1713 ;;  data            1    wreg     unsigned char 
+  1714 ;; Auto vars:     Size  Location     Type
+  1715 ;;  data            1    1[COMRAM] unsigned char 
+  1716 ;;  i               2    2[COMRAM] int 
+  1717 ;; Return value:  Size  Location     Type
+  1718 ;;		None               void
+  1719 ;; Registers used:
+  1720 ;;		wreg, status,2, status,0, cstack
+  1721 ;; Tracked objects:
+  1722 ;;		On entry : 0/0
+  1723 ;;		On exit  : 0/0
+  1724 ;;		Unchanged: 0/0
+  1725 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  1726 ;;      Params:         0       0       0       0       0       0       0       0       0
+  1727 ;;      Locals:         3       0       0       0       0       0       0       0       0
+  1728 ;;      Temps:          0       0       0       0       0       0       0       0       0
+  1729 ;;      Totals:         3       0       0       0       0       0       0       0       0
+  1730 ;;Total ram usage:        3 bytes
+  1731 ;; Hardware stack levels used:    1
+  1732 ;; Hardware stack levels required when called:    1
+  1733 ;; This function calls:
+  1734 ;;		_write_Bit
+  1735 ;; This function is called by:
+  1736 ;;		_address_Device
+  1737 ;;		_search_Devices
+  1738 ;;		_read_temp
+  1739 ;; This function uses a non-reentrant model
+  1740 ;;
+  1741                           
+  1742                           	psect	text10
+  1743  0078A4                     __ptext10:
+  1744                           	opt stack 0
+  1745  0078A4                     _write_Byte:
+  1746                           	opt stack 28
+  1747                           
+  1748                           ;incstack = 0
+  1749                           ;write_Byte@data stored from wreg
+  1750  0078A4  6E02               	movwf	write_Byte@data,c
+  1751                           
+  1752                           ;DS18B20.c: 45: for(int i=0;i<8;i++)
+  1753  0078A6  0E00               	movlw	0
+  1754  0078A8  6E04               	movwf	write_Byte@i+1,c
+  1755  0078AA  0E00               	movlw	0
+  1756  0078AC  6E03               	movwf	write_Byte@i,c
+  1757  0078AE                     l726:
+  1758  0078AE  BE04               	btfsc	write_Byte@i+1,7,c
+  1759  0078B0  D008               	goto	l730
+  1760  0078B2  5004               	movf	write_Byte@i+1,w,c
+  1761  0078B4  E110               	bnz	l45
+  1762  0078B6  0E08               	movlw	8
+  1763  0078B8  5C03               	subwf	write_Byte@i,w,c
+  1764  0078BA  B0D8               	btfsc	status,0,c
+  1765  0078BC  D00C               	goto	l45
+  1766  0078BE  D001               	goto	l730
+  1767  0078C0  D00A               	goto	l45
+  1768  0078C2                     l730:
+  1769                           
+  1770                           ;DS18B20.c: 46: {
+  1771                           ;DS18B20.c: 47: write_Bit(data & 0x01);
+  1772  0078C2  5002               	movf	write_Byte@data,w,c
+  1773  0078C4  0B01               	andlw	1
+  1774  0078C6  EC6C  F03C         	call	_write_Bit
+  1775                           
+  1776                           ;DS18B20.c: 48: data>>=1;
+  1777  0078CA  90D8               	bcf	status,0,c
+  1778  0078CC  3202               	rrcf	write_Byte@data,f,c
+  1779  0078CE  4A03               	infsnz	write_Byte@i,f,c
+  1780  0078D0  2A04               	incf	write_Byte@i+1,f,c
+  1781  0078D2  D7ED               	goto	l726
+  1782  0078D4  D000               	goto	l45
+  1783  0078D6                     l45:
+  1784  0078D6  0012               	return		;funcret
+  1785  0078D8                     __end_of_write_Byte:
+  1786                           	opt stack 0
+  1787                           intcon	equ	0xFF2
+  1788                           postinc0	equ	0xFEE
+  1789                           wreg	equ	0xFE8
+  1790                           indf1	equ	0xFE7
+  1791                           fsr1h	equ	0xFE2
+  1792                           fsr1l	equ	0xFE1
+  1793                           indf2	equ	0xFDF
+  1794                           fsr2h	equ	0xFDA
+  1795                           fsr2l	equ	0xFD9
+  1796                           status	equ	0xFD8
+  1797                           
+  1798 ;; *************** function _write_Bit *****************
+  1799 ;; Defined at:
+  1800 ;;		line 21 in file "DS18B20/DS18B20.c"
+  1801 ;; Parameters:    Size  Location     Type
+  1802 ;;  WriteArg        1    wreg     unsigned char 
+  1803 ;; Auto vars:     Size  Location     Type
+  1804 ;;  WriteArg        1    0[COMRAM] unsigned char 
+  1805 ;; Return value:  Size  Location     Type
+  1806 ;;		None               void
+  1807 ;; Registers used:
+  1808 ;;		wreg, status,2, status,0, cstack
+  1809 ;; Tracked objects:
+  1810 ;;		On entry : 0/0
+  1811 ;;		On exit  : 0/0
+  1812 ;;		Unchanged: 0/0
+  1813 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  1814 ;;      Params:         0       0       0       0       0       0       0       0       0
+  1815 ;;      Locals:         1       0       0       0       0       0       0       0       0
+  1816 ;;      Temps:          0       0       0       0       0       0       0       0       0
+  1817 ;;      Totals:         1       0       0       0       0       0       0       0       0
+  1818 ;;Total ram usage:        1 bytes
+  1819 ;; Hardware stack levels used:    1
+  1820 ;; This function calls:
+  1821 ;;		Nothing
+  1822 ;; This function is called by:
+  1823 ;;		_write_Byte
+  1824 ;;		_search_Devices
+  1825 ;; This function uses a non-reentrant model
+  1826 ;;
+  1827                           
+  1828                           	psect	text11
+  1829  0078D8                     __ptext11:
+  1830                           	opt stack 0
+  1831  0078D8                     _write_Bit:
+  1832                           	opt stack 28
+  1833                           
+  1834                           ;incstack = 0
+  1835                           ;write_Bit@WriteArg stored from wreg
+  1836  0078D8  6E01               	movwf	write_Bit@WriteArg,c
+  1837                           
+  1838                           ;DS18B20.c: 23: if (WriteArg==1)
+  1839  0078DA  0401               	decf	write_Bit@WriteArg,w,c
+  1840  0078DC  A4D8               	btfss	status,2,c
+  1841  0078DE  D00B               	goto	l38
+  1842                           
+  1843                           ;DS18B20.c: 24: {
+  1844                           ;DS18B20.c: 25: TRISC0=0;
+  1845  0078E0  9094               	bcf	3988,0,c	;volatile
+  1846                           
+  1847                           ;DS18B20.c: 26: LATC0=0;
+  1848  0078E2  908B               	bcf	3979,0,c	;volatile
+  1849                           
+  1850                           ;DS18B20.c: 27: _delay((unsigned long)((6)*(20000000/4000000.0)));
+  1851  0078E4  0E0A               	movlw	10
+  1852  0078E6                     u1057:
+  1853  0078E6  2EE8               	decfsz	wreg,f,c
+  1854  0078E8  D7FE               	goto	u1057
+  1855                           
+  1856                           ;DS18B20.c: 28: TRISC0=0;
+  1857  0078EA  9094               	bcf	3988,0,c	;volatile
+  1858                           
+  1859                           ;DS18B20.c: 29: LATC0=1;
+  1860  0078EC  808B               	bsf	3979,0,c	;volatile
+  1861                           
+  1862                           ;DS18B20.c: 30: _delay((unsigned long)((64)*(20000000/4000000.0)));
+  1863  0078EE  0E6A               	movlw	106
+  1864  0078F0                     u1067:
+  1865  0078F0  2EE8               	decfsz	wreg,f,c
+  1866  0078F2  D7FE               	goto	u1067
+  1867  0078F4  D00A               	goto	L3
+  1868  0078F6                     l38:
+  1869                           
+  1870                           ;DS18B20.c: 32: else
+  1871                           ;DS18B20.c: 33: {
+  1872                           ;DS18B20.c: 34: TRISC0=0;
+  1873  0078F6  9094               	bcf	3988,0,c	;volatile
+  1874                           
+  1875                           ;DS18B20.c: 35: LATC0=0;
+  1876  0078F8  908B               	bcf	3979,0,c	;volatile
+  1877                           
+  1878                           ;DS18B20.c: 36: _delay((unsigned long)((60)*(20000000/4000000.0)));
+  1879  0078FA  0E64               	movlw	100
+  1880  0078FC                     u1077:
+  1881  0078FC  2EE8               	decfsz	wreg,f,c
+  1882  0078FE  D7FE               	goto	u1077
+  1883                           
+  1884                           ;DS18B20.c: 37: TRISC0=0;
+  1885  007900  9094               	bcf	3988,0,c	;volatile
+  1886                           
+  1887                           ;DS18B20.c: 38: LATC0=1;
+  1888  007902  808B               	bsf	3979,0,c	;volatile
+  1889                           
+  1890                           ;DS18B20.c: 39: _delay((unsigned long)((10)*(20000000/4000000.0)));
+  1891  007904  0E10               	movlw	16
+  1892  007906                     u1087:
+  1893  007906  2EE8               	decfsz	wreg,f,c
+  1894  007908  D7FE               	goto	u1087
+  1895  00790A                     L3:
+  1896  00790A  D000               	nop2		;nop
+  1897  00790C  D000               	goto	l40
+  1898  00790E                     l40:
+  1899  00790E  0012               	return		;funcret
+  1900  007910                     __end_of_write_Bit:
+  1901                           	opt stack 0
+  1902                           intcon	equ	0xFF2
+  1903                           postinc0	equ	0xFEE
+  1904                           wreg	equ	0xFE8
+  1905                           indf1	equ	0xFE7
+  1906                           fsr1h	equ	0xFE2
+  1907                           fsr1l	equ	0xFE1
+  1908                           indf2	equ	0xFDF
+  1909                           fsr2h	equ	0xFDA
+  1910                           fsr2l	equ	0xFD9
+  1911                           status	equ	0xFD8
+  1912                           
+  1913 ;; *************** function _init_sensor *****************
+  1914 ;; Defined at:
+  1915 ;;		line 5 in file "DS18B20/DS18B20.c"
+  1916 ;; Parameters:    Size  Location     Type
+  1917 ;;		None
+  1918 ;; Auto vars:     Size  Location     Type
+  1919 ;;  reponse         1    1[COMRAM] unsigned char 
+  1920 ;; Return value:  Size  Location     Type
+  1921 ;;                  1    wreg      unsigned char 
+  1922 ;; Registers used:
+  1923 ;;		wreg, status,2
+  1924 ;; Tracked objects:
+  1925 ;;		On entry : 0/0
+  1926 ;;		On exit  : 0/0
+  1927 ;;		Unchanged: 0/0
+  1928 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  1929 ;;      Params:         0       0       0       0       0       0       0       0       0
+  1930 ;;      Locals:         1       0       0       0       0       0       0       0       0
+  1931 ;;      Temps:          1       0       0       0       0       0       0       0       0
+  1932 ;;      Totals:         2       0       0       0       0       0       0       0       0
+  1933 ;;Total ram usage:        2 bytes
+  1934 ;; Hardware stack levels used:    1
+  1935 ;; This function calls:
+  1936 ;;		Nothing
+  1937 ;; This function is called by:
+  1938 ;;		_main
+  1939 ;;		_address_Device
+  1940 ;;		_search_Devices
+  1941 ;;		_read_temp
+  1942 ;; This function uses a non-reentrant model
+  1943 ;;
+  1944                           
+  1945                           	psect	text12
+  1946  0079C8                     __ptext12:
+  1947                           	opt stack 0
+  1948  0079C8                     _init_sensor:
+  1949                           	opt stack 29
+  1950                           
+  1951                           ;DS18B20.c: 7: unsigned char reponse=1;
+  1952                           
+  1953                           ;incstack = 0
+  1954  0079C8  0E01               	movlw	1
+  1955  0079CA  6E02               	movwf	init_sensor@reponse,c
+  1956                           
+  1957                           ;DS18B20.c: 8: TRISC0=0;
+  1958  0079CC  9094               	bcf	3988,0,c	;volatile
+  1959                           
+  1960                           ;DS18B20.c: 9: LATC0=0;
+  1961  0079CE  908B               	bcf	3979,0,c	;volatile
+  1962                           
+  1963                           ;DS18B20.c: 10: _delay((unsigned long)((480)*(20000000/4000000.0)));
+  1964  0079D0  0E04               	movlw	4
+  1965  0079D2  6E01               	movwf	??_init_sensor& (0+255),c
+  1966  0079D4  0E1C               	movlw	28
+  1967  0079D6                     u1097:
+  1968  0079D6  2EE8               	decfsz	wreg,f,c
+  1969  0079D8  D7FE               	goto	u1097
+  1970  0079DA  2E01               	decfsz	??_init_sensor& (0+255),f,c
+  1971  0079DC  D7FC               	goto	u1097
+  1972  0079DE  D000               	nop2	
+  1973                           
+  1974                           ;DS18B20.c: 11: LATC0=1;
+  1975  0079E0  808B               	bsf	3979,0,c	;volatile
+  1976                           
+  1977                           ;DS18B20.c: 12: _delay((unsigned long)((64)*(20000000/4000000.0)));
+  1978  0079E2  0E6A               	movlw	106
+  1979  0079E4                     u1107:
+  1980  0079E4  2EE8               	decfsz	wreg,f,c
+  1981  0079E6  D7FE               	goto	u1107
+  1982  0079E8  D000               	nop2		;nop
+  1983                           
+  1984                           ;DS18B20.c: 13: TRISC0=1;
+  1985  0079EA  8094               	bsf	3988,0,c	;volatile
+  1986                           
+  1987                           ;DS18B20.c: 14: reponse= RC0;
+  1988  0079EC  0E00               	movlw	0
+  1989  0079EE  B082               	btfsc	3970,0,c	;volatile
+  1990  0079F0  0E01               	movlw	1
+  1991  0079F2  6E02               	movwf	init_sensor@reponse,c
+  1992                           
+  1993                           ;DS18B20.c: 15: _delay((unsigned long)((416)*(20000000/4000000.0)));
+  1994  0079F4  0E03               	movlw	3
+  1995  0079F6  6E01               	movwf	??_init_sensor& (0+255),c
+  1996  0079F8  0EB2               	movlw	178
+  1997  0079FA                     u1117:
+  1998  0079FA  2EE8               	decfsz	wreg,f,c
+  1999  0079FC  D7FE               	goto	u1117
+  2000  0079FE  2E01               	decfsz	??_init_sensor& (0+255),f,c
+  2001  007A00  D7FC               	goto	u1117
+  2002  007A02  D000               	nop2	
+  2003                           
+  2004                           ;DS18B20.c: 16: TRISC0=0;
+  2005  007A04  9094               	bcf	3988,0,c	;volatile
+  2006                           
+  2007                           ;DS18B20.c: 17: LATC0=1;
+  2008  007A06  808B               	bsf	3979,0,c	;volatile
+  2009                           
+  2010                           ;DS18B20.c: 18: return reponse;
+  2011  007A08  5002               	movf	init_sensor@reponse,w,c
+  2012  007A0A  D000               	goto	l35
+  2013  007A0C                     l35:
+  2014  007A0C  0012               	return		;funcret
+  2015  007A0E                     __end_of_init_sensor:
+  2016                           	opt stack 0
+  2017                           intcon	equ	0xFF2
+  2018                           postinc0	equ	0xFEE
+  2019                           wreg	equ	0xFE8
+  2020                           indf1	equ	0xFE7
+  2021                           fsr1h	equ	0xFE2
+  2022                           fsr1l	equ	0xFE1
+  2023                           indf2	equ	0xFDF
+  2024                           fsr2h	equ	0xFDA
+  2025                           fsr2l	equ	0xFD9
+  2026                           status	equ	0xFD8
+  2027                           
+  2028 ;; *************** function ___ftmul *****************
+  2029 ;; Defined at:
+  2030 ;;		line 62 in file "/Applications/microchip/xc8/v1.34/sources/common/ftmul.c"
+  2031 ;; Parameters:    Size  Location     Type
+  2032 ;;  f1              3   12[COMRAM] float 
+  2033 ;;  f2              3   15[COMRAM] float 
+  2034 ;; Auto vars:     Size  Location     Type
+  2035 ;;  f3_as_produc    3   22[COMRAM] unsigned um
+  2036 ;;  sign            1   26[COMRAM] unsigned char 
+  2037 ;;  cntr            1   25[COMRAM] unsigned char 
+  2038 ;;  exp             1   21[COMRAM] unsigned char 
+  2039 ;; Return value:  Size  Location     Type
+  2040 ;;                  3   12[COMRAM] float 
+  2041 ;; Registers used:
+  2042 ;;		wreg, status,2, status,0, cstack
+  2043 ;; Tracked objects:
+  2044 ;;		On entry : 0/0
+  2045 ;;		On exit  : 0/0
+  2046 ;;		Unchanged: 0/0
+  2047 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  2048 ;;      Params:         6       0       0       0       0       0       0       0       0
+  2049 ;;      Locals:         6       0       0       0       0       0       0       0       0
+  2050 ;;      Temps:          3       0       0       0       0       0       0       0       0
+  2051 ;;      Totals:        15       0       0       0       0       0       0       0       0
+  2052 ;;Total ram usage:       15 bytes
+  2053 ;; Hardware stack levels used:    1
+  2054 ;; Hardware stack levels required when called:    1
+  2055 ;; This function calls:
+  2056 ;;		___ftpack
+  2057 ;; This function is called by:
+  2058 ;;		_read_temp
+  2059 ;; This function uses a non-reentrant model
+  2060 ;;
+  2061                           
+  2062                           	psect	text13
+  2063  007D40                     __ptext13:
+  2064                           	opt stack 0
+  2065  007D40                     ___ftmul:
+  2066                           	opt stack 28
+  2067                           
+  2068                           ;incstack = 0
+  2069  007D40  C00F  F013         	movff	___ftmul@f1+2,??___ftmul
+  2070  007D44  6A14               	clrf	(??___ftmul+1)& (0+255),c
+  2071  007D46  6A15               	clrf	(??___ftmul+2)& (0+255),c
+  2072  007D48  340E               	rlcf	___ftmul@f1+1,w,c
+  2073  007D4A  3613               	rlcf	??___ftmul& (0+255),f,c
+  2074  007D4C  E301               	bnc	u581
+  2075  007D4E  8014               	bsf	(??___ftmul+1)& (0+255),0,c
+  2076  007D50                     u581:
+  2077  007D50  5013               	movf	??___ftmul,w,c
+  2078  007D52  6E16               	movwf	___ftmul@exp,c
+  2079  007D54  5016               	movf	___ftmul@exp,w,c
+  2080  007D56  A4D8               	btfss	status,2,c
+  2081  007D58  D002               	goto	l1136
+  2082  007D5A  D00E               	goto	l1138
+  2083  007D5C  D06C               	goto	l492
+  2084  007D5E                     l1136:
+  2085  007D5E  C012  F013         	movff	___ftmul@f2+2,??___ftmul
+  2086  007D62  6A14               	clrf	(??___ftmul+1)& (0+255),c
+  2087  007D64  6A15               	clrf	(??___ftmul+2)& (0+255),c
+  2088  007D66  3411               	rlcf	___ftmul@f2+1,w,c
+  2089  007D68  3613               	rlcf	??___ftmul& (0+255),f,c
+  2090  007D6A  E301               	bnc	u601
+  2091  007D6C  8014               	bsf	(??___ftmul+1)& (0+255),0,c
+  2092  007D6E                     u601:
+  2093  007D6E  5013               	movf	??___ftmul,w,c
+  2094  007D70  6E1B               	movwf	___ftmul@sign,c
+  2095  007D72  501B               	movf	___ftmul@sign,w,c
+  2096  007D74  A4D8               	btfss	status,2,c
+  2097  007D76  D007               	goto	l1142
+  2098  007D78                     l1138:
+  2099  007D78  0E00               	movlw	0
+  2100  007D7A  6E0D               	movwf	?___ftmul,c
+  2101  007D7C  0E00               	movlw	0
+  2102  007D7E  6E0E               	movwf	?___ftmul+1,c
+  2103  007D80  0E00               	movlw	0
+  2104  007D82  6E0F               	movwf	?___ftmul+2,c
+  2105  007D84  D058               	goto	l492
+  2106  007D86                     l1142:
+  2107  007D86  501B               	movf	___ftmul@sign,w,c
+  2108  007D88  0F7B               	addlw	123
+  2109  007D8A  2616               	addwf	___ftmul@exp,f,c
+  2110  007D8C  C00F  F01B         	movff	___ftmul@f1+2,___ftmul@sign
+  2111  007D90  5012               	movf	___ftmul@f2+2,w,c
+  2112  007D92  1A1B               	xorwf	___ftmul@sign,f,c
+  2113  007D94  0E80               	movlw	128
+  2114  007D96  161B               	andwf	___ftmul@sign,f,c
+  2115  007D98  8E0E               	bsf	___ftmul@f1+1,7,c
+  2116  007D9A  8E11               	bsf	___ftmul@f2+1,7,c
+  2117  007D9C  0EFF               	movlw	255
+  2118  007D9E  1610               	andwf	___ftmul@f2,f,c
+  2119  007DA0  0EFF               	movlw	255
+  2120  007DA2  1611               	andwf	___ftmul@f2+1,f,c
+  2121  007DA4  0E00               	movlw	0
+  2122  007DA6  1612               	andwf	___ftmul@f2+2,f,c
+  2123  007DA8  0E00               	movlw	0
+  2124  007DAA  6E17               	movwf	___ftmul@f3_as_product,c
+  2125  007DAC  0E00               	movlw	0
+  2126  007DAE  6E18               	movwf	___ftmul@f3_as_product+1,c
+  2127  007DB0  0E00               	movlw	0
+  2128  007DB2  6E19               	movwf	___ftmul@f3_as_product+2,c
+  2129  007DB4  0E07               	movlw	7
+  2130  007DB6  6E1A               	movwf	___ftmul@cntr,c
+  2131  007DB8  D000               	goto	l1156
+  2132  007DBA                     l1156:
+  2133  007DBA  A00D               	btfss	___ftmul@f1,0,c
+  2134  007DBC  D007               	goto	l1160
+  2135  007DBE  5010               	movf	___ftmul@f2,w,c
+  2136  007DC0  2617               	addwf	___ftmul@f3_as_product,f,c
+  2137  007DC2  5011               	movf	___ftmul@f2+1,w,c
+  2138  007DC4  2218               	addwfc	___ftmul@f3_as_product+1,f,c
+  2139  007DC6  5012               	movf	___ftmul@f2+2,w,c
+  2140  007DC8  2219               	addwfc	___ftmul@f3_as_product+2,f,c
+  2141  007DCA  D000               	goto	l1160
+  2142  007DCC                     l1160:
+  2143  007DCC  90D8               	bcf	status,0,c
+  2144  007DCE  320F               	rrcf	___ftmul@f1+2,f,c
+  2145  007DD0  320E               	rrcf	___ftmul@f1+1,f,c
+  2146  007DD2  320D               	rrcf	___ftmul@f1,f,c
+  2147  007DD4  90D8               	bcf	status,0,c
+  2148  007DD6  3610               	rlcf	___ftmul@f2,f,c
+  2149  007DD8  3611               	rlcf	___ftmul@f2+1,f,c
+  2150  007DDA  3612               	rlcf	___ftmul@f2+2,f,c
+  2151  007DDC  2E1A               	decfsz	___ftmul@cntr,f,c
+  2152  007DDE  D7ED               	goto	l1156
+  2153  007DE0  D000               	goto	l1164
+  2154  007DE2                     l1164:
+  2155  007DE2  0E09               	movlw	9
+  2156  007DE4  6E1A               	movwf	___ftmul@cntr,c
+  2157  007DE6  D000               	goto	l1166
+  2158  007DE8                     l1166:
+  2159  007DE8  A00D               	btfss	___ftmul@f1,0,c
+  2160  007DEA  D007               	goto	l1170
+  2161  007DEC  5010               	movf	___ftmul@f2,w,c
+  2162  007DEE  2617               	addwf	___ftmul@f3_as_product,f,c
+  2163  007DF0  5011               	movf	___ftmul@f2+1,w,c
+  2164  007DF2  2218               	addwfc	___ftmul@f3_as_product+1,f,c
+  2165  007DF4  5012               	movf	___ftmul@f2+2,w,c
+  2166  007DF6  2219               	addwfc	___ftmul@f3_as_product+2,f,c
+  2167  007DF8  D000               	goto	l1170
+  2168  007DFA                     l1170:
+  2169  007DFA  90D8               	bcf	status,0,c
+  2170  007DFC  320F               	rrcf	___ftmul@f1+2,f,c
+  2171  007DFE  320E               	rrcf	___ftmul@f1+1,f,c
+  2172  007E00  320D               	rrcf	___ftmul@f1,f,c
+  2173  007E02  90D8               	bcf	status,0,c
+  2174  007E04  3219               	rrcf	___ftmul@f3_as_product+2,f,c
+  2175  007E06  3218               	rrcf	___ftmul@f3_as_product+1,f,c
+  2176  007E08  3217               	rrcf	___ftmul@f3_as_product,f,c
+  2177  007E0A  2E1A               	decfsz	___ftmul@cntr,f,c
+  2178  007E0C  D7ED               	goto	l1166
+  2179  007E0E  D000               	goto	l1174
+  2180  007E10                     l1174:
+  2181  007E10  C017  F001         	movff	___ftmul@f3_as_product,___ftpack@arg
+  2182  007E14  C018  F002         	movff	___ftmul@f3_as_product+1,___ftpack@arg+1
+  2183  007E18  C019  F003         	movff	___ftmul@f3_as_product+2,___ftpack@arg+2
+  2184  007E1C  C016  F004         	movff	___ftmul@exp,___ftpack@exp
+  2185  007E20  C01B  F005         	movff	___ftmul@sign,___ftpack@sign
+  2186  007E24  EC3D  F03E         	call	___ftpack	;wreg free
+  2187  007E28  C001  F00D         	movff	?___ftpack,?___ftmul
+  2188  007E2C  C002  F00E         	movff	?___ftpack+1,?___ftmul+1
+  2189  007E30  C003  F00F         	movff	?___ftpack+2,?___ftmul+2
+  2190  007E34  D000               	goto	l492
+  2191  007E36                     l492:
+  2192  007E36  0012               	return		;funcret
+  2193  007E38                     __end_of___ftmul:
+  2194                           	opt stack 0
+  2195                           intcon	equ	0xFF2
+  2196                           postinc0	equ	0xFEE
+  2197                           wreg	equ	0xFE8
+  2198                           indf1	equ	0xFE7
+  2199                           fsr1h	equ	0xFE2
+  2200                           fsr1l	equ	0xFE1
+  2201                           indf2	equ	0xFDF
+  2202                           fsr2h	equ	0xFDA
+  2203                           fsr2l	equ	0xFD9
+  2204                           status	equ	0xFD8
+  2205                           
+  2206 ;; *************** function ___awtoft *****************
+  2207 ;; Defined at:
+  2208 ;;		line 32 in file "/Applications/microchip/xc8/v1.34/sources/common/awtoft.c"
+  2209 ;; Parameters:    Size  Location     Type
+  2210 ;;  c               2    8[COMRAM] int 
+  2211 ;; Auto vars:     Size  Location     Type
+  2212 ;;  sign            1   11[COMRAM] unsigned char 
+  2213 ;; Return value:  Size  Location     Type
+  2214 ;;                  3    8[COMRAM] float 
+  2215 ;; Registers used:
+  2216 ;;		wreg, status,2, status,0, cstack
+  2217 ;; Tracked objects:
+  2218 ;;		On entry : 0/0
+  2219 ;;		On exit  : 0/0
+  2220 ;;		Unchanged: 0/0
+  2221 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  2222 ;;      Params:         3       0       0       0       0       0       0       0       0
+  2223 ;;      Locals:         1       0       0       0       0       0       0       0       0
+  2224 ;;      Temps:          0       0       0       0       0       0       0       0       0
+  2225 ;;      Totals:         4       0       0       0       0       0       0       0       0
+  2226 ;;Total ram usage:        4 bytes
+  2227 ;; Hardware stack levels used:    1
+  2228 ;; Hardware stack levels required when called:    1
+  2229 ;; This function calls:
+  2230 ;;		___ftpack
+  2231 ;; This function is called by:
+  2232 ;;		_read_temp
+  2233 ;; This function uses a non-reentrant model
+  2234 ;;
+  2235                           
+  2236                           	psect	text14
+  2237  007910                     __ptext14:
+  2238                           	opt stack 0
+  2239  007910                     ___awtoft:
+  2240                           	opt stack 28
+  2241                           
+  2242                           ;incstack = 0
+  2243  007910  0E00               	movlw	0
+  2244  007912  6E0C               	movwf	___awtoft@sign,c
+  2245  007914  AE0A               	btfss	___awtoft@c+1,7,c
+  2246  007916  D007               	goto	l1230
+  2247  007918  6C09               	negf	___awtoft@c,c
+  2248  00791A  1E0A               	comf	___awtoft@c+1,f,c
+  2249  00791C  B0D8               	btfsc	status,0,c
+  2250  00791E  2A0A               	incf	___awtoft@c+1,f,c
+  2251  007920  0E01               	movlw	1
+  2252  007922  6E0C               	movwf	___awtoft@sign,c
+  2253  007924  D000               	goto	l1230
+  2254  007926                     l1230:
+  2255  007926  C009  F001         	movff	___awtoft@c,___ftpack@arg
+  2256  00792A  C00A  F002         	movff	___awtoft@c+1,___ftpack@arg+1
+  2257  00792E  6A03               	clrf	___ftpack@arg+2,c
+  2258  007930  0E8E               	movlw	142
+  2259  007932  6E04               	movwf	___ftpack@exp,c
+  2260  007934  C00C  F005         	movff	___awtoft@sign,___ftpack@sign
+  2261  007938  EC3D  F03E         	call	___ftpack	;wreg free
+  2262  00793C  C001  F009         	movff	?___ftpack,?___awtoft
+  2263  007940  C002  F00A         	movff	?___ftpack+1,?___awtoft+1
+  2264  007944  C003  F00B         	movff	?___ftpack+2,?___awtoft+2
+  2265  007948  D000               	goto	l315
+  2266  00794A                     l315:
+  2267  00794A  0012               	return		;funcret
+  2268  00794C                     __end_of___awtoft:
+  2269                           	opt stack 0
+  2270                           intcon	equ	0xFF2
+  2271                           postinc0	equ	0xFEE
+  2272                           wreg	equ	0xFE8
+  2273                           indf1	equ	0xFE7
+  2274                           fsr1h	equ	0xFE2
+  2275                           fsr1l	equ	0xFE1
+  2276                           indf2	equ	0xFDF
+  2277                           fsr2h	equ	0xFDA
+  2278                           fsr2l	equ	0xFD9
+  2279                           status	equ	0xFD8
+  2280                           
+  2281 ;; *************** function ___ftpack *****************
+  2282 ;; Defined at:
+  2283 ;;		line 62 in file "/Applications/microchip/xc8/v1.34/sources/common/float.c"
+  2284 ;; Parameters:    Size  Location     Type
+  2285 ;;  arg             3    0[COMRAM] unsigned um
+  2286 ;;  exp             1    3[COMRAM] unsigned char 
+  2287 ;;  sign            1    4[COMRAM] unsigned char 
+  2288 ;; Auto vars:     Size  Location     Type
+  2289 ;;		None
+  2290 ;; Return value:  Size  Location     Type
+  2291 ;;                  3    0[COMRAM] float 
+  2292 ;; Registers used:
+  2293 ;;		wreg, status,2, status,0
+  2294 ;; Tracked objects:
+  2295 ;;		On entry : 0/0
+  2296 ;;		On exit  : 0/0
+  2297 ;;		Unchanged: 0/0
+  2298 ;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+  2299 ;;      Params:         5       0       0       0       0       0       0       0       0
+  2300 ;;      Locals:         0       0       0       0       0       0       0       0       0
+  2301 ;;      Temps:          3       0       0       0       0       0       0       0       0
+  2302 ;;      Totals:         8       0       0       0       0       0       0       0       0
+  2303 ;;Total ram usage:        8 bytes
+  2304 ;; Hardware stack levels used:    1
+  2305 ;; This function calls:
+  2306 ;;		Nothing
+  2307 ;; This function is called by:
+  2308 ;;		___awtoft
+  2309 ;;		___ftmul
+  2310 ;; This function uses a non-reentrant model
+  2311 ;;
+  2312                           
+  2313                           	psect	text15
+  2314  007C7A                     __ptext15:
+  2315                           	opt stack 0
+  2316  007C7A                     ___ftpack:
+  2317                           	opt stack 28
+  2318                           
+  2319                           ;incstack = 0
+  2320  007C7A  5004               	movf	___ftpack@exp,w,c
+  2321  007C7C  B4D8               	btfsc	status,2,c
+  2322  007C7E  D005               	goto	l1080
+  2323  007C80  5001               	movf	___ftpack@arg,w,c
+  2324  007C82  1002               	iorwf	___ftpack@arg+1,w,c
+  2325  007C84  1003               	iorwf	___ftpack@arg+2,w,c
+  2326  007C86  A4D8               	btfss	status,2,c
+  2327  007C88  D00E               	goto	l1086
+  2328  007C8A                     l1080:
+  2329  007C8A  0E00               	movlw	0
+  2330  007C8C  6E01               	movwf	?___ftpack,c
+  2331  007C8E  0E00               	movlw	0
+  2332  007C90  6E02               	movwf	?___ftpack+1,c
+  2333  007C92  0E00               	movlw	0
+  2334  007C94  6E03               	movwf	?___ftpack+2,c
+  2335  007C96  D053               	goto	l405
+  2336  007C98  D006               	goto	l1086
+  2337  007C9A                     l1084:
+  2338  007C9A  2A04               	incf	___ftpack@exp,f,c
+  2339  007C9C  90D8               	bcf	status,0,c
+  2340  007C9E  3203               	rrcf	___ftpack@arg+2,f,c
+  2341  007CA0  3202               	rrcf	___ftpack@arg+1,f,c
+  2342  007CA2  3201               	rrcf	___ftpack@arg,f,c
+  2343  007CA4  D000               	goto	l1086
+  2344  007CA6                     l1086:
+  2345  007CA6  0E00               	movlw	0
+  2346  007CA8  1401               	andwf	___ftpack@arg,w,c
+  2347  007CAA  6E06               	movwf	??___ftpack& (0+255),c
+  2348  007CAC  0E00               	movlw	0
+  2349  007CAE  1402               	andwf	___ftpack@arg+1,w,c
+  2350  007CB0  6E07               	movwf	(??___ftpack+1)& (0+255),c
+  2351  007CB2  0EFE               	movlw	254
+  2352  007CB4  1403               	andwf	___ftpack@arg+2,w,c
+  2353  007CB6  6E08               	movwf	(??___ftpack+2)& (0+255),c
+  2354  007CB8  5006               	movf	??___ftpack,w,c
+  2355  007CBA  1007               	iorwf	??___ftpack+1,w,c
+  2356  007CBC  1008               	iorwf	??___ftpack+2,w,c
+  2357  007CBE  B4D8               	btfsc	status,2,c
+  2358  007CC0  D00E               	goto	l1092
+  2359  007CC2  D7EB               	goto	l1084
+  2360  007CC4  D00C               	goto	l1092
+  2361  007CC6                     l1088:
+  2362  007CC6  2A04               	incf	___ftpack@exp,f,c
+  2363  007CC8  0E01               	movlw	1
+  2364  007CCA  2601               	addwf	___ftpack@arg,f,c
+  2365  007CCC  0E00               	movlw	0
+  2366  007CCE  2202               	addwfc	___ftpack@arg+1,f,c
+  2367  007CD0  0E00               	movlw	0
+  2368  007CD2  2203               	addwfc	___ftpack@arg+2,f,c
+  2369  007CD4  90D8               	bcf	status,0,c
+  2370  007CD6  3203               	rrcf	___ftpack@arg+2,f,c
+  2371  007CD8  3202               	rrcf	___ftpack@arg+1,f,c
+  2372  007CDA  3201               	rrcf	___ftpack@arg,f,c
+  2373  007CDC  D000               	goto	l1092
+  2374  007CDE                     l1092:
+  2375  007CDE  0E00               	movlw	0
+  2376  007CE0  1401               	andwf	___ftpack@arg,w,c
+  2377  007CE2  6E06               	movwf	??___ftpack& (0+255),c
+  2378  007CE4  0E00               	movlw	0
+  2379  007CE6  1402               	andwf	___ftpack@arg+1,w,c
+  2380  007CE8  6E07               	movwf	(??___ftpack+1)& (0+255),c
+  2381  007CEA  0EFF               	movlw	255
+  2382  007CEC  1403               	andwf	___ftpack@arg+2,w,c
+  2383  007CEE  6E08               	movwf	(??___ftpack+2)& (0+255),c
+  2384  007CF0  5006               	movf	??___ftpack,w,c
+  2385  007CF2  1007               	iorwf	??___ftpack+1,w,c
+  2386  007CF4  1008               	iorwf	??___ftpack+2,w,c
+  2387  007CF6  B4D8               	btfsc	status,2,c
+  2388  007CF8  D008               	goto	l1096
+  2389  007CFA  D7E5               	goto	l1088
+  2390  007CFC  D006               	goto	l1096
+  2391  007CFE                     l1094:
+  2392  007CFE  0604               	decf	___ftpack@exp,f,c
+  2393  007D00  90D8               	bcf	status,0,c
+  2394  007D02  3601               	rlcf	___ftpack@arg,f,c
+  2395  007D04  3602               	rlcf	___ftpack@arg+1,f,c
+  2396  007D06  3603               	rlcf	___ftpack@arg+2,f,c
+  2397  007D08  D000               	goto	l1096
+  2398  007D0A                     l1096:
+  2399  007D0A  BE02               	btfsc	___ftpack@arg+1,7,c
+  2400  007D0C  D004               	goto	l416
+  2401  007D0E  0E02               	movlw	2
+  2402  007D10  6004               	cpfslt	___ftpack@exp,c
+  2403  007D12  D7F5               	goto	l1094
+  2404  007D14  D000               	goto	l416
+  2405  007D16                     l416:
+  2406  007D16  B004               	btfsc	___ftpack@exp,0,c
+  2407  007D18  D002               	goto	l1102
+  2408  007D1A  9E02               	bcf	___ftpack@arg+1,7,c
+  2409  007D1C  D000               	goto	l1102
+  2410  007D1E                     l1102:
+  2411  007D1E  90D8               	bcf	status,0,c
+  2412  007D20  3204               	rrcf	___ftpack@exp,f,c
+  2413  007D22  5004               	movf	___ftpack@exp,w,c
+  2414  007D24  1203               	iorwf	___ftpack@arg+2,f,c
+  2415  007D26  5005               	movf	___ftpack@sign,w,c
+  2416  007D28  B4D8               	btfsc	status,2,c
+  2417  007D2A  D002               	goto	l1108
+  2418  007D2C  8E03               	bsf	___ftpack@arg+2,7,c
+  2419  007D2E  D000               	goto	l1108
+  2420  007D30                     l1108:
+  2421  007D30  C001  F001         	movff	___ftpack@arg,?___ftpack
+  2422  007D34  C002  F002         	movff	___ftpack@arg+1,?___ftpack+1
+  2423  007D38  C003  F003         	movff	___ftpack@arg+2,?___ftpack+2
+  2424  007D3C  D000               	goto	l405
+  2425  007D3E                     l405:
+  2426  007D3E  0012               	return		;funcret
+  2427  007D40                     __end_of___ftpack:
+  2428                           	opt stack 0
+  2429  0000                     intcon	equ	0xFF2
+  2430                           postinc0	equ	0xFEE
+  2431                           wreg	equ	0xFE8
+  2432                           indf1	equ	0xFE7
+  2433                           fsr1h	equ	0xFE2
+  2434                           fsr1l	equ	0xFE1
+  2435                           indf2	equ	0xFDF
+  2436                           fsr2h	equ	0xFDA
+  2437                           fsr2l	equ	0xFD9
+  2438                           status	equ	0xFD8
+  2439                           intcon	equ	0xFF2
+  2440                           postinc0	equ	0xFEE
+  2441                           wreg	equ	0xFE8
+  2442                           indf1	equ	0xFE7
+  2443                           fsr1h	equ	0xFE2
+  2444                           fsr1l	equ	0xFE1
+  2445                           indf2	equ	0xFDF
+  2446                           fsr2h	equ	0xFDA
+  2447                           fsr2l	equ	0xFD9
+  2448                           status	equ	0xFD8
+  2449                           
+  2450                           	psect	rparam
+  2451  0000                     intcon	equ	0xFF2
+  2452                           postinc0	equ	0xFEE
+  2453                           wreg	equ	0xFE8
+  2454                           indf1	equ	0xFE7
+  2455                           fsr1h	equ	0xFE2
+  2456                           fsr1l	equ	0xFE1
+  2457                           indf2	equ	0xFDF
+  2458                           fsr2h	equ	0xFDA
+  2459                           fsr2l	equ	0xFD9
+  2460                           status	equ	0xFD8
+
+
+Data Sizes:
+    Strings     0
+    Constant    0
+    Data        0
+    BSS         16
+    Persistent  0
+    Stack       0
+
+Auto Spaces:
+    Space          Size  Autos    Used
+    COMRAM           95     50      66
+    BANK0           160      0       0
+    BANK1           256      0       0
+    BANK2           256      0       0
+    BANK3           256      0       0
+    BANK4           256      0       0
+    BANK5           256      0       0
+    BANK6           256      0       0
+    BANK7           256      0       0
+
+Pointer List with Targets:
+
+    address_Device@Adress	PTR unsigned char  size(2) Largest target is 2047
+		 -> RAM(DATA[2047]), 
+
+
+Critical Paths under _main in COMRAM
+
+    _main->_read_temp
+    _search_Devices->___awdiv
+    _read_temp->___ftmul
+    _read_Byte->_read_Bit
+    _delay750ms->_delay100ms
+    _delay750ms->_delay50ms
+    _address_Device->_write_Byte
+    _write_Byte->_write_Bit
+    ___ftmul->___awtoft
+    ___awtoft->___ftpack
+
+Critical Paths under _main in BANK0
+
+    None.
+
+Critical Paths under _main in BANK1
+
+    None.
+
+Critical Paths under _main in BANK2
+
+    None.
+
+Critical Paths under _main in BANK3
+
+    None.
+
+Critical Paths under _main in BANK4
+
+    None.
+
+Critical Paths under _main in BANK5
+
+    None.
+
+Critical Paths under _main in BANK6
+
+    None.
+
+Critical Paths under _main in BANK7
+
+    None.
+
+Call Graph Tables:
+
+ ---------------------------------------------------------------------------------
+ (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+ ---------------------------------------------------------------------------------
+ (0) _main                                                10     5      5    5609
+                                             40 COMRAM    10     5      5
+                        _init_sensor
+                          _read_temp
+                     _search_Devices
+ ---------------------------------------------------------------------------------
+ (1) _search_Devices                                      25    25      0    1110
+                                              8 COMRAM    25    25      0
+                            ___awdiv
+                        _init_sensor
+                           _read_Bit
+                          _write_Bit
+                         _write_Byte
+ ---------------------------------------------------------------------------------
+ (2) ___awdiv                                              8     4      4     406
+                                              0 COMRAM     8     4      4
+ ---------------------------------------------------------------------------------
+ (1) _read_temp                                           13    10      3    4458
+                                             27 COMRAM    13    10      3
+                           ___awtoft
+                            ___ftmul
+                     _address_Device
+                         _delay750ms
+                        _init_sensor
+                          _read_Byte
+                         _write_Byte
+ ---------------------------------------------------------------------------------
+ (2) _read_Byte                                            3     3      0      60
+                                              1 COMRAM     3     3      0
+                           _read_Bit
+ ---------------------------------------------------------------------------------
+ (2) _read_Bit                                             1     1      0      15
+                                              0 COMRAM     1     1      0
+ ---------------------------------------------------------------------------------
+ (2) _delay750ms                                           0     0      0       0
+                         _delay100ms
+                          _delay50ms
+ ---------------------------------------------------------------------------------
+ (3) _delay50ms                                            1     1      0       0
+                                              0 COMRAM     1     1      0
+ ---------------------------------------------------------------------------------
+ (3) _delay100ms                                           1     1      0       0
+                                              0 COMRAM     1     1      0
+ ---------------------------------------------------------------------------------
+ (2) _address_Device                                       4     2      2     271
+                                              4 COMRAM     4     2      2
+                        _init_sensor
+                         _write_Byte
+ ---------------------------------------------------------------------------------
+ (2) _write_Byte                                           3     3      0      60
+                                              1 COMRAM     3     3      0
+                          _write_Bit
+ ---------------------------------------------------------------------------------
+ (3) _write_Bit                                            1     1      0      15
+                                              0 COMRAM     1     1      0
+ ---------------------------------------------------------------------------------
+ (2) _init_sensor                                          2     2      0      15
+                                              0 COMRAM     2     2      0
+ ---------------------------------------------------------------------------------
+ (2) ___ftmul                                             15     9      6    2141
+                                             12 COMRAM    15     9      6
+                           ___awtoft (ARG)
+                           ___ftpack
+ ---------------------------------------------------------------------------------
+ (2) ___awtoft                                             4     1      3    1773
+                                              8 COMRAM     4     1      3
+                           ___ftpack
+ ---------------------------------------------------------------------------------
+ (3) ___ftpack                                             8     3      5    1629
+                                              0 COMRAM     8     3      5
+ ---------------------------------------------------------------------------------
+ Estimated maximum stack depth 3
+ ---------------------------------------------------------------------------------
+
+ Call Graph Graphs:
+
+ _main (ROOT)
+   _init_sensor
+   _read_temp
+     ___awtoft
+       ___ftpack
+     ___ftmul
+       ___awtoft (ARG)
+         ___ftpack
+       ___ftpack (ARG)
+     _address_Device
+       _init_sensor
+       _write_Byte
+         _write_Bit
+     _delay750ms
+       _delay100ms
+       _delay50ms
+     _init_sensor
+     _read_Byte
+       _read_Bit
+     _write_Byte
+       _write_Bit
+   _search_Devices
+     ___awdiv
+     _init_sensor
+     _read_Bit
+     _write_Bit
+     _write_Byte
+       _write_Bit
+
+ Address spaces:
+Name               Size   Autos  Total    Cost      Usage
+BIGRAM             7FF      0       0      21        0.0%
+EEDATA             100      0       0       0        0.0%
+BITBANK7           100      0       0      18        0.0%
+BANK7              100      0       0      19        0.0%
+BITBANK6           100      0       0      16        0.0%
+BANK6              100      0       0      17        0.0%
+BITBANK5           100      0       0      14        0.0%
+BANK5              100      0       0      15        0.0%
+BITBANK4           100      0       0      12        0.0%
+BANK4              100      0       0      13        0.0%
+BITBANK3           100      0       0      10        0.0%
+BANK3              100      0       0      11        0.0%
+BITBANK2           100      0       0       8        0.0%
+BANK2              100      0       0       9        0.0%
+BITBANK1           100      0       0       6        0.0%
+BANK1              100      0       0       7        0.0%
+BITBANK0            A0      0       0       4        0.0%
+BANK0               A0      0       0       5        0.0%
+BITCOMRAM           5F      0       0       0        0.0%
+COMRAM              5F     32      42       1       69.5%
+BITSFR               0      0       0      40        0.0%
+SFR                  0      0       0      40        0.0%
+STACK                0      0       0       2        0.0%
+NULL                 0      0       0       0        0.0%
+ABS                  0      0      42      20        0.0%
+DATA                 0      0      42       3        0.0%
+CODE                 0      0       0       0        0.0%
+
+
+Microchip Technology PIC18 Macro Assembler V1.34 build -361300703 
+Symbol Table                                                                                   Fri Oct 16 08:54:24 2015
+
+                                 l40 790E                                   l35 7A0C  
+                                 l60 7A54                                   l45 78D6  
+                                 l38 78F6                                   l54 7986  
+                                 l48 78A2                                   l85 7BD6  
+                                 l69 7FFE                         ___awdiv@sign 0006  
+                        __CFG_BOR$ON 000000                          __CFG_BORV$3 000000  
+                       __CFG_CP0$OFF 000000                         __CFG_CP1$OFF 000000  
+                       __CFG_CP2$OFF 000000                         __CFG_CP3$OFF 000000  
+                     _search_Devices 7E38                          __CFG_LVP$ON 000000  
+search_Devices@CurrentConflictBitPos 0016                          __CFG_WDT$ON 000000  
+                                l315 794A                                  l405 7D3E  
+                                l416 7D16                                  l290 7B3C  
+                                l730 78C2                                  l802 7958  
+                                l492 7E36                                  l726 78AE  
+                                l814 7982                                  l806 796C  
+                       __CFG_CPB$OFF 000000                                  _RC0 007C10  
+                                u601 7D6E                         __CFG_CPD$OFF 000000  
+                                u710 7E56                                  u800 7F32  
+                                u820 7F7C                                  u581 7D50  
+                                u805 7F2E                                  u907 7A5C  
+                                u917 7A6C                                  u927 7A7C  
+                                u937 7A8C                                  u947 7A9C  
+                                u957 7BDE                                  u877 787E  
+                                u967 7BEE                                  u887 7888  
+                                u977 7BFE                                  u897 7898  
+                                u987 7C0E                                  u997 7C1E  
+                                wreg 000FE8                         __CFG_FOSC$HS 000000  
+                               l1102 7D1E                                 l1200 7AF0  
+                               l1122 7A3A                                 l1210 7B16  
+                               l1202 7AF8                                 l1108 7D30  
+                               l1230 7926                                 l1142 7D86  
+                               l1118 7A26                                 l1214 7B22  
+                               l1302 7F66                                 l1080 7C8A  
+                               l1160 7DCC                                 l1136 7D5E  
+                               l1312 7F9C                                 l1304 7F6C  
+                               l1240 7E58                                 l1170 7DFA  
+                               l1138 7D78                                 l1218 7B32  
+                               l1242 7E64                                 l1322 7FFA  
+                               l1092 7CDE                                 l1084 7C9A  
+                               l1164 7DE2                                 l1156 7DBA  
+                               l1308 7F88                                 l1252 7E90  
+                               l1094 7CFE                                 l1086 7CA6  
+                               l1174 7E10                                 l1166 7DE8  
+                               l1318 7FEA                                 l1270 7EC8  
+                               l1246 7E78                                 l1096 7D0A  
+                               l1088 7CC6                                 l1192 7AD0  
+                               l1280 7EE2                                 l1264 7EB2  
+                               l1186 7ABE                                 l1274 7ED6  
+                               l1258 7E9E                                 l1292 7F12  
+                               l1284 7EEE                                 l1276 7EDE  
+                               l1198 7AE6                                 l1366 79B0  
+                               l1288 7F08                                 u1007 7C2E  
+                               u1017 7C3E                                 u1107 79E4  
+                               u1027 7C4E                                 u1117 79FA  
+                               u1037 7C5E                                 u1047 7C6E  
+                               u1057 78E6                                 u1067 78F0  
+                               u1077 78FC                                 u1087 7906  
+                               u1097 79D6                                 _main 7988  
+                       ___ftpack@arg 0001                         ___ftpack@exp 0004  
+                        main@reponse 0032                                 indf1 000FE7  
+                               fsr1l 000FE1                                 indf2 000FDF  
+                               fsr2l 000FD9                                 start 0000  
+                      __CFG_IESO$OFF 000000                        __CFG_MCLRE$ON 000000  
+                       ___ftmul@cntr 001A                         ___param_bank 000010  
+                       ___ftmul@sign 001B               __end_of_search_Devices 8000  
+                      __CFG_PLLDIV$5 000000                       __CFG_CCP2MX$ON 000000  
+                              ?_main 0029                      __end_of___awdiv 7B3E  
+                    __end_of___ftmul 7E38                      ___awdiv@divisor 0003  
+                              _LATC0 007C58                      ___awdiv@counter 0005  
+                      __CFG_USBDIV$1 000000                        __CFG_PWRT$OFF 000000  
+                      __CFG_WRT0$OFF 000000                        __CFG_WRT1$OFF 000000  
+                      __CFG_WRT2$OFF 000000                        __CFG_WRT3$OFF 000000  
+                       ?_init_sensor 0001                       __CFG_EBTR0$OFF 000000  
+                     __CFG_FCMEN$OFF 000000                       __CFG_EBTR1$OFF 000000  
+                     __CFG_EBTR2$OFF 000000                       __CFG_EBTR3$OFF 000000  
+                      __CFG_WRTB$OFF 000000                        __CFG_WRTC$OFF 000000  
+                      __CFG_WRTD$OFF 000000                       __CFG_EBTRB$OFF 000000  
+                      ___awtoft@sign 000C                     ??_address_Device 0007  
+                      ___ftpack@sign 0005                                status 000FD8  
+                     __CFG_ICPRT$OFF 000000                       __CFG_PBADEN$ON 000000  
+                    __initialization 7840                         __end_of_main 79C8  
+                    ?_search_Devices 0001                               ??_main 002E  
+                    search_Devices@i 0019                      search_Devices@j 001E  
+                    search_Devices@k 001B                        __activetblptr 000000  
+                   ___awdiv@dividend 0001                     __end_of___awtoft 794C  
+                   __end_of___ftpack 7D40                               _TRISC0 007CA0  
+   search_Devices@LastConflictBitNum 0015                       __CFG_XINST$OFF 000000  
+                          ??___awdiv 0005                       __CFG_STVREN$ON 000000  
+                          ??___ftmul 0013                     __end_of_read_Bit 78A4  
+                             clear_0 7846                     ___awdiv@quotient 0007  
+              ___ftmul@f3_as_product 0017                   search_Devices@mask 0017  
+                         __accesstop 0060              __end_of__initialization 784C  
+                      ___rparam_used 000001                           ___awtoft@c 0009  
+                         ___ftmul@f1 000D                           ___ftmul@f2 0010  
+                     __pcstackCOMRAM 0001                   __size_of_delay50ms 0052  
+                         _delay100ms 7BD8                 __size_of_init_sensor 0046  
+                         _delay750ms 7852                   __size_of_read_Byte 003C  
+                 __size_of_read_temp 009A                            ?___awtoft 0009  
+                          ?___ftpack 0001           search_Devices@list_Devices 000D  
+                  __end_of_delay50ms 7AA8                      __CFG_VREGEN$OFF 000000  
+                          ?_read_Bit 0001                   __size_of_write_Bit 0038  
+                            __Hparam 0000                     ??_search_Devices 0009  
+                            __Lparam 0000                              ___awdiv 7AA8  
+                            ___ftmul 7D40                              __pcinit 7840  
+                         ??___awtoft 000C                           ??___ftpack 0006  
+                            __ramtop 0800                              __ptext0 7988  
+                            __ptext1 7E38                              __ptext2 7AA8  
+                            __ptext3 7B3E                              __ptext4 794C  
+                            __ptext5 7874                              __ptext6 7852  
+                            __ptext7 7A56                              __ptext8 7BD8  
+                            __ptext9 7A0E                    __end_of_read_Byte 7988  
+                  write_Bit@WriteArg 0001                    __end_of_read_temp 7BD8  
+                        ?_delay100ms 0001                          ?_delay750ms 0001  
+               end_of_initialization 784C                           ??_read_Bit 0001  
+                            postinc0 000FEE                    __end_of_write_Bit 7910  
+                         main@Sucess 0031              __size_of_address_Device 0048  
+                        ___ftmul@exp 0016                  __size_of_delay100ms 00A2  
+                 init_sensor@reponse 0002                           _write_Byte 78A4  
+                __size_of_delay750ms 0022                       read_Bit@result 0001  
+                start_initialization 7840                        _DeviceAddress 0033  
+                         read_Byte@i 0003                     __CFG_LPT1OSC$OFF 000000  
+                  __size_of___awtoft 003C                    __size_of___ftpack 00C6  
+                        __pbssCOMRAM 0033                        ??_init_sensor 0001  
+                          _delay50ms 7A56                    __size_of_read_Bit 0030  
+                           ?___awdiv 0001                             ?___ftmul 000D  
+                        ?_write_Byte 0001                            _read_Byte 794C  
+                       ??_delay100ms 0001                         ??_delay750ms 0002  
+                          _read_temp 7B3E                  __end_of_init_sensor 7A0E  
+                         ?_delay50ms 0001                       _address_Device 7A0E  
+                   __CFG_WDTPS$32768 000000                          write_Byte@i 0003  
+                 __end_of_delay100ms 7C7A                   __end_of_delay750ms 7874  
+                         _ADCON1bits 000FC1         search_Devices@InputBitStatus 001D  
+                         ?_read_Byte 0001                            _write_Bit 78D8  
+                         ?_read_temp 001C                  __size_of_write_Byte 0034  
+             __end_of_address_Device 7A56                 read_temp@temperature 0021  
+                           __Hrparam 0000                             __Lrparam 0000  
+                   __size_of___awdiv 0096                        read_Byte@data 0002  
+                   __size_of___ftmul 00F8                             ___awtoft 7910  
+                           ___ftpack 7C7A              __size_of_search_Devices 01C8  
+                        _init_sensor 79C8                             __ptext10 78A4  
+                           __ptext11 78D8                             __ptext12 79C8  
+                           __ptext13 7D40                             __ptext14 7910  
+                           __ptext15 7C7A                           ?_write_Bit 0001  
+                           _read_Bit 7874                 address_Device@Adress 0005  
+                      __size_of_main 0040                      ?_address_Device 0005  
+                        ??_delay50ms 0001                             main@argc 0029  
+                           main@argv 002B                __CFG_CPUDIV$OSC1_PLL2 000000  
+                    main@temperature 002E                           _INTCONbits 000FF2  
+          search_Devices@SelectedBit 0018                          ??_read_Byte 0002  
+                        ??_read_temp 001F                 search_Devices@bitnum 0020  
+                         _OSCCONbits 000FD3                         ??_write_Byte 0002  
+             read_temp@DeviceAddress 0028                       read_temp@temph 0025  
+                     read_temp@templ 0024                          ??_write_Bit 0001  
+                     write_Byte@data 0002                        read_temp@temp 0026  
+                 __end_of_write_Byte 78D8                      address_Device@i 0007  
