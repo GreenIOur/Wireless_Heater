@@ -10,9 +10,9 @@ extern "C" {
 #define USE_AND_MASKS
     
 
-#define Write_Data LATC0
-#define Read_Data RC0
-#define Direction_Data TRISC0
+#define Write_Data LATA0
+#define Read_Data RA0
+#define Direction_Data TRISA0
 #define ReadROM 0x33
 #define MatchROM 0x55
 #define SkipROM 0xCC

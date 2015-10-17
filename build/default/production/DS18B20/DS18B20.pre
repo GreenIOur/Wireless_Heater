@@ -6327,16 +6327,16 @@ unsigned char DeviceAddress[2][8];
 unsigned char init_sensor(void)
 {
 unsigned char reponse=1;
-TRISC0=0;
-LATC0=0;
+TRISA0=0;
+LATA0=0;
 _delay((unsigned long)((480)*(20000000/4000000.0)));
-LATC0=1;
+LATA0=1;
 _delay((unsigned long)((64)*(20000000/4000000.0)));
-TRISC0=1;
-reponse= RC0;
+TRISA0=1;
+reponse= RA0;
 _delay((unsigned long)((416)*(20000000/4000000.0)));
-TRISC0=0;
-LATC0=1;
+TRISA0=0;
+LATA0=1;
 return reponse;
 }
 
@@ -6344,20 +6344,20 @@ void write_Bit(unsigned char WriteArg)
 {
 if (WriteArg==1)
 {
-TRISC0=0;
-LATC0=0;
+TRISA0=0;
+LATA0=0;
 _delay((unsigned long)((6)*(20000000/4000000.0)));
-TRISC0=0;
-LATC0=1;
+TRISA0=0;
+LATA0=1;
 _delay((unsigned long)((64)*(20000000/4000000.0)));
 }
 else
 {
-TRISC0=0;
-LATC0=0;
+TRISA0=0;
+LATA0=0;
 _delay((unsigned long)((60)*(20000000/4000000.0)));
-TRISC0=0;
-LATC0=1;
+TRISA0=0;
+LATA0=1;
 _delay((unsigned long)((10)*(20000000/4000000.0)));
 }
 }
@@ -6375,14 +6375,14 @@ unsigned char read_Bit(void)
 {
 unsigned char result = 0x00;
 
-TRISC0=0;
-LATC0=0;
+TRISA0=0;
+LATA0=0;
 _delay((unsigned long)((6)*(20000000/4000000.0)));
-TRISC0=0;
-LATC0=1;
+TRISA0=0;
+LATA0=1;
 _delay((unsigned long)((9)*(20000000/4000000.0)));
-TRISC0=1;
-result= RC0;
+TRISA0=1;
+result= RA0;
 _delay((unsigned long)((55)*(20000000/4000000.0)));
 return result;
 }

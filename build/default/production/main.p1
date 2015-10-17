@@ -1,6 +1,20 @@
 Version 3.2 HI-TECH Software Intermediate Code
+"9 main.c
+[u S598 `f 1 `uc -> # `f `ui ]
+[n S598 . temperature value ]
 [p mainexit ]
-"8595 /Applications/microchip/xc8/v1.34/include/pic18f4550.h
+"3987 /Applications/microchip/xc8/v1.34/include/pic18f4550.h
+[s S297 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S297 . TRISA0 TRISA1 TRISA2 TRISA3 TRISA4 TRISA5 TRISA6 ]
+"3996
+[s S298 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S298 . RA0 RA1 RA2 RA3 RA4 RA5 RA6 ]
+"3986
+[u S296 `S297 1 `S298 1 ]
+[n S296 . . . ]
+"4006
+[v _TRISAbits `VS296 ~T0 @X0 0 e@3986 ]
+"8595
 [s S534 :2 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
 [n S534 . SCS IOFS OSTS IRCF IDLEN ]
 "8602
@@ -11,26 +25,8 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S533 . . . ]
 "8612
 [v _OSCCONbits `VS533 ~T0 @X0 0 e@4051 ]
-"7179
-[s S449 :4 `uc 1 :2 `uc 1 ]
-[n S449 . PCFG VCFG ]
-"7183
-[s S450 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S450 . PCFG0 PCFG1 PCFG2 PCFG3 VCFG0 VCFG1 ]
-"7191
-[s S451 :3 `uc 1 :1 `uc 1 ]
-[n S451 . . CHSN3 ]
-"7195
-[s S452 :4 `uc 1 :1 `uc 1 ]
-[n S452 . . VCFG01 ]
-"7199
-[s S453 :5 `uc 1 :1 `uc 1 ]
-[n S453 . . VCFG11 ]
-"7178
-[u S448 `S449 1 `S450 1 `S451 1 `S452 1 `S453 1 ]
-[n S448 . . . . . . ]
-"7204
-[v _ADCON1bits `VS448 ~T0 @X0 0 e@4033 ]
+"7173
+[v _ADCON1 `Vuc ~T0 @X0 0 e@4033 ]
 "9165
 [s S553 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S553 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
@@ -51,6 +47,37 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S552 . . . . . . ]
 "9211
 [v _INTCONbits `VS552 ~T0 @X0 0 e@4082 ]
+"4405
+[s S309 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S309 . TRISC0 TRISC1 TRISC2 . TRISC6 TRISC7 ]
+"4413
+[s S310 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S310 . RC0 RC1 RC2 . RC6 RC7 ]
+"4421
+[s S311 :3 `uc 1 :1 `uc 1 ]
+[n S311 . . TRISC3 ]
+"4404
+[u S308 `S309 1 `S310 1 `S311 1 ]
+[n S308 . . . . ]
+"4426
+[v _TRISCbits `VS308 ~T0 @X0 0 e@3988 ]
+"4184
+[s S303 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S303 . TRISB0 TRISB1 TRISB2 TRISB3 TRISB4 TRISB5 TRISB6 TRISB7 ]
+"4194
+[s S304 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S304 . RB0 RB1 RB2 RB3 RB4 RB5 RB6 RB7 ]
+"4183
+[u S302 `S303 1 `S304 1 ]
+[n S302 . . . ]
+"4205
+[v _TRISBbits `VS302 ~T0 @X0 0 e@3987 ]
+"73 NRF_24L01/nRF2401.h
+[v _nrf_init `(v ~T0 @X0 0 ef ]
+"42 DS18B20/DS18B20.h
+[v _delay50ms `(v ~T0 @X0 0 ef ]
+"74 NRF_24L01/nRF2401.h
+[v _nrf_txmode `(v ~T0 @X0 0 ef ]
 "33 DS18B20/DS18B20.h
 [v _init_sensor `(uc ~T0 @X0 0 ef ]
 "39
@@ -60,6 +87,16 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v F5435 `uc ~T0 @X0 -> 8 `i t ]
 "29
 [v _DeviceAddress `F5435 ~T0 @X0 -> 0 `x e ]
+"15 main.c
+[v _fill_SendBuff `(v ~T0 @X0 0 ef2`f`*uc ]
+"69 NRF_24L01/nRF2401.h
+[v _nrf_send `(uc ~T0 @X0 0 ef2`*uc`*uc ]
+[t ~ __deprecated__ ]
+[t T12 __deprecated__ ]
+"10473 /Applications/microchip/xc8/v1.34/include/pic18f4550.h
+[v _RA1 `Vb ~T12 @X0 0 e@31745 ]
+"43 DS18B20/DS18B20.h
+[v _delay750ms `(v ~T0 @X0 0 ef ]
 [; ;stdio.h: 8: typedef int ptrdiff_t;
 [; ;stdio.h: 9: typedef unsigned size_t;
 [; ;stdio.h: 10: typedef unsigned short wchar_t;
@@ -5033,68 +5070,222 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;DS18B20.h: 41: void delay100ms(void);
 [; ;DS18B20.h: 42: void delay50ms(void);
 [; ;DS18B20.h: 43: void delay750ms(void);
-"10 main.c
+"66 NRF_24L01/nRF2401.h
+[v _TX_ADDRESS `uc ~T0 @X0 -> 5 `i e ]
+[i _TX_ADDRESS
+:U ..
+-> -> 65 `i `uc
+-> -> 65 `i `uc
+-> -> 65 `i `uc
+-> -> 65 `i `uc
+-> -> 65 `i `uc
+..
+]
+[; ;nRF2401.h: 66: unsigned char TX_ADDRESS[5] = {0x41,0x41,0x41,0x41,0x41};
+[; ;nRF2401.h: 68: unsigned char nrf_getStatus(void);
+[; ;nRF2401.h: 69: unsigned char nrf_send(unsigned char * tx_buf, unsigned char * rx_buf);
+[; ;nRF2401.h: 70: void nrf_send_noack(unsigned char * tx_buf, unsigned char * rx_buf);
+[; ;nRF2401.h: 71: unsigned char nrf_receive(unsigned char * tx_buf, unsigned char * rx_buf);
+[; ;nRF2401.h: 73: void nrf_init(void);
+[; ;nRF2401.h: 74: void nrf_txmode(void);
+[; ;nRF2401.h: 75: void nrf_rxmode(void);
+[; ;nRF2401.h: 76: void nrf_powerdown(void);
+[; ;nRF2401.h: 78: void nrf_setTxAddr(char addr);
+[; ;nRF2401.h: 79: void nrf_setRxAddr(char pipe, char addr);
+[; ;nRF2401.h: 80: char nrf_enablePipe(char pipe);
+[; ;nRF2401.h: 81: char nrf_disablePipe(char pipe);
+[; ;nRF2401.h: 82: char nrf_readRegister(char loc);
+[; ;nRF2401.h: 84: unsigned char nrf_SPI_RW(unsigned char);
+[; ;nRF2401.h: 85: unsigned char nrf_SPI_RW_Reg(unsigned char, unsigned char);
+[; ;nRF2401.h: 86: unsigned char nrf_SPI_Read(unsigned char);
+[; ;nRF2401.h: 87: unsigned char nrf_SPI_Read_Buf(unsigned char, unsigned char *, unsigned char);
+[; ;nRF2401.h: 88: unsigned char nrf_SPI_Write_Buf(unsigned char, unsigned char *, unsigned char);
+"12 main.c
+[v _temp_union `S598 ~T0 @X0 1 e ]
+[; ;main.c: 8: union
+[; ;main.c: 9: {
+[; ;main.c: 10: float temperature;
+[; ;main.c: 11: unsigned char value[sizeof(float)];
+[; ;main.c: 12: } temp_union;
+[; ;main.c: 15: void fill_SendBuff(float temperature, unsigned char* buffer);
+"19
 [v _main `(i ~T0 @X0 1 ef2`i`**uc ]
 {
-[; ;main.c: 10: int main(int argc, char** argv) {
+[; ;main.c: 19: int main(int argc, char** argv) {
 [e :U _main ]
 [v _argc `i ~T0 @X0 1 r1 ]
 [v _argv `**uc ~T0 @X0 1 r2 ]
 [f ]
-[; ;main.c: 11: OSCCONbits.SCS = 0;
-"11
-[e = . . _OSCCONbits 0 0 -> -> 0 `i `uc ]
-[; ;main.c: 12: ADCON1bits.PCFG = 0xF;
-"12
-[e = . . _ADCON1bits 0 0 -> -> 15 `i `uc ]
-[; ;main.c: 13: (INTCONbits.GIE = 1);
-"13
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"15
-[v _reponse `uc ~T0 @X0 1 a ]
-[; ;main.c: 15: unsigned char reponse=1;
-[e = _reponse -> -> 1 `i `uc ]
-"16
-[v _temperature `f ~T0 @X0 1 a ]
-[; ;main.c: 16: float temperature;
-[; ;main.c: 18: reponse=init_sensor();
-"18
-[e = _reponse ( _init_sensor ..  ]
-[; ;main.c: 19: if(reponse==0)
-"19
-[e $ ! == -> _reponse `i -> 0 `i 599  ]
-[; ;main.c: 20: {
-"20
-{
-"21
-[v _Sucess `uc ~T0 @X0 1 a ]
-[; ;main.c: 21: unsigned char Sucess;
-[; ;main.c: 22: Sucess=search_Devices();
+[; ;main.c: 22: TRISAbits.TRISA1 = 0;
 "22
-[e = _Sucess ( _search_Devices ..  ]
-[; ;main.c: 23: do
-"23
-[e :U 602 ]
-[; ;main.c: 24: {
+[e = . . _TRISAbits 0 1 -> -> 0 `i `uc ]
 "24
-{
-[; ;main.c: 25: temperature=read_temp(DeviceAddress[0]);
+[v _tx_buf `uc ~T0 @X0 -> 32 `i a ]
 "25
-[e = _temperature ( _read_temp (1 -> &U *U + &U _DeviceAddress * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _DeviceAddress `ui -> -> 8 `i `ui `ux `uc ]
+[v _rx_buf `uc ~T0 @X0 -> 32 `i a ]
 "26
-}
-[; ;main.c: 26: }while(1);
-[e $ != -> 1 `i -> 0 `i 602  ]
-[e :U 601 ]
+[v _ds18b20_response `uc ~T0 @X0 1 a ]
+[; ;main.c: 24: unsigned char tx_buf[32];
+[; ;main.c: 25: unsigned char rx_buf[32];
+[; ;main.c: 26: unsigned char ds18b20_response = 1;
+[e = _ds18b20_response -> -> 1 `i `uc ]
 "27
+[v _nrf24l01_response `uc ~T0 @X0 1 a ]
+[; ;main.c: 27: unsigned char nrf24l01_response = 1;
+[e = _nrf24l01_response -> -> 1 `i `uc ]
+"28
+[v _temperature `f ~T0 @X0 1 a ]
+[; ;main.c: 28: float temperature;
+[; ;main.c: 32: OSCCONbits.SCS = 0;
+"32
+[e = . . _OSCCONbits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 33: ADCON1 |= 0xF;
+"33
+[e =| _ADCON1 -> -> 15 `i `uc ]
+[; ;main.c: 34: (INTCONbits.GIE = 1);
+"34
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+[; ;main.c: 38: TRISCbits.TRISC0 = 0;
+"38
+[e = . . _TRISCbits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 39: TRISCbits.TRISC1 = 0;
+"39
+[e = . . _TRISCbits 0 1 -> -> 0 `i `uc ]
+[; ;main.c: 40: TRISCbits.TRISC2 = 1;
+"40
+[e = . . _TRISCbits 0 2 -> -> 1 `i `uc ]
+[; ;main.c: 41: TRISBbits.TRISB1 = 0;
+"41
+[e = . . _TRISBbits 0 1 -> -> 0 `i `uc ]
+[; ;main.c: 42: TRISBbits.TRISB0 = 1;
+"42
+[e = . . _TRISBbits 0 0 -> -> 1 `i `uc ]
+[; ;main.c: 43: TRISCbits.TRISC7 = 0;
+"43
+[e = . . _TRISCbits 0 5 -> -> 0 `i `uc ]
+[; ;main.c: 45: nrf_init();
+"45
+[e ( _nrf_init ..  ]
+[; ;main.c: 46: delay50ms();
+"46
+[e ( _delay50ms ..  ]
+[; ;main.c: 47: nrf_txmode();
+"47
+[e ( _nrf_txmode ..  ]
+[; ;main.c: 50: ds18b20_response=init_sensor();
+"50
+[e = _ds18b20_response ( _init_sensor ..  ]
+[; ;main.c: 53: if(ds18b20_response==0)
+"53
+[e $ ! == -> _ds18b20_response `i -> 0 `i 600  ]
+[; ;main.c: 54: {
+"54
+{
+"55
+[v _Sucess `uc ~T0 @X0 1 a ]
+[; ;main.c: 55: unsigned char Sucess;
+[; ;main.c: 56: Sucess=search_Devices();
+"56
+[e = _Sucess ( _search_Devices ..  ]
+[; ;main.c: 57: do
+"57
+[e :U 603 ]
+[; ;main.c: 58: {
+"58
+{
+[; ;main.c: 60: temp_union.temperature=read_temp(DeviceAddress[0]);
+"60
+[e = . _temp_union 0 ( _read_temp (1 -> &U *U + &U _DeviceAddress * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _DeviceAddress `ui -> -> 8 `i `ui `ux `uc ]
+[; ;main.c: 61: fill_SendBuff(temp_union.temperature,&tx_buf);
+"61
+[e ( _fill_SendBuff (2 , . _temp_union 0 &U _tx_buf ]
+[; ;main.c: 62: nrf24l01_response = nrf_send(&tx_buf,&rx_buf);
+"62
+[e = _nrf24l01_response ( _nrf_send (2 , &U _tx_buf &U _rx_buf ]
+[; ;main.c: 63: if(nrf24l01_response){RA1 = 1;}else{RA1 = 0;}
+"63
+[e $ ! != -> _nrf24l01_response `i -> -> -> 0 `i `uc `i 604  ]
+{
+[e = _RA1 -> -> 1 `i `b ]
 }
-[e :U 599 ]
-[; ;main.c: 27: };
-[; ;main.c: 29: return (0);
-"29
+[e $U 605  ]
+[e :U 604 ]
+{
+[e = _RA1 -> -> 0 `i `b ]
+}
+[e :U 605 ]
+[; ;main.c: 64: delay750ms();
+"64
+[e ( _delay750ms ..  ]
+"65
+}
+[; ;main.c: 65: }while(1);
+[e $ != -> 1 `i -> 0 `i 603  ]
+[e :U 602 ]
+"66
+}
+[e :U 600 ]
+[; ;main.c: 66: };
+[; ;main.c: 68: return (0);
+"68
 [e ) -> 0 `i ]
-[e $UE 598  ]
-[; ;main.c: 30: }
-"30
-[e :UE 598 ]
+[e $UE 599  ]
+[; ;main.c: 69: }
+"69
+[e :UE 599 ]
+}
+"71
+[v _fill_SendBuff `(v ~T0 @X0 1 ef2`f`*uc ]
+{
+[; ;main.c: 71: void fill_SendBuff(float temperature, unsigned char* buffer){
+[e :U _fill_SendBuff ]
+[v _temperature `f ~T0 @X0 1 r1 ]
+[v _buffer `*uc ~T0 @X0 1 r2 ]
+[f ]
+"72
+[v _i `uc ~T0 @X0 1 a ]
+[; ;main.c: 72: unsigned char i;
+[; ;main.c: 74: for(i = 0; i< sizeof(float); i++){
+"74
+{
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `ui -> # `f `ui 607  ]
+[e $U 608  ]
+[e :U 607 ]
+{
+[; ;main.c: 75: buffer[i] = temp_union.value[i];
+"75
+[e = *U + _buffer * -> _i `ux -> -> # *U _buffer `ui `ux *U + &U . _temp_union 1 * -> _i `ux -> -> # *U &U . _temp_union 1 `ui `ux ]
+"76
+}
+"74
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `ui -> # `f `ui 607  ]
+[e :U 608 ]
+"76
+}
+[; ;main.c: 76: }
+[; ;main.c: 77: for( i = sizeof(float) ; i < 32 ; i++){
+"77
+{
+[e = _i -> -> # `f `ui `uc ]
+[e $ < -> _i `i -> 32 `i 610  ]
+[e $U 611  ]
+[e :U 610 ]
+{
+[; ;main.c: 78: buffer[i] = 0;
+"78
+[e = *U + _buffer * -> _i `ux -> -> # *U _buffer `ui `ux -> -> 0 `i `uc ]
+"79
+}
+"77
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 32 `i 610  ]
+[e :U 611 ]
+"79
+}
+[; ;main.c: 79: }
+[; ;main.c: 81: }
+"81
+[e :UE 606 ]
 }

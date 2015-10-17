@@ -6514,26 +6514,102 @@ void delay100ms(void);
 void delay50ms(void);
 void delay750ms(void);
 
-# 10 "main.c"
-int main(int argc, char** argv) {
-OSCCONbits.SCS = 0;
-ADCON1bits.PCFG = 0xF;
-(INTCONbits.GIE = 1);
+# 66 "NRF_24L01/nRF2401.h"
+unsigned char TX_ADDRESS[5] = {0x41,0x41,0x41,0x41,0x41};
 
-unsigned char reponse=1;
+unsigned char nrf_getStatus(void);
+unsigned char nrf_send(unsigned char * tx_buf, unsigned char * rx_buf);
+void nrf_send_noack(unsigned char * tx_buf, unsigned char * rx_buf);
+unsigned char nrf_receive(unsigned char * tx_buf, unsigned char * rx_buf);
+
+void nrf_init(void);
+void nrf_txmode(void);
+void nrf_rxmode(void);
+void nrf_powerdown(void);
+
+void nrf_setTxAddr(char addr);
+void nrf_setRxAddr(char pipe, char addr);
+char nrf_enablePipe(char pipe);
+char nrf_disablePipe(char pipe);
+char nrf_readRegister(char loc);
+
+unsigned char nrf_SPI_RW(unsigned char);
+unsigned char nrf_SPI_RW_Reg(unsigned char, unsigned char);
+unsigned char nrf_SPI_Read(unsigned char);
+unsigned char nrf_SPI_Read_Buf(unsigned char, unsigned char *, unsigned char);
+unsigned char nrf_SPI_Write_Buf(unsigned char, unsigned char *, unsigned char);
+
+# 8 "main.c"
+union
+{
+float temperature;
+unsigned char value[sizeof(float)];
+} temp_union;
+
+
+void fill_SendBuff(float temperature, unsigned char* buffer);
+
+# 19
+int main(int argc, char** argv) {
+
+
+TRISAbits.TRISA1 = 0;
+
+unsigned char tx_buf[32];
+unsigned char rx_buf[32];
+unsigned char ds18b20_response = 1;
+unsigned char nrf24l01_response = 1;
 float temperature;
 
-reponse=init_sensor();
-if(reponse==0)
+
+
+OSCCONbits.SCS = 0;
+ADCON1 |= 0xF;
+(INTCONbits.GIE = 1);
+
+
+
+TRISCbits.TRISC0 = 0;
+TRISCbits.TRISC1 = 0;
+TRISCbits.TRISC2 = 1;
+TRISBbits.TRISB1 = 0;
+TRISBbits.TRISB0 = 1;
+TRISCbits.TRISC7 = 0;
+
+nrf_init();
+delay50ms();
+nrf_txmode();
+
+
+ds18b20_response=init_sensor();
+
+
+if(ds18b20_response==0)
 {
 unsigned char Sucess;
 Sucess=search_Devices();
 do
 {
-temperature=read_temp(DeviceAddress[0]);
+
+temp_union.temperature=read_temp(DeviceAddress[0]);
+fill_SendBuff(temp_union.temperature,&tx_buf);
+nrf24l01_response = nrf_send(&tx_buf,&rx_buf);
+if(nrf24l01_response){RA1 = 1;}else{RA1 = 0;}
+delay750ms();
 }while(1);
 };
 
 return (0);
 }
 
+void fill_SendBuff(float temperature, unsigned char* buffer){
+unsigned char i;
+
+for(i = 0; i< sizeof(float); i++){
+buffer[i] = temp_union.value[i];
+}
+for( i = sizeof(float) ; i < 32 ; i++){
+buffer[i] = 0;
+}
+
+}

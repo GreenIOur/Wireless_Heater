@@ -5,9 +5,9 @@ Linker command line:
 --edf=/Applications/microchip/xc8/v1.34/dat/en_msgs.txt -cs \
   -h+dist/default/production/Wireless_Heater.X.production.sym \
   --cmf=dist/default/production/Wireless_Heater.X.production.cmf -z \
-  -Q18F4550 -o/tmp/cgt0m8hqT \
+  -Q18F4550 -o/tmp/cgtDiZRUI \
   -Mdist/default/production/Wireless_Heater.X.production.map -E1 -ver=XC8 \
-  -ASTACK=060h-07ffh -pstack=STACK -ACODE=00h-07FFFh -ACONST=00h-07FFFh \
+  -ASTACK=0A3h-07ffh -pstack=STACK -ACODE=00h-07FFFh -ACONST=00h-07FFFh \
   -ASMALLCONST=0800h-08FFhx120 -AMEDIUMCONST=0800h-07FFFh -ACOMRAM=01h-05Fh \
   -AABS1=00h-07FFh -ABIGRAM=01h-07FFh -ARAM=060h-0FFh,0100h-01FFhx7 \
   -ABANK0=060h-0FFh -ABANK1=0100h-01FFh -ABANK2=0200h-02FFh \
@@ -22,7 +22,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  /tmp/cgtBubfSl.obj \
+  /tmp/cgtlewNYi.obj \
   dist/default/production/Wireless_Heater.X.production.obj 
 
 Object code version is 3.11
@@ -35,53 +35,79 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-/tmp/cgtBubfSl.obj
+/tmp/cgtlewNYi.obj
                 end_init                              0        0        4        0       0
                 idloc                            200000   200000        8   200000       0
                 config                           300000   300000        E   300000       0
 dist/default/production/Wireless_Heater.X.production.obj
-                text15                             7C7A     7C7A       C6     3E3D       0
-                text14                             7910     7910       3C     3C88       0
+                text26                             7840     7840       5A     3C20       0
+                text25                             77EA     77EA       56     3BF5       0
+                text24                             74D2     74D2       16     3A69       0
+                text23                             74FE     74FE       18     3A7F       0
+                text22                             7516     7516       1A     3A8B       0
+                text21                             7582     7582       34     3AC1       0
+                text20                             7C6A     7C6A       D6     3E35       0
+                text19                             7658     7658       3A     3B2C       0
+                text18                             74E8     74E8       16     3A74       0
+                text17                             789A     789A       8C     3C4D       0
+                text16                             74C2     74C2       10     3A61       0
+                text15                             7BA4     7BA4       C6     3DD2       0
+                text14                             7692     7692       3C     3B49       0
                 text13                             7D40     7D40       F8     3EA0       0
-                text12                             79C8     79C8       46     3CE4       0
-                text11                             78D8     78D8       38     3C6C       0
-                text10                             78A4     78A4       34     3C52       0
-                text9                              7A0E     7A0E       48     3D07       0
-                text8                              7BD8     7BD8       A2     3DEC       0
-                text7                              7A56     7A56       52     3D2B       0
-                text6                              7852     7852       22     3C29       0
-                text5                              7874     7874       30     3C3A       0
-                text4                              794C     794C       3C     3CA6       0
-                text3                              7B3E     7B3E       9A     3D9F       0
-                text2                              7AA8     7AA8       96     3D54       0
+                text12                             770A     770A       46     3B85       0
+                text11                             7620     7620       38     3B10       0
+                text10                             75B6     75B6       34     3ADB       0
+                text9                              7750     7750       48     3BA8       0
+                text8                              7A56     7A56       A2     3D2B       0
+                text7                              7798     7798       52     3BCC       0
+                text6                              7530     7530       22     3A98       0
+                text5                              7552     7552       30     3AA9       0
+                text4                              76CE     76CE       3C     3B67       0
+                text3                              79BC     79BC       9A     3CDE       0
+                text2                              7926     7926       96     3C93       0
                 text1                              7E38     7E38      1C8     3F1C       0
-                cstackCOMRAM                          1        1       32        1       1
-                bssCOMRAM                            33       33       10        1       1
-                cinit                              7840     7840       12     3C20       0
-                text0                              7988     7988       40     3CC4       0
+                text0                              7AF8     7AF8       AC     3D7C       0
+                cstackCOMRAM                          1        1       2D        1       1
+                cstackBANK0                          60       60       43       60       1
+                dataCOMRAM                           41       41        5        1       1
+                bssCOMRAM                            2E       2E       13        1       1
+                cinit                              75EA     75EA       36     3AF5       0
+                idataCOMRAM                        74BD     74BD        5     74BD       0
 
 TOTAL           Name                               Link     Load   Length     Space
         CLASS   STACK          
 
         CLASS   CODE           
                 end_init                              0        0        4         0
-                text15                             7C7A     7C7A       C6         0
-                text14                             7910     7910       3C         0
+                text26                             7840     7840       5A         0
+                text25                             77EA     77EA       56         0
+                text24                             74D2     74D2       16         0
+                text23                             74FE     74FE       18         0
+                text22                             7516     7516       1A         0
+                text21                             7582     7582       34         0
+                text20                             7C6A     7C6A       D6         0
+                text19                             7658     7658       3A         0
+                text18                             74E8     74E8       16         0
+                text17                             789A     789A       8C         0
+                text16                             74C2     74C2       10         0
+                text15                             7BA4     7BA4       C6         0
+                text14                             7692     7692       3C         0
                 text13                             7D40     7D40       F8         0
-                text12                             79C8     79C8       46         0
-                text11                             78D8     78D8       38         0
-                text10                             78A4     78A4       34         0
-                text9                              7A0E     7A0E       48         0
-                text8                              7BD8     7BD8       A2         0
-                text7                              7A56     7A56       52         0
-                text6                              7852     7852       22         0
-                text5                              7874     7874       30         0
-                text4                              794C     794C       3C         0
-                text3                              7B3E     7B3E       9A         0
-                text2                              7AA8     7AA8       96         0
+                text12                             770A     770A       46         0
+                text11                             7620     7620       38         0
+                text10                             75B6     75B6       34         0
+                text9                              7750     7750       48         0
+                text8                              7A56     7A56       A2         0
+                text7                              7798     7798       52         0
+                text6                              7530     7530       22         0
+                text5                              7552     7552       30         0
+                text4                              76CE     76CE       3C         0
+                text3                              79BC     79BC       9A         0
+                text2                              7926     7926       96         0
                 text1                              7E38     7E38      1C8         0
-                cinit                              7840     7840       12         0
-                text0                              7988     7988       40         0
+                text0                              7AF8     7AF8       AC         0
+                cinit                              75EA     75EA       36         0
+                idataCOMRAM                        74BD     74BD        5         0
 
         CLASS   CONST          
 
@@ -90,8 +116,9 @@ TOTAL           Name                               Link     Load   Length     Sp
         CLASS   MEDIUMCONST    
 
         CLASS   COMRAM         
-                cstackCOMRAM                          1        1       32         1
-                bssCOMRAM                            33       33       10         1
+                cstackCOMRAM                          1        1       2D         1
+                dataCOMRAM                           41       41        5         1
+                bssCOMRAM                            2E       2E       13         1
 
         CLASS   ABS1           
 
@@ -100,6 +127,7 @@ TOTAL           Name                               Link     Load   Length     Sp
         CLASS   RAM            
 
         CLASS   BANK0          
+                cstackBANK0                          60       60       43         1
 
         CLASS   BANK1          
 
@@ -132,22 +160,35 @@ TOTAL           Name                               Link     Load   Length     Sp
 SEGMENTS        Name                           Load    Length   Top    Selector   Space  Class
 
                 reset_vec                      000000  000004  000004         0       0  CODE    
-                cstackCOMRAM                   000001  000042  000043         1       1  COMRAM  
-                cinit                          007840  000012  007852      3C20       0  CODE    
-                text6                          007852  000022  007874      3C29       0  CODE    
-                text5                          007874  000030  0078A4      3C3A       0  CODE    
-                text10                         0078A4  000034  0078D8      3C52       0  CODE    
-                text11                         0078D8  000038  007910      3C6C       0  CODE    
-                text14                         007910  00003C  00794C      3C88       0  CODE    
-                text4                          00794C  00003C  007988      3CA6       0  CODE    
-                text0                          007988  000040  0079C8      3CC4       0  CODE    
-                text12                         0079C8  000046  007A0E      3CE4       0  CODE    
-                text9                          007A0E  000048  007A56      3D07       0  CODE    
-                text7                          007A56  000052  007AA8      3D2B       0  CODE    
-                text2                          007AA8  000096  007B3E      3D54       0  CODE    
-                text3                          007B3E  00009A  007BD8      3D9F       0  CODE    
-                text8                          007BD8  0000A2  007C7A      3DEC       0  CODE    
-                text15                         007C7A  0000C6  007D40      3E3D       0  CODE    
+                cstackCOMRAM                   000001  000045  000046         1       1  COMRAM  
+                cstackBANK0                    000060  000043  0000A3        60       1  BANK0   
+                idataCOMRAM                    0074BD  000005  0074C2      74BD       0  CODE    
+                text16                         0074C2  000010  0074D2      3A61       0  CODE    
+                text24                         0074D2  000016  0074E8      3A69       0  CODE    
+                text18                         0074E8  000016  0074FE      3A74       0  CODE    
+                text23                         0074FE  000018  007516      3A7F       0  CODE    
+                text22                         007516  00001A  007530      3A8B       0  CODE    
+                text6                          007530  000022  007552      3A98       0  CODE    
+                text5                          007552  000030  007582      3AA9       0  CODE    
+                text21                         007582  000034  0075B6      3AC1       0  CODE    
+                text10                         0075B6  000034  0075EA      3ADB       0  CODE    
+                cinit                          0075EA  000036  007620      3AF5       0  CODE    
+                text11                         007620  000038  007658      3B10       0  CODE    
+                text19                         007658  00003A  007692      3B2C       0  CODE    
+                text14                         007692  00003C  0076CE      3B49       0  CODE    
+                text4                          0076CE  00003C  00770A      3B67       0  CODE    
+                text12                         00770A  000046  007750      3B85       0  CODE    
+                text9                          007750  000048  007798      3BA8       0  CODE    
+                text7                          007798  000052  0077EA      3BCC       0  CODE    
+                text25                         0077EA  000056  007840      3BF5       0  CODE    
+                text26                         007840  00005A  00789A      3C20       0  CODE    
+                text17                         00789A  00008C  007926      3C4D       0  CODE    
+                text2                          007926  000096  0079BC      3C93       0  CODE    
+                text3                          0079BC  00009A  007A56      3CDE       0  CODE    
+                text8                          007A56  0000A2  007AF8      3D2B       0  CODE    
+                text0                          007AF8  0000AC  007BA4      3D7C       0  CODE    
+                text15                         007BA4  0000C6  007C6A      3DD2       0  CODE    
+                text20                         007C6A  0000D6  007D40      3E35       0  CODE    
                 text13                         007D40  0000F8  007E38      3EA0       0  CODE    
                 text1                          007E38  0001C8  008000      3F1C       0  CODE    
                 idloc                          200000  000008  200008    200000       0  IDLOC   
@@ -157,7 +198,7 @@ SEGMENTS        Name                           Load    Length   Top    Selector 
 UNUSED ADDRESS RANGES
 
         Name                Unused          Largest block    Delta
-        BANK0            000060-0000FF               A0
+        BANK0            0000A3-0000FF               5D
         BANK1            000100-0001FF              100
         BANK2            000200-0002FF              100
         BANK3            000300-0003FF              100
@@ -165,16 +206,17 @@ UNUSED ADDRESS RANGES
         BANK5            000500-0005FF              100
         BANK6            000600-0006FF              100
         BANK7            000700-0007FF              100
-        BIGRAM           000043-0007FF              7BD
-        CODE             000004-00783F             783C
-        COMRAM           000043-00005F               1D
-        CONST            000004-00783F             783C
+        BIGRAM           000046-00005F               1A
+                         0000A3-0007FF              75D
+        CODE             000004-0074BC             74B9
+        COMRAM           000046-00005F               1A
+        CONST            000004-0074BC             74B9
         EEDATA           F00000-F000FF              100
-        MEDIUMCONST      000800-00783F             7040
-        RAM              000060-0007FF              100
+        MEDIUMCONST      000800-0074BC             6CBD
+        RAM              0000A3-0007FF              100
         SFR              000F60-000FFF               A0
-        SMALLCONST       000800-00783F              100
-        STACK            000060-0007FF              7A0
+        SMALLCONST       000800-0074BC              100
+        STACK            0000A3-0007FF              75D
 
                                   Symbol Table
 
@@ -183,13 +225,29 @@ UNUSED ADDRESS RANGES
 ?___ftmul                            cstackCOMRAM 00000D
 ?___ftpack                           cstackCOMRAM 000001
 ?_read_temp                          cstackCOMRAM 00001C
-_ADCON1bits                          (abs)        000FC1
-_DeviceAddress                       bssCOMRAM    000033
+OpenSPI@bus_mode                     cstackCOMRAM 000001
+OpenSPI@smp_phase                    cstackCOMRAM 000002
+OpenSPI@sync_mode                    cstackCOMRAM 000003
+_ADCON1                              (abs)        000FC1
+_DeviceAddress                       bssCOMRAM    00002E
 _INTCONbits                          (abs)        000FF2
-_LATC0                               (abs)        007C58
+_LATA0                               (abs)        007C48
 _OSCCONbits                          (abs)        000FD3
-_RC0                                 (abs)        007C10
-_TRISC0                              (abs)        007CA0
+_OpenSPI                             text25       0077EA
+_PORTCbits                           (abs)        000F82
+_RA0                                 (abs)        007C00
+_RA1                                 (abs)        007C01
+_SSPBUF                              (abs)        000FC9
+_SSPCON1                             (abs)        000FC6
+_SSPCON1bits                         (abs)        000FC6
+_SSPSTAT                             (abs)        000FC7
+_SSPSTATbits                         (abs)        000FC7
+_STATUS                              (abs)        000FD8
+_TRISA0                              (abs)        007C90
+_TRISAbits                           (abs)        000F92
+_TRISBbits                           (abs)        000F93
+_TRISCbits                           (abs)        000F94
+_TX_ADDRESS                          dataCOMRAM   000041
 __CFG_BOR$ON                         (abs)        000000
 __CFG_BORV$3                         (abs)        000000
 __CFG_CCP2MX$ON                      (abs)        000000
@@ -248,14 +306,17 @@ __Hclrtext                           clrtext      000000
 __Hcomram                            comram       000000
 __Hconfig                            config       30000E
 __Hconst                             const        000000
+__HcstackBANK0                       cstackBANK0  000000
 __HcstackCOMRAM                      cstackCOMRAM 000000
 __Hdata                              data         000000
+__HdataCOMRAM                        dataCOMRAM   000000
 __Heeprom_data                       eeprom_data  000000
 __Hend_init                          end_init     000004
 __Hfarbss                            farbss       000000
 __Hfardata                           fardata      000000
 __Hibigdata                          ibigdata     000000
 __Hidata                             idata        000000
+__HidataCOMRAM                       idataCOMRAM  000000
 __Hidloc                             idloc        200008
 __Hifardata                          ifardata     000000
 __Hinit                              init         000000
@@ -282,7 +343,7 @@ __Hrparam                            rparam       000000
 __Hsfr                               sfr          000000
 __Hsmallconst                        smallconst   000000
 __Hspace_0                           (abs)        30000E
-__Hspace_1                           (abs)        000043
+__Hspace_1                           (abs)        0000A3
 __Hspace_2                           (abs)        000000
 __Hstack                             stack        000000
 __Hstruct                            struct       000000
@@ -296,7 +357,18 @@ __Htext12                            text12       000000
 __Htext13                            text13       000000
 __Htext14                            text14       000000
 __Htext15                            text15       000000
+__Htext16                            text16       000000
+__Htext17                            text17       000000
+__Htext18                            text18       000000
+__Htext19                            text19       000000
 __Htext2                             text2        000000
+__Htext20                            text20       000000
+__Htext21                            text21       000000
+__Htext22                            text22       000000
+__Htext23                            text23       000000
+__Htext24                            text24       000000
+__Htext25                            text25       000000
+__Htext26                            text26       000000
 __Htext3                             text3        000000
 __Htext4                             text4        000000
 __Htext5                             text5        000000
@@ -324,14 +396,17 @@ __Lclrtext                           clrtext      000000
 __Lcomram                            comram       000000
 __Lconfig                            config       300000
 __Lconst                             const        000000
+__LcstackBANK0                       cstackBANK0  000000
 __LcstackCOMRAM                      cstackCOMRAM 000000
 __Ldata                              data         000000
+__LdataCOMRAM                        dataCOMRAM   000000
 __Leeprom_data                       eeprom_data  000000
 __Lend_init                          end_init     000000
 __Lfarbss                            farbss       000000
 __Lfardata                           fardata      000000
 __Libigdata                          ibigdata     000000
 __Lidata                             idata        000000
+__LidataCOMRAM                       idataCOMRAM  000000
 __Lidloc                             idloc        200000
 __Lifardata                          ifardata     000000
 __Linit                              init         000000
@@ -372,7 +447,18 @@ __Ltext12                            text12       000000
 __Ltext13                            text13       000000
 __Ltext14                            text14       000000
 __Ltext15                            text15       000000
+__Ltext16                            text16       000000
+__Ltext17                            text17       000000
+__Ltext18                            text18       000000
+__Ltext19                            text19       000000
 __Ltext2                             text2        000000
+__Ltext20                            text20       000000
+__Ltext21                            text21       000000
+__Ltext22                            text22       000000
+__Ltext23                            text23       000000
+__Ltext24                            text24       000000
+__Ltext25                            text25       000000
+__Ltext26                            text26       000000
 __Ltext3                             text3        000000
 __Ltext4                             text4        000000
 __Ltext5                             text5        000000
@@ -381,15 +467,15 @@ __Ltext7                             text7        000000
 __Ltext8                             text8        000000
 __Ltext9                             text9        000000
 __S0                                 (abs)        30000E
-__S1                                 (abs)        000043
+__S1                                 (abs)        0000A3
 __S2                                 (abs)        000000
-___awdiv                             text2        007AA8
+___awdiv                             text2        007926
 ___awdiv@counter                     cstackCOMRAM 000005
 ___awdiv@dividend                    cstackCOMRAM 000001
 ___awdiv@divisor                     cstackCOMRAM 000003
 ___awdiv@quotient                    cstackCOMRAM 000007
 ___awdiv@sign                        cstackCOMRAM 000006
-___awtoft                            text14       007910
+___awtoft                            text14       007692
 ___awtoft@c                          cstackCOMRAM 000009
 ___awtoft@sign                       cstackCOMRAM 00000C
 ___ftmul                             text13       007D40
@@ -399,7 +485,7 @@ ___ftmul@f1                          cstackCOMRAM 00000D
 ___ftmul@f2                          cstackCOMRAM 000010
 ___ftmul@f3_as_product               cstackCOMRAM 000017
 ___ftmul@sign                        cstackCOMRAM 00001B
-___ftpack                            text15       007C7A
+___ftpack                            text15       007BA4
 ___ftpack@arg                        cstackCOMRAM 000001
 ___ftpack@exp                        cstackCOMRAM 000004
 ___ftpack@sign                       cstackCOMRAM 000005
@@ -409,46 +495,72 @@ ___param_bank                        (abs)        000010
 ___rparam_used                       (abs)        000001
 ___sp                                stack        000000
 __accesstop                          (abs)        000060
-__activetblptr                       (abs)        000000
-__end_of___awdiv                     text2        007B3E
-__end_of___awtoft                    text14       00794C
+__activetblptr                       (abs)        000002
+__end_of_OpenSPI                     text25       007840
+__end_of___awdiv                     text2        0079BC
+__end_of___awtoft                    text14       0076CE
 __end_of___ftmul                     text13       007E38
-__end_of___ftpack                    text15       007D40
-__end_of__initialization             cinit        00784C
-__end_of_address_Device              text9        007A56
-__end_of_delay100ms                  text8        007C7A
-__end_of_delay50ms                   text7        007AA8
-__end_of_delay750ms                  text6        007874
-__end_of_init_sensor                 text12       007A0E
-__end_of_main                        text0        0079C8
-__end_of_read_Bit                    text5        0078A4
-__end_of_read_Byte                   text4        007988
-__end_of_read_temp                   text3        007BD8
+__end_of___ftpack                    text15       007C6A
+__end_of__initialization             cinit        007616
+__end_of_address_Device              text9        007798
+__end_of_delay100ms                  text8        007AF8
+__end_of_delay50ms                   text7        0077EA
+__end_of_delay750ms                  text6        007552
+__end_of_fill_SendBuff               text26       00789A
+__end_of_init_sensor                 text12       007750
+__end_of_main                        text0        007BA4
+__end_of_nrf_SPI_RW                  text24       0074E8
+__end_of_nrf_SPI_RW_Reg              text23       007516
+__end_of_nrf_SPI_Read                text22       007530
+__end_of_nrf_SPI_Read_Buf            text19       007692
+__end_of_nrf_SPI_Write_Buf           text21       0075B6
+__end_of_nrf_getStatus               text18       0074FE
+__end_of_nrf_init                    text20       007D40
+__end_of_nrf_send                    text17       007926
+__end_of_nrf_txmode                  text16       0074D2
+__end_of_read_Bit                    text5        007582
+__end_of_read_Byte                   text4        00770A
+__end_of_read_temp                   text3        007A56
 __end_of_search_Devices              text1        008000
-__end_of_write_Bit                   text11       007910
-__end_of_write_Byte                  text10       0078D8
-__initialization                     cinit        007840
+__end_of_write_Bit                   text11       007658
+__end_of_write_Byte                  text10       0075EA
+__initialization                     cinit        0075EA
 __mediumconst                        mediumconst  000000
-__pbssCOMRAM                         bssCOMRAM    000033
-__pcinit                             cinit        007840
+__pbssCOMRAM                         bssCOMRAM    00002E
+__pcinit                             cinit        0075EA
+__pcstackBANK0                       cstackBANK0  000060
 __pcstackCOMRAM                      cstackCOMRAM 000001
-__ptext0                             text0        007988
+__pdataCOMRAM                        dataCOMRAM   000041
+__pidataCOMRAM                       idataCOMRAM  0074BD
+__ptext0                             text0        007AF8
 __ptext1                             text1        007E38
-__ptext10                            text10       0078A4
-__ptext11                            text11       0078D8
-__ptext12                            text12       0079C8
+__ptext10                            text10       0075B6
+__ptext11                            text11       007620
+__ptext12                            text12       00770A
 __ptext13                            text13       007D40
-__ptext14                            text14       007910
-__ptext15                            text15       007C7A
-__ptext2                             text2        007AA8
-__ptext3                             text3        007B3E
-__ptext4                             text4        00794C
-__ptext5                             text5        007874
-__ptext6                             text6        007852
-__ptext7                             text7        007A56
-__ptext8                             text8        007BD8
-__ptext9                             text9        007A0E
+__ptext14                            text14       007692
+__ptext15                            text15       007BA4
+__ptext16                            text16       0074C2
+__ptext17                            text17       00789A
+__ptext18                            text18       0074E8
+__ptext19                            text19       007658
+__ptext2                             text2        007926
+__ptext20                            text20       007C6A
+__ptext21                            text21       007582
+__ptext22                            text22       007516
+__ptext23                            text23       0074FE
+__ptext24                            text24       0074D2
+__ptext25                            text25       0077EA
+__ptext26                            text26       007840
+__ptext3                             text3        0079BC
+__ptext4                             text4        0076CE
+__ptext5                             text5        007552
+__ptext6                             text6        007530
+__ptext7                             text7        007798
+__ptext8                             text8        007A56
+__ptext9                             text9        007750
 __ramtop                             ramtop       000800
+__size_of_OpenSPI                    (abs)        000000
 __size_of___awdiv                    (abs)        000000
 __size_of___awtoft                   (abs)        000000
 __size_of___ftmul                    (abs)        000000
@@ -457,8 +569,18 @@ __size_of_address_Device             (abs)        000000
 __size_of_delay100ms                 (abs)        000000
 __size_of_delay50ms                  (abs)        000000
 __size_of_delay750ms                 (abs)        000000
+__size_of_fill_SendBuff              (abs)        000000
 __size_of_init_sensor                (abs)        000000
 __size_of_main                       (abs)        000000
+__size_of_nrf_SPI_RW                 (abs)        000000
+__size_of_nrf_SPI_RW_Reg             (abs)        000000
+__size_of_nrf_SPI_Read               (abs)        000000
+__size_of_nrf_SPI_Read_Buf           (abs)        000000
+__size_of_nrf_SPI_Write_Buf          (abs)        000000
+__size_of_nrf_getStatus              (abs)        000000
+__size_of_nrf_init                   (abs)        000000
+__size_of_nrf_send                   (abs)        000000
+__size_of_nrf_txmode                 (abs)        000000
 __size_of_read_Bit                   (abs)        000000
 __size_of_read_Byte                  (abs)        000000
 __size_of_read_temp                  (abs)        000000
@@ -466,29 +588,67 @@ __size_of_search_Devices             (abs)        000000
 __size_of_write_Bit                  (abs)        000000
 __size_of_write_Byte                 (abs)        000000
 __smallconst                         smallconst   000000
-_address_Device                      text9        007A0E
-_delay100ms                          text8        007BD8
-_delay50ms                           text7        007A56
-_delay750ms                          text6        007852
-_init_sensor                         text12       0079C8
-_main                                text0        007988
-_read_Bit                            text5        007874
-_read_Byte                           text4        00794C
-_read_temp                           text3        007B3E
+_address_Device                      text9        007750
+_delay100ms                          text8        007A56
+_delay50ms                           text7        007798
+_delay750ms                          text6        007530
+_fill_SendBuff                       text26       007840
+_init_sensor                         text12       00770A
+_main                                text0        007AF8
+_nrf_SPI_RW                          text24       0074D2
+_nrf_SPI_RW_Reg                      text23       0074FE
+_nrf_SPI_Read                        text22       007516
+_nrf_SPI_Read_Buf                    text19       007658
+_nrf_SPI_Write_Buf                   text21       007582
+_nrf_getStatus                       text18       0074E8
+_nrf_init                            text20       007C6A
+_nrf_send                            text17       00789A
+_nrf_txmode                          text16       0074C2
+_read_Bit                            text5        007552
+_read_Byte                           text4        0076CE
+_read_temp                           text3        0079BC
 _search_Devices                      text1        007E38
-_write_Bit                           text11       0078D8
-_write_Byte                          text10       0078A4
+_temp_union                          bssCOMRAM    00003E
+_write_Bit                           text11       007620
+_write_Byte                          text10       0075B6
 address_Device@Adress                cstackCOMRAM 000005
 address_Device@i                     cstackCOMRAM 000007
-end_of_initialization                cinit        00784C
+end_of_initialization                cinit        007616
+fill_SendBuff@buffer                 cstackCOMRAM 000004
+fill_SendBuff@i                      cstackCOMRAM 000006
+fill_SendBuff@temperature            cstackCOMRAM 000001
 init_sensor@reponse                  cstackCOMRAM 000002
 intlevel0                            text         000000
 intlevel1                            text         000000
 intlevel2                            text         000000
 intlevel3                            text         000000
-main@Sucess                          cstackCOMRAM 000031
-main@reponse                         cstackCOMRAM 000032
-main@temperature                     cstackCOMRAM 00002E
+main@Sucess                          cstackBANK0  0000A0
+main@ds18b20_response                cstackBANK0  0000A1
+main@nrf24l01_response               cstackBANK0  0000A2
+main@rx_buf                          cstackBANK0  000060
+main@tx_buf                          cstackBANK0  000080
+nrf_SPI_RW@data                      cstackCOMRAM 000001
+nrf_SPI_RW_Reg@reg                   cstackCOMRAM 000004
+nrf_SPI_RW_Reg@status                cstackCOMRAM 000003
+nrf_SPI_RW_Reg@value                 cstackCOMRAM 000002
+nrf_SPI_Read@reg                     cstackCOMRAM 000002
+nrf_SPI_Read@reg_val                 cstackCOMRAM 000003
+nrf_SPI_Read_Buf@bytes               cstackCOMRAM 000004
+nrf_SPI_Read_Buf@i                   cstackCOMRAM 000007
+nrf_SPI_Read_Buf@pBuf                cstackCOMRAM 000002
+nrf_SPI_Read_Buf@reg                 cstackCOMRAM 000006
+nrf_SPI_Read_Buf@status              cstackCOMRAM 000005
+nrf_SPI_Write_Buf@bytes              cstackCOMRAM 000004
+nrf_SPI_Write_Buf@i                  cstackCOMRAM 000007
+nrf_SPI_Write_Buf@pBuf               cstackCOMRAM 000002
+nrf_SPI_Write_Buf@reg                cstackCOMRAM 000006
+nrf_SPI_Write_Buf@status             cstackCOMRAM 000005
+nrf_getStatus@status                 cstackCOMRAM 000001
+nrf_init@status                      cstackCOMRAM 000008
+nrf_send@i                           cstackCOMRAM 00000C
+nrf_send@rx_buf                      cstackCOMRAM 00000A
+nrf_send@status                      cstackCOMRAM 00000E
+nrf_send@tx_buf                      cstackCOMRAM 000008
 read_Bit@result                      cstackCOMRAM 000001
 read_Byte@data                       cstackCOMRAM 000002
 read_Byte@i                          cstackCOMRAM 000003
@@ -508,9 +668,9 @@ search_Devices@k                     cstackCOMRAM 00001B
 search_Devices@list_Devices          cstackCOMRAM 00000D
 search_Devices@mask                  cstackCOMRAM 000017
 stackhi                              (abs)        0007FF
-stacklo                              (abs)        000060
+stacklo                              (abs)        0000A3
 start                                init         000000
-start_initialization                 cinit        007840
+start_initialization                 cinit        0075EA
 write_Bit@WriteArg                   cstackCOMRAM 000001
 write_Byte@data                      cstackCOMRAM 000002
 write_Byte@i                         cstackCOMRAM 000003
@@ -520,31 +680,40 @@ FUNCTION INFORMATION:
 
  *************** function _main *****************
  Defined at:
-		line 10 in file "main.c"
+		line 19 in file "main.c"
  Parameters:    Size  Location     Type
   argc            2   40[COMRAM] int 
   argv            3   42[COMRAM] PTR PTR unsigned char 
  Auto vars:     Size  Location     Type
-  Sucess          1   48[COMRAM] unsigned char 
-  temperature     3   45[COMRAM] float 
-  reponse         1   49[COMRAM] unsigned char 
+  Sucess          1   64[BANK0 ] unsigned char 
+  tx_buf         32   32[BANK0 ] unsigned char [32]
+  rx_buf         32    0[BANK0 ] unsigned char [32]
+  temperature     3    0        float 
+  nrf24l01_res    1   66[BANK0 ] unsigned char 
+  ds18b20_resp    1   65[BANK0 ] unsigned char 
  Return value:  Size  Location     Type
                   2   40[COMRAM] int 
  Registers used:
-		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, cstack
+		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
  Tracked objects:
 		On entry : 
 		On exit  : 
 		Unchanged: 
  Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
       Params:         5       0       0       0       0       0       0       0       0
-      Locals:         5       0       0       0       0       0       0       0       0
+      Locals:         0      67       0       0       0       0       0       0       0
       Temps:          0       0       0       0       0       0       0       0       0
-      Totals:        10       0       0       0       0       0       0       0       0
-Total ram usage:       10 bytes
+      Totals:         5      67       0       0       0       0       0       0       0
+Total ram usage:       72 bytes
  Hardware stack levels required when called:    4
  This function calls:
+		_delay50ms
+		_delay750ms
+		_fill_SendBuff
 		_init_sensor
+		_nrf_init
+		_nrf_send
+		_nrf_txmode
 		_read_temp
 		_search_Devices
  This function is called by:
@@ -755,6 +924,7 @@ Total ram usage:        0 bytes
 		_delay100ms
 		_delay50ms
  This function is called by:
+		_main
 		_read_temp
  This function uses a non-reentrant model
 
@@ -784,6 +954,7 @@ Total ram usage:        1 bytes
  This function calls:
 		Nothing
  This function is called by:
+		_main
 		_delay750ms
  This function uses a non-reentrant model
 
@@ -1040,24 +1211,414 @@ Total ram usage:        8 bytes
  This function uses a non-reentrant model
 
 
+ *************** function _nrf_txmode *****************
+ Defined at:
+		line 152 in file "NRF_24L01/nRF2401.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+		None
+ Return value:  Size  Location     Type
+		None               void
+ Registers used:
+		wreg, status,2, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         0       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         0       0       0       0       0       0       0       0       0
+Total ram usage:        0 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
+ This function calls:
+		_nrf_SPI_RW_Reg
+ This function is called by:
+		_main
+ This function uses a non-reentrant model
+
+
+ *************** function _nrf_send *****************
+ Defined at:
+		line 16 in file "NRF_24L01/nRF2401.c"
+ Parameters:    Size  Location     Type
+  tx_buf          2    7[COMRAM] PTR unsigned char 
+		 -> main@tx_buf(32), 
+  rx_buf          2    9[COMRAM] PTR unsigned char 
+		 -> main@rx_buf(32), 
+ Auto vars:     Size  Location     Type
+  i               2   11[COMRAM] int 
+  status          1   13[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      unsigned char 
+ Registers used:
+		wreg, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         4       0       0       0       0       0       0       0       0
+      Locals:         3       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         7       0       0       0       0       0       0       0       0
+Total ram usage:        7 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
+ This function calls:
+		_nrf_SPI_RW_Reg
+		_nrf_SPI_Read_Buf
+		_nrf_SPI_Write_Buf
+		_nrf_getStatus
+ This function is called by:
+		_main
+ This function uses a non-reentrant model
+
+
+ *************** function _nrf_getStatus *****************
+ Defined at:
+		line 6 in file "NRF_24L01/nRF2401.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+  status          1    0[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      unsigned char 
+ Registers used:
+		wreg, status,2
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         1       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         1       0       0       0       0       0       0       0       0
+Total ram usage:        1 bytes
+ Hardware stack levels used:    1
+ This function calls:
+		Nothing
+ This function is called by:
+		_nrf_send
+		_nrf_send_noack
+		_nrf_receive
+ This function uses a non-reentrant model
+
+
+ *************** function _nrf_SPI_Read_Buf *****************
+ Defined at:
+		line 285 in file "NRF_24L01/nRF2401.c"
+ Parameters:    Size  Location     Type
+  reg             1    wreg     unsigned char 
+  pBuf            2    1[COMRAM] PTR unsigned char 
+		 -> main@rx_buf(32), 
+  bytes           1    3[COMRAM] unsigned char 
+ Auto vars:     Size  Location     Type
+  reg             1    5[COMRAM] unsigned char 
+  i               1    6[COMRAM] unsigned char 
+  status          1    4[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      unsigned char 
+ Registers used:
+		wreg, fsr2l, fsr2h, status,2, status,0, prodl, prodh, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         3       0       0       0       0       0       0       0       0
+      Locals:         3       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         6       0       0       0       0       0       0       0       0
+Total ram usage:        6 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    1
+ This function calls:
+		_nrf_SPI_RW
+ This function is called by:
+		_nrf_send
+		_nrf_receive
+ This function uses a non-reentrant model
+
+
+ *************** function _nrf_init *****************
+ Defined at:
+		line 85 in file "NRF_24L01/nRF2401.c"
+ Parameters:    Size  Location     Type
+		None
+ Auto vars:     Size  Location     Type
+  Test            5    0        unsigned char [5]
+  status          1    7[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+		None               void
+ Registers used:
+		wreg, fsr2l, fsr2h, status,2, status,0, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         1       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         1       0       0       0       0       0       0       0       0
+Total ram usage:        1 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    2
+ This function calls:
+		_OpenSPI
+		_nrf_SPI_RW_Reg
+		_nrf_SPI_Read
+		_nrf_SPI_Write_Buf
+ This function is called by:
+		_main
+ This function uses a non-reentrant model
+
+
+ *************** function _nrf_SPI_Write_Buf *****************
+ Defined at:
+		line 308 in file "NRF_24L01/nRF2401.c"
+ Parameters:    Size  Location     Type
+  reg             1    wreg     unsigned char 
+  pBuf            2    1[COMRAM] PTR unsigned char 
+		 -> TX_ADDRESS(5), main@tx_buf(32), 
+  bytes           1    3[COMRAM] unsigned char 
+ Auto vars:     Size  Location     Type
+  reg             1    5[COMRAM] unsigned char 
+  i               1    6[COMRAM] unsigned char 
+  status          1    4[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      unsigned char 
+ Registers used:
+		wreg, fsr2l, fsr2h, status,2, status,0, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         3       0       0       0       0       0       0       0       0
+      Locals:         3       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         6       0       0       0       0       0       0       0       0
+Total ram usage:        6 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    1
+ This function calls:
+		_nrf_SPI_RW
+ This function is called by:
+		_nrf_send
+		_nrf_init
+		_nrf_send_noack
+		_nrf_receive
+		_nrf_setTxAddr
+		_nrf_setRxAddr
+ This function uses a non-reentrant model
+
+
+ *************** function _nrf_SPI_Read *****************
+ Defined at:
+		line 266 in file "NRF_24L01/nRF2401.c"
+ Parameters:    Size  Location     Type
+  reg             1    wreg     unsigned char 
+ Auto vars:     Size  Location     Type
+  reg             1    1[COMRAM] unsigned char 
+  reg_val         1    2[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      unsigned char 
+ Registers used:
+		wreg, status,2, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         2       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         2       0       0       0       0       0       0       0       0
+Total ram usage:        2 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    1
+ This function calls:
+		_nrf_SPI_RW
+ This function is called by:
+		_nrf_init
+		_nrf_receive
+		_nrf_enablePipe
+		_nrf_disablePipe
+		_nrf_readRegister
+ This function uses a non-reentrant model
+
+
+ *************** function _nrf_SPI_RW_Reg *****************
+ Defined at:
+		line 248 in file "NRF_24L01/nRF2401.c"
+ Parameters:    Size  Location     Type
+  reg             1    wreg     unsigned char 
+  value           1    1[COMRAM] unsigned char 
+ Auto vars:     Size  Location     Type
+  reg             1    3[COMRAM] unsigned char 
+  status          1    2[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      unsigned char 
+ Registers used:
+		wreg, status,2, cstack
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         1       0       0       0       0       0       0       0       0
+      Locals:         2       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         3       0       0       0       0       0       0       0       0
+Total ram usage:        3 bytes
+ Hardware stack levels used:    1
+ Hardware stack levels required when called:    1
+ This function calls:
+		_nrf_SPI_RW
+ This function is called by:
+		_nrf_send
+		_nrf_init
+		_nrf_txmode
+		_nrf_send_noack
+		_nrf_receive
+		_nrf_rxmode
+		_nrf_powerdown
+		_nrf_enablePipe
+		_nrf_disablePipe
+ This function uses a non-reentrant model
+
+
+ *************** function _nrf_SPI_RW *****************
+ Defined at:
+		line 233 in file "NRF_24L01/nRF2401.c"
+ Parameters:    Size  Location     Type
+  data            1    wreg     unsigned char 
+ Auto vars:     Size  Location     Type
+  data            1    0[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+                  1    wreg      unsigned char 
+ Registers used:
+		wreg, status,2
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         0       0       0       0       0       0       0       0       0
+      Locals:         1       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         1       0       0       0       0       0       0       0       0
+Total ram usage:        1 bytes
+ Hardware stack levels used:    1
+ This function calls:
+		Nothing
+ This function is called by:
+		_nrf_SPI_RW_Reg
+		_nrf_SPI_Read
+		_nrf_SPI_Read_Buf
+		_nrf_SPI_Write_Buf
+ This function uses a non-reentrant model
+
+
+ *************** function _OpenSPI *****************
+ Defined at:
+		line 14 in file "/Applications/microchip/xc8/v1.34/sources/pic18/plib/SPI/spi_open.c"
+ Parameters:    Size  Location     Type
+  sync_mode       1    wreg     unsigned char 
+  bus_mode        1    0[COMRAM] unsigned char 
+  smp_phase       1    1[COMRAM] unsigned char 
+ Auto vars:     Size  Location     Type
+  sync_mode       1    2[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+		None               void
+ Registers used:
+		wreg, status,2, status,0
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         2       0       0       0       0       0       0       0       0
+      Locals:         1       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         3       0       0       0       0       0       0       0       0
+Total ram usage:        3 bytes
+ Hardware stack levels used:    1
+ This function calls:
+		Nothing
+ This function is called by:
+		_nrf_init
+ This function uses a non-reentrant model
+
+
+ *************** function _fill_SendBuff *****************
+ Defined at:
+		line 71 in file "main.c"
+ Parameters:    Size  Location     Type
+  temperature     3    0[COMRAM] float 
+  buffer          2    3[COMRAM] PTR unsigned char 
+		 -> main@tx_buf(32), 
+ Auto vars:     Size  Location     Type
+  i               1    5[COMRAM] unsigned char 
+ Return value:  Size  Location     Type
+		None               void
+ Registers used:
+		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, prodl, prodh
+ Tracked objects:
+		On entry : 
+		On exit  : 
+		Unchanged: 
+ Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+      Params:         5       0       0       0       0       0       0       0       0
+      Locals:         1       0       0       0       0       0       0       0       0
+      Temps:          0       0       0       0       0       0       0       0       0
+      Totals:         6       0       0       0       0       0       0       0       0
+Total ram usage:        6 bytes
+ Hardware stack levels used:    1
+ This function calls:
+		Nothing
+ This function is called by:
+		_main
+ This function uses a non-reentrant model
+
+
 
 MODULE INFORMATION
 
 Module		Function		Class		Link	Load	Size
 DS18B20/DS18B20.c
-		_delay100ms    		CODE           	7BD8	0000	163
-		_delay50ms     		CODE           	7A56	0000	83
-		_init_sensor   		CODE           	79C8	0000	71
-		_delay750ms    		CODE           	7852	0000	35
-		_read_Bit      		CODE           	7874	0000	49
-		_read_Byte     		CODE           	794C	0000	61
-		_address_Device		CODE           	7A0E	0000	73
-		_write_Bit     		CODE           	78D8	0000	57
-		_write_Byte    		CODE           	78A4	0000	53
+		_delay100ms    		CODE           	7A56	0000	163
+		_delay50ms     		CODE           	7798	0000	83
+		_init_sensor   		CODE           	770A	0000	71
+		_delay750ms    		CODE           	7530	0000	35
+		_read_Bit      		CODE           	7552	0000	49
+		_read_Byte     		CODE           	76CE	0000	61
+		_address_Device		CODE           	7750	0000	73
+		_write_Bit     		CODE           	7620	0000	57
+		_write_Byte    		CODE           	75B6	0000	53
 		_search_Devices		CODE           	7E38	0000	457
-		_read_temp     		CODE           	7B3E	0000	155
+		_read_temp     		CODE           	79BC	0000	155
 
 DS18B20/DS18B20.c estimated size: 1257
+
+NRF_24L01/nRF2401.c
+		_nrf_SPI_RW    		CODE           	74D2	0000	23
+		_nrf_SPI_Read  		CODE           	7516	0000	27
+		_nrf_SPI_Read_B		CODE           	7658	0000	59
+		_nrf_init      		CODE           	7C6A	0000	215
+		_nrf_SPI_Write_		CODE           	7582	0000	53
+		_nrf_send      		CODE           	789A	0000	141
+		_nrf_txmode    		CODE           	74C2	0000	17
+		_nrf_SPI_RW_Reg		CODE           	74FE	0000	25
+		_nrf_getStatus 		CODE           	74E8	0000	23
+
+NRF_24L01/nRF2401.c estimated size: 583
 
 /Applications/microchip/xc8/v1.34/sources/common/ftmul.c
 		___ftmul       		CODE           	7D40	0000	249
@@ -1065,27 +1626,33 @@ DS18B20/DS18B20.c estimated size: 1257
 /Applications/microchip/xc8/v1.34/sources/common/ftmul.c estimated size: 249
 
 /Applications/microchip/xc8/v1.34/sources/common/awdiv.c
-		___awdiv       		CODE           	7AA8	0000	151
+		___awdiv       		CODE           	7926	0000	151
 
 /Applications/microchip/xc8/v1.34/sources/common/awdiv.c estimated size: 151
 
 /Applications/microchip/xc8/v1.34/sources/common/awtoft.c
-		___awtoft      		CODE           	7910	0000	61
+		___awtoft      		CODE           	7692	0000	61
 
 /Applications/microchip/xc8/v1.34/sources/common/awtoft.c estimated size: 61
 
-shared
-		__initializatio		CODE           	7840	0000	13
+/Applications/microchip/xc8/v1.34/sources/pic18/plib/SPI/spi_open.c
+		_OpenSPI       		CODE           	77EA	0000	87
 
-shared estimated size: 13
+/Applications/microchip/xc8/v1.34/sources/pic18/plib/SPI/spi_open.c estimated size: 87
+
+shared
+		__initializatio		CODE           	75EA	0000	45
+
+shared estimated size: 45
 
 main.c
-		_main          		CODE           	7988	0000	65
+		_main          		CODE           	7AF8	0000	173
+		_fill_SendBuff 		CODE           	7840	0000	91
 
-main.c estimated size: 65
+main.c estimated size: 264
 
 /Applications/microchip/xc8/v1.34/sources/common/float.c
-		___ftpack      		CODE           	7C7A	0000	199
+		___ftpack      		CODE           	7BA4	0000	199
 
 /Applications/microchip/xc8/v1.34/sources/common/float.c estimated size: 199
 

@@ -1,5 +1,5 @@
 
-# 1 "DS18B20/DS18B20.c"
+# 1 "NRF_24L01/nRF2401.c"
 
 # 26 "/Applications/microchip/xc8/v1.34/include/htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -6304,240 +6304,290 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
-# 29 "DS18B20/DS18B20.h"
-extern unsigned char DeviceAddress[2][8];
+# 66 "NRF_24L01/nRF2401.h"
+unsigned char TX_ADDRESS[5] = {0x41,0x41,0x41,0x41,0x41};
 
+unsigned char nrf_getStatus(void);
+unsigned char nrf_send(unsigned char * tx_buf, unsigned char * rx_buf);
+void nrf_send_noack(unsigned char * tx_buf, unsigned char * rx_buf);
+unsigned char nrf_receive(unsigned char * tx_buf, unsigned char * rx_buf);
 
+void nrf_init(void);
+void nrf_txmode(void);
+void nrf_rxmode(void);
+void nrf_powerdown(void);
 
-unsigned char init_sensor(void);
-void write_Bit(unsigned char WriteArg);
-void write_Byte(unsigned char data);
-unsigned char read_Bit(void);
-unsigned char read_Byte(void);
-unsigned char address_Device(unsigned char Adress[]);
-unsigned char search_Devices(void);
-float read_temp(unsigned char DeviceAdress);
-void delay100ms(void);
-void delay50ms(void);
-void delay750ms(void);
+void nrf_setTxAddr(char addr);
+void nrf_setRxAddr(char pipe, char addr);
+char nrf_enablePipe(char pipe);
+char nrf_disablePipe(char pipe);
+char nrf_readRegister(char loc);
 
-# 3 "DS18B20/DS18B20.c"
-unsigned char DeviceAddress[2][8];
+unsigned char nrf_SPI_RW(unsigned char);
+unsigned char nrf_SPI_RW_Reg(unsigned char, unsigned char);
+unsigned char nrf_SPI_Read(unsigned char);
+unsigned char nrf_SPI_Read_Buf(unsigned char, unsigned char *, unsigned char);
+unsigned char nrf_SPI_Write_Buf(unsigned char, unsigned char *, unsigned char);
 
-unsigned char init_sensor(void)
-{
-unsigned char reponse=1;
-TRISA0=0;
-LATA0=0;
-_delay((unsigned long)((480)*(20000000/4000000.0)));
-LATA0=1;
-_delay((unsigned long)((64)*(20000000/4000000.0)));
-TRISA0=1;
-reponse= RA0;
-_delay((unsigned long)((416)*(20000000/4000000.0)));
-TRISA0=0;
-LATA0=1;
-return reponse;
+# 6 "NRF_24L01/nRF2401.c"
+unsigned char nrf_getStatus(void) {
+unsigned char status;
+PORTCbits.RC1 = 0;
+SSPBUF = 0xFF;
+while(!SSPSTATbits.BF);
+status = SSPBUF;
+PORTCbits.RC1 = 1;
+return status;
 }
 
-void write_Bit(unsigned char WriteArg)
-{
-if (WriteArg==1)
-{
-TRISA0=0;
-LATA0=0;
-_delay((unsigned long)((6)*(20000000/4000000.0)));
-TRISA0=0;
-LATA0=1;
-_delay((unsigned long)((64)*(20000000/4000000.0)));
-}
-else
-{
-TRISA0=0;
-LATA0=0;
-_delay((unsigned long)((60)*(20000000/4000000.0)));
-TRISA0=0;
-LATA0=1;
-_delay((unsigned long)((10)*(20000000/4000000.0)));
-}
-}
+unsigned char nrf_send(unsigned char * tx_buf, unsigned char * rx_buf) {
+char status;
+int i;
 
-void write_Byte(unsigned char data)
-{
-for(int i=0;i<8;i++)
-{
-write_Bit(data & 0x01);
-data>>=1;
+nrf_SPI_RW_Reg(0xE1,0);
+
+status = nrf_getStatus();
+nrf_SPI_RW_Reg(0x20 + 0x07, status);
+nrf_SPI_Write_Buf(0xA0,tx_buf,32);
+
+
+PORTCbits.RC0 = 1;
+for(i=0; i<2000; i++);
+PORTCbits.RC0 = 0;
+
+status = nrf_getStatus();
+if(status & 0x40) {
+nrf_SPI_RW_Reg(0x20 + 0x07, 0x40);
+nrf_SPI_Read_Buf(0x61,rx_buf,2);
+nrf_SPI_RW_Reg(0xE2,0);
+return 0x01;
+} else {
+return 0x00;
 }
 }
 
-unsigned char read_Bit(void)
-{
-unsigned char result = 0x00;
+void nrf_send_noack(unsigned char * tx_buf, unsigned char * rx_buf) {
+char status;
+int i;
 
-TRISA0=0;
-LATA0=0;
-_delay((unsigned long)((6)*(20000000/4000000.0)));
-TRISA0=0;
-LATA0=1;
-_delay((unsigned long)((9)*(20000000/4000000.0)));
-TRISA0=1;
-result= RA0;
-_delay((unsigned long)((55)*(20000000/4000000.0)));
-return result;
+nrf_SPI_RW_Reg(0xE1,0);
+
+status = nrf_getStatus();
+nrf_SPI_RW_Reg(0x20 + 0x07, status);
+nrf_SPI_Write_Buf(0xB0,tx_buf,32);
+
+PORTCbits.RC0 = 1;
 }
 
-unsigned char read_Byte(void)
-{
-unsigned char data=0;
-for (int i=0;i<8;i++)
-{
-data>>=1;
-if(read_Bit())
-{
-data|=0x80;
-}
-}
-return data;
-}
+unsigned char nrf_receive(unsigned char * tx_buf, unsigned char * rx_buf) {
+char status;
+char ffstat;
+char config;
+char ffstatcount;
 
-unsigned char address_Device(unsigned char Adress[])
-{
-if( init_sensor()==0)
-{
-write_Byte(0x55);
-for(int i=0;i<8;i++)
-{
-write_Byte(Adress[i]);
+
+
+nrf_SPI_RW_Reg(0xE1,0);
+nrf_SPI_Write_Buf(0xA8,tx_buf,2);
+
+
+
+status = nrf_getStatus();
+ffstat = nrf_SPI_Read(0x17);
+
+if(((status & 0x40))||(!(ffstat & 0x01))) {
+ffstatcount = 0;
+while((ffstatcount++ < 4) && ((ffstat & 0x01) == 0)) {
+
+nrf_SPI_Read_Buf(0x61,rx_buf,32);
+ffstat = nrf_SPI_Read(0x17);
 }
-return 1;
-}else
-{
-return 0;
+nrf_SPI_RW_Reg(0x20 + 0x07, 0x70);
+return 0x01;
+} else {
+return 0x00;
 }
 }
 
-unsigned char search_Devices(void)
-{
-unsigned char list_Devices[8];
-unsigned char LastConflictBitNum=0;
-for(int i=0;i<2;i++){
-unsigned char mask=0x01;
-for(int k=0;k<8;k++)
-{
-list_Devices[k]=0x00;
-}
-if (init_sensor())
-{
-return 0;
-}
-write_Byte(0xF0);
-int bitnum=1;
-unsigned char CurrentConflictBitPos=0;
-while(bitnum<65)
-{
-unsigned char SelectedBit=0;
-unsigned char InputBitStatus=0x00;
-if (read_Bit()==1)
-{
-InputBitStatus|=2;
-}
-if(read_Bit()==1)
-{
-InputBitStatus|=1;
+void nrf_init(void) {
+char status=0;
+unsigned char Test[5];
+OpenSPI(0b00000010, 0b00000000, 0b00000000);
+
+PORTCbits.RC0 = 1;
+PORTCbits.RC1 = 1;
+
+PORTCbits.RC0 = 0;
+
+nrf_SPI_Write_Buf(0x20 + 0x10, TX_ADDRESS, 5);
+
+nrf_SPI_Write_Buf(0x20 + 0x0A, TX_ADDRESS, 5);
+
+# 109
+nrf_SPI_RW_Reg(0x50,0x73);
+
+nrf_SPI_RW_Reg(0x20 + 0x1D, 0x06);
+
+nrf_SPI_RW_Reg(0x20 + 0x1C, 0b111111);
+
+nrf_SPI_RW_Reg(0x20 + 0x01, 0b111111);
+
+nrf_SPI_RW_Reg(0x20 + 0x02, 0b0001);
+
+nrf_SPI_RW_Reg(0x20 + 0x04, 0x12);
+
+nrf_SPI_RW_Reg(0x20 + 0x05, 40);
+
+nrf_SPI_RW_Reg(0x20 + 0x11, 32);
+
+nrf_SPI_RW_Reg(0x20 + 0x12, 32);
+
+nrf_SPI_RW_Reg(0x20 + 0x06, 0x07);
+
+nrf_SPI_RW_Reg(0xE2,0);
+
+nrf_SPI_RW_Reg(0xE1,0);
+
+status=nrf_SPI_Read(STATUS);
+
+nrf_SPI_RW_Reg(0x20 + STATUS, status);
+
+nrf_SPI_RW_Reg(0x20 + 0x03, 0x3);
+
+PORTCbits.RC0 = 1;
 }
 
-# 133
-if (InputBitStatus==3)
-{
-return 0;
-}
-if(InputBitStatus>0)
-{
-SelectedBit=InputBitStatus>>1;
-}
-else
-{
-if(bitnum==LastConflictBitNum)
-{
-SelectedBit=1;
-}
-else
-{
-SelectedBit=0;
-CurrentConflictBitPos=bitnum;
-}
-}
-write_Bit(SelectedBit);
-mask=0x01;
-mask<<=(bitnum-1)%8;
-if (SelectedBit==1)
-{
-list_Devices[(bitnum-1)/8]|=mask;
-}
-bitnum++;
-}
-LastConflictBitNum=CurrentConflictBitPos;
-for(int j=0;j<8;j++){
-DeviceAddress[i][j]=list_Devices[j];
-}
-}
-return 1;
+
+void nrf_rxmode(void) {
+PORTCbits.RC0 = 0;
+
+nrf_SPI_RW_Reg(0x20 + 0x00, 0x0f);
+
+PORTCbits.RC0 = 1;
 }
 
-float read_temp(unsigned char DeviceAddress)
-{
-unsigned char templ,temph;
-int temp;
-float temperature;
 
-address_Device(DeviceAddress);
-write_Byte(0x44);
-delay750ms();
-init_sensor();
-address_Device(DeviceAddress);
-write_Byte(0xBE);
-templ= read_Byte();
-temph=read_Byte();
-temp=temph;
-temp<<=8;
-temp|=templ;
-temperature=temp*0.0625;
-return temperature;
+void nrf_txmode(void) {
+PORTCbits.RC0 = 0;
+
+nrf_SPI_RW_Reg(0x20 + 0x00, 0x0E);
+
+PORTCbits.RC0 = 1;
 }
 
-void delay100ms(void)
-{
-_delay((unsigned long)((10)*(20000000/4000.0)));
-_delay((unsigned long)((10)*(20000000/4000.0)));
-_delay((unsigned long)((10)*(20000000/4000.0)));
-_delay((unsigned long)((10)*(20000000/4000.0)));
-_delay((unsigned long)((10)*(20000000/4000.0)));
-_delay((unsigned long)((10)*(20000000/4000.0)));
-_delay((unsigned long)((10)*(20000000/4000.0)));
-_delay((unsigned long)((10)*(20000000/4000.0)));
-_delay((unsigned long)((10)*(20000000/4000.0)));
-_delay((unsigned long)((10)*(20000000/4000.0)));
+void nrf_powerdown(void) {
+PORTCbits.RC0 = 0;
+
+nrf_SPI_RW_Reg(0x20 + 0x00, 0x0C);
+
+PORTCbits.RC0 = 1;
 }
 
-void delay50ms(void)
-{
-_delay((unsigned long)((10)*(20000000/4000.0)));
-_delay((unsigned long)((10)*(20000000/4000.0)));
-_delay((unsigned long)((10)*(20000000/4000.0)));
-_delay((unsigned long)((10)*(20000000/4000.0)));
-_delay((unsigned long)((10)*(20000000/4000.0)));
-
+void nrf_setTxAddr(char addr) {
+PORTCbits.RC0 = 0;
+_delay((unsigned long)((1)*(20000000/4000.0)));
+TX_ADDRESS[0] = addr;
+nrf_SPI_Write_Buf(0x20 + 0x10, TX_ADDRESS, 5);
+PORTCbits.RC0 = 1;
 }
-void delay750ms(void)
-{
-delay100ms();
-delay100ms();
-delay100ms();
-delay100ms();
-delay100ms();
-delay100ms();
-delay100ms();
-delay50ms();
+
+void nrf_setRxAddr(char pipe, char addr) {
+PORTCbits.RC0 = 0;
+_delay((unsigned long)((1)*(20000000/4000.0)));
+TX_ADDRESS[0] = addr;
+nrf_SPI_Write_Buf(0x20 + 0x0A + pipe, TX_ADDRESS, 5);
+PORTCbits.RC0 = 1;
+}
+
+char nrf_enablePipe(char pipe) {
+char pipeStatus;
+
+PORTCbits.RC0 = 0;
+_delay((unsigned long)((1)*(20000000/4000.0)));
+pipeStatus = nrf_SPI_Read(0x02);
+
+pipeStatus = pipeStatus | (0b1 << pipe);
+nrf_SPI_RW_Reg(0x20 + 0x02, pipeStatus);
+
+PORTCbits.RC0 = 1;
+return pipeStatus;
+}
+
+char nrf_disablePipe(char pipe) {
+char pipeStatus;
+
+PORTCbits.RC0 = 0;
+_delay((unsigned long)((1)*(20000000/4000.0)));
+pipeStatus = nrf_SPI_Read(0x02);
+pipeStatus = pipeStatus & ~(0b1 << pipe);
+nrf_SPI_RW_Reg(0x20 + 0x02, pipeStatus);
+PORTCbits.RC0 = 1;
+return pipeStatus;
+}
+
+char nrf_readRegister(char loc) {
+return nrf_SPI_Read(loc);
+}
+
+# 233
+unsigned char nrf_SPI_RW(unsigned char data) {
+SSPBUF = data;
+while(!SSPSTATbits.BF);
+data = SSPBUF;
+return(data);
+}
+
+# 248
+unsigned char nrf_SPI_RW_Reg(unsigned char reg, unsigned char value) {
+unsigned char status;
+
+PORTCbits.RC1 = 0;
+status = nrf_SPI_RW(reg);
+nrf_SPI_RW(value);
+PORTCbits.RC1 = 1;
+
+return status;
+}
+
+# 266
+unsigned char nrf_SPI_Read(unsigned char reg) {
+unsigned char reg_val;
+
+PORTCbits.RC1 = 0;
+nrf_SPI_RW(reg);
+reg_val = nrf_SPI_RW(0);
+PORTCbits.RC1 = 1;
+
+return(reg_val);
+}
+
+# 285
+unsigned char nrf_SPI_Read_Buf(unsigned char reg, unsigned char *pBuf, unsigned char bytes) {
+unsigned char status,i;
+
+PORTCbits.RC1 = 0;
+status = nrf_SPI_RW(reg);
+
+for(i=0;i<bytes;i++) {
+pBuf[i] = nrf_SPI_RW(0xFF);
+}
+
+PORTCbits.RC1 = 1;
+
+return(status);
+}
+
+# 308
+unsigned char nrf_SPI_Write_Buf(unsigned char reg, unsigned char *pBuf, unsigned char bytes) {
+unsigned char status,i;
+
+PORTCbits.RC1 = 0;
+status = nrf_SPI_RW(reg);
+for(i=0;i<bytes; i++) {
+nrf_SPI_RW(*pBuf);
+*pBuf++;
+}
+PORTCbits.RC1 = 1;
+return(status);
 }
 

@@ -1,16 +1,16 @@
 Version 3.2 HI-TECH Software Intermediate Code
-"10875 /Applications/microchip/xc8/v1.34/include/pic18f4550.h
-[v _TRISC0 `Vb ~T0 @X0 0 e@31904 ]
-"10205
-[v _LATC0 `Vb ~T0 @X0 0 e@31832 ]
+"10845 /Applications/microchip/xc8/v1.34/include/pic18f4550.h
+[v _TRISA0 `Vb ~T0 @X0 0 e@31888 ]
+"10173
+[v _LATA0 `Vb ~T0 @X0 0 e@31816 ]
 [v F5249 `(v ~T0 @X0 1 tf1`ul ]
 "161 /Applications/microchip/xc8/v1.34/include/pic18.h
 [v __delay `JF5249 ~T0 @X0 0 e ]
 [p i __delay ]
 [t ~ __deprecated__ ]
-[t T20 __deprecated__ ]
-"10511 /Applications/microchip/xc8/v1.34/include/pic18f4550.h
-[v _RC0 `Vb ~T20 @X0 0 e@31760 ]
+[t T5 __deprecated__ ]
+"10471 /Applications/microchip/xc8/v1.34/include/pic18f4550.h
+[v _RA0 `Vb ~T5 @X0 0 e@31744 ]
 "43 DS18B20/DS18B20.h
 [v _delay750ms `(v ~T0 @X0 0 ef ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
@@ -4847,36 +4847,36 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _reponse `uc ~T0 @X0 1 a ]
 [; ;DS18B20.c: 7: unsigned char reponse=1;
 [e = _reponse -> -> 1 `i `uc ]
-[; ;DS18B20.c: 8: TRISC0=0;
+[; ;DS18B20.c: 8: TRISA0=0;
 "8
-[e = _TRISC0 -> -> 0 `i `b ]
-[; ;DS18B20.c: 9: LATC0=0;
+[e = _TRISA0 -> -> 0 `i `b ]
+[; ;DS18B20.c: 9: LATA0=0;
 "9
-[e = _LATC0 -> -> 0 `i `b ]
+[e = _LATA0 -> -> 0 `i `b ]
 [; ;DS18B20.c: 10: _delay((unsigned long)((480)*(20000000/4000000.0)));
 "10
 [e ( __delay (1 -> * -> -> 480 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
-[; ;DS18B20.c: 11: LATC0=1;
+[; ;DS18B20.c: 11: LATA0=1;
 "11
-[e = _LATC0 -> -> 1 `i `b ]
+[e = _LATA0 -> -> 1 `i `b ]
 [; ;DS18B20.c: 12: _delay((unsigned long)((64)*(20000000/4000000.0)));
 "12
 [e ( __delay (1 -> * -> -> 64 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
-[; ;DS18B20.c: 13: TRISC0=1;
+[; ;DS18B20.c: 13: TRISA0=1;
 "13
-[e = _TRISC0 -> -> 1 `i `b ]
-[; ;DS18B20.c: 14: reponse= RC0;
+[e = _TRISA0 -> -> 1 `i `b ]
+[; ;DS18B20.c: 14: reponse= RA0;
 "14
-[e = _reponse -> -> _RC0 `i `uc ]
+[e = _reponse -> -> _RA0 `i `uc ]
 [; ;DS18B20.c: 15: _delay((unsigned long)((416)*(20000000/4000000.0)));
 "15
 [e ( __delay (1 -> * -> -> 416 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
-[; ;DS18B20.c: 16: TRISC0=0;
+[; ;DS18B20.c: 16: TRISA0=0;
 "16
-[e = _TRISC0 -> -> 0 `i `b ]
-[; ;DS18B20.c: 17: LATC0=1;
+[e = _TRISA0 -> -> 0 `i `b ]
+[; ;DS18B20.c: 17: LATA0=1;
 "17
-[e = _LATC0 -> -> 1 `i `b ]
+[e = _LATA0 -> -> 1 `i `b ]
 [; ;DS18B20.c: 18: return reponse;
 "18
 [e ) _reponse ]
@@ -4902,21 +4902,21 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;DS18B20.c: 24: {
 "24
 {
-[; ;DS18B20.c: 25: TRISC0=0;
+[; ;DS18B20.c: 25: TRISA0=0;
 "25
-[e = _TRISC0 -> -> 0 `i `b ]
-[; ;DS18B20.c: 26: LATC0=0;
+[e = _TRISA0 -> -> 0 `i `b ]
+[; ;DS18B20.c: 26: LATA0=0;
 "26
-[e = _LATC0 -> -> 0 `i `b ]
+[e = _LATA0 -> -> 0 `i `b ]
 [; ;DS18B20.c: 27: _delay((unsigned long)((6)*(20000000/4000000.0)));
 "27
 [e ( __delay (1 -> * -> -> 6 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
-[; ;DS18B20.c: 28: TRISC0=0;
+[; ;DS18B20.c: 28: TRISA0=0;
 "28
-[e = _TRISC0 -> -> 0 `i `b ]
-[; ;DS18B20.c: 29: LATC0=1;
+[e = _TRISA0 -> -> 0 `i `b ]
+[; ;DS18B20.c: 29: LATA0=1;
 "29
-[e = _LATC0 -> -> 1 `i `b ]
+[e = _LATA0 -> -> 1 `i `b ]
 [; ;DS18B20.c: 30: _delay((unsigned long)((64)*(20000000/4000000.0)));
 "30
 [e ( __delay (1 -> * -> -> 64 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
@@ -4930,21 +4930,21 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;DS18B20.c: 33: {
 "33
 {
-[; ;DS18B20.c: 34: TRISC0=0;
+[; ;DS18B20.c: 34: TRISA0=0;
 "34
-[e = _TRISC0 -> -> 0 `i `b ]
-[; ;DS18B20.c: 35: LATC0=0;
+[e = _TRISA0 -> -> 0 `i `b ]
+[; ;DS18B20.c: 35: LATA0=0;
 "35
-[e = _LATC0 -> -> 0 `i `b ]
+[e = _LATA0 -> -> 0 `i `b ]
 [; ;DS18B20.c: 36: _delay((unsigned long)((60)*(20000000/4000000.0)));
 "36
 [e ( __delay (1 -> * -> -> 60 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
-[; ;DS18B20.c: 37: TRISC0=0;
+[; ;DS18B20.c: 37: TRISA0=0;
 "37
-[e = _TRISC0 -> -> 0 `i `b ]
-[; ;DS18B20.c: 38: LATC0=1;
+[e = _TRISA0 -> -> 0 `i `b ]
+[; ;DS18B20.c: 38: LATA0=1;
 "38
-[e = _LATC0 -> -> 1 `i `b ]
+[e = _LATA0 -> -> 1 `i `b ]
 [; ;DS18B20.c: 39: _delay((unsigned long)((10)*(20000000/4000000.0)));
 "39
 [e ( __delay (1 -> * -> -> 10 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
@@ -5009,30 +5009,30 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _result `uc ~T0 @X0 1 a ]
 [; ;DS18B20.c: 54: unsigned char result = 0x00;
 [e = _result -> -> 0 `i `uc ]
-[; ;DS18B20.c: 56: TRISC0=0;
+[; ;DS18B20.c: 56: TRISA0=0;
 "56
-[e = _TRISC0 -> -> 0 `i `b ]
-[; ;DS18B20.c: 57: LATC0=0;
+[e = _TRISA0 -> -> 0 `i `b ]
+[; ;DS18B20.c: 57: LATA0=0;
 "57
-[e = _LATC0 -> -> 0 `i `b ]
+[e = _LATA0 -> -> 0 `i `b ]
 [; ;DS18B20.c: 58: _delay((unsigned long)((6)*(20000000/4000000.0)));
 "58
 [e ( __delay (1 -> * -> -> 6 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
-[; ;DS18B20.c: 59: TRISC0=0;
+[; ;DS18B20.c: 59: TRISA0=0;
 "59
-[e = _TRISC0 -> -> 0 `i `b ]
-[; ;DS18B20.c: 60: LATC0=1;
+[e = _TRISA0 -> -> 0 `i `b ]
+[; ;DS18B20.c: 60: LATA0=1;
 "60
-[e = _LATC0 -> -> 1 `i `b ]
+[e = _LATA0 -> -> 1 `i `b ]
 [; ;DS18B20.c: 61: _delay((unsigned long)((9)*(20000000/4000000.0)));
 "61
 [e ( __delay (1 -> * -> -> 9 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]
-[; ;DS18B20.c: 62: TRISC0=1;
+[; ;DS18B20.c: 62: TRISA0=1;
 "62
-[e = _TRISC0 -> -> 1 `i `b ]
-[; ;DS18B20.c: 63: result= RC0;
+[e = _TRISA0 -> -> 1 `i `b ]
+[; ;DS18B20.c: 63: result= RA0;
 "63
-[e = _result -> -> _RC0 `i `uc ]
+[e = _result -> -> _RA0 `i `uc ]
 [; ;DS18B20.c: 64: _delay((unsigned long)((55)*(20000000/4000000.0)));
 "64
 [e ( __delay (1 -> * -> -> 55 `i `d / -> -> 20000000 `l `d .4000000.0 `ul ]

@@ -6,6 +6,7 @@
                    projectFiles="true">
       <itemPath>DS18B20/DS18B20.h</itemPath>
       <itemPath>config/config_pic18f4550_20mhz.h</itemPath>
+      <itemPath>NRF_24L01/nRF2401.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -16,6 +17,7 @@
                    projectFiles="true">
       <itemPath>main.c</itemPath>
       <itemPath>DS18B20/DS18B20.c</itemPath>
+      <itemPath>NRF_24L01/nRF2401.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -26,6 +28,7 @@
   <sourceRootList>
     <Elem>DS18B20</Elem>
     <Elem>config</Elem>
+    <Elem>NRF_24L01</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
