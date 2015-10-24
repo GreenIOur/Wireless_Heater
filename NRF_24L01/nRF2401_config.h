@@ -1,5 +1,5 @@
-#include <p18f4550.h>
-#define _XTAL_FREQ 20000000 
+#include <p18f2550.h>
+#define _XTAL_FREQ 8000000 
 
 // Pin Definitions
 #define CE			PORTCbits.RC0

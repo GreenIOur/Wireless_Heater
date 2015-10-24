@@ -1,7 +1,7 @@
 [p LITE_MODE AUTOSTATIC LFSROK EMI_WORD ]
 [d version 1.1 ]
 [d edition pro ]
-[d chip 18F4550 ]
+[d chip 18F2550 ]
 [d frameptr 4065 ]
 "8 /Applications/microchip/xc8/v1.34/sources/common/awdiv.c
 [v ___awdiv __awdiv `(i  1 e 2 0 ]
@@ -55,7 +55,7 @@
 [v _delay750ms delay750ms `(v  1 e 0 0 ]
 "19 /Users/pandor/Documents/Wireless_Heater.X/main.c
 [v _main main `(i  1 e 2 0 ]
-"71
+"72
 [v _fill_SendBuff fill_SendBuff `(v  1 e 0 0 ]
 "6 /Users/pandor/Documents/Wireless_Heater.X/NRF_24L01/nRF2401.c
 [v _nrf_getStatus nrf_getStatus `(uc  1 e 1 0 ]
@@ -84,7 +84,7 @@
 `uc 1 RC6 1 0 :1:6 
 `uc 1 RC7 1 0 :1:7 
 ]
-"2885 /Applications/microchip/xc8/v1.34/include/pic18f4550.h
+"2692 /Applications/microchip/xc8/v1.34/include/pic18f2550.h
 [s S417 . 1 `uc 1 T1OSO 1 0 :1:0 
 `uc 1 T1OSI 1 0 :1:1 
 `uc 1 CCP1 1 0 :1:2 
@@ -121,7 +121,7 @@
 `uc 1 TRISA5 1 0 :1:5 
 `uc 1 TRISA6 1 0 :1:6 
 ]
-"4006
+"3441
 [s S32 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
 `uc 1 RA2 1 0 :1:2 
@@ -141,7 +141,7 @@
 `uc 1 TRISB6 1 0 :1:6 
 `uc 1 TRISB7 1 0 :1:7 
 ]
-"4205
+"3640
 [s S228 . 1 `uc 1 RB0 1 0 :1:0 
 `uc 1 RB1 1 0 :1:1 
 `uc 1 RB2 1 0 :1:2 
@@ -160,7 +160,7 @@
 `uc 1 TRISC6 1 0 :1:6 
 `uc 1 TRISC7 1 0 :1:7 
 ]
-"4426
+"3861
 [s S187 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
@@ -173,9 +173,9 @@
 ]
 [u S197 . 1 `S180 1 . 1 0 `S187 1 . 1 0 `S194 1 . 1 0 ]
 [v _TRISCbits TRISCbits `VES197  1 e 1 @3988 ]
-"7173
+"6013
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
-"7464
+"6304
 [v _SSPCON1 SSPCON1 `VEuc  1 e 1 @4038 ]
 [s S873 . 1 `uc 1 SSPM 1 0 :4:0 
 `uc 1 CKP 1 0 :1:4 
@@ -183,7 +183,7 @@
 `uc 1 SSPOV 1 0 :1:6 
 `uc 1 WCOL 1 0 :1:7 
 ]
-"7484
+"6324
 [s S879 . 1 `uc 1 SSPM0 1 0 :1:0 
 `uc 1 SSPM1 1 0 :1:1 
 `uc 1 SSPM2 1 0 :1:2 
@@ -191,12 +191,12 @@
 ]
 [u S884 . 1 `S873 1 . 1 0 `S879 1 . 1 0 ]
 [v _SSPCON1bits SSPCON1bits `VES884  1 e 1 @4038 ]
-"7533
+"6373
 [v _SSPSTAT SSPSTAT `VEuc  1 e 1 @4039 ]
 [s S488 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_NOT_W 1 0 :1:2 
 ]
-"7635
+"6475
 [s S491 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 D_NOT_A 1 0 :1:5 
 ]
@@ -266,7 +266,7 @@
 ]
 [u S564 . 1 `S488 1 . 1 0 `S491 1 . 1 0 `S494 1 . 1 0 `S488 1 . 1 0 `S491 1 . 1 0 `S509 1 . 1 0 `S514 1 . 1 0 `S520 1 . 1 0 `S525 1 . 1 0 `S528 1 . 1 0 `S531 1 . 1 0 `S536 1 . 1 0 `S541 1 . 1 0 `S546 1 . 1 0 `S549 1 . 1 0 `S552 1 . 1 0 `S555 1 . 1 0 `S558 1 . 1 0 `S561 1 . 1 0 ]
 [v _SSPSTATbits SSPSTATbits `VES564  1 e 1 @4039 ]
-"7805
+"6645
 [v _SSPBUF SSPBUF `VEuc  1 e 1 @4041 ]
 [s S60 . 1 `uc 1 SCS 1 0 :2:0 
 `uc 1 IOFS 1 0 :1:2 
@@ -274,7 +274,7 @@
 `uc 1 IRCF 1 0 :3:4 
 `uc 1 IDLEN 1 0 :1:7 
 ]
-"8612
+"7452
 [s S66 . 1 `uc 1 SCS0 1 0 :1:0 
 `uc 1 SCS1 1 0 :1:1 
 `uc 1 FLTS 1 0 :1:2 
@@ -285,7 +285,7 @@
 ]
 [u S74 . 1 `S60 1 . 1 0 `S66 1 . 1 0 ]
 [v _OSCCONbits OSCCONbits `VES74  1 e 1 @4051 ]
-"8758
+"7598
 [v _STATUS STATUS `VEuc  1 e 1 @4056 ]
 [s S93 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INT0IF 1 0 :1:1 
@@ -296,7 +296,7 @@
 `uc 1 PEIE_GIEL 1 0 :1:6 
 `uc 1 GIE_GIEH 1 0 :1:7 
 ]
-"9211
+"8051
 [s S102 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INT0IF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
@@ -330,13 +330,13 @@
 ]
 [u S133 . 1 `S93 1 . 1 0 `S102 1 . 1 0 `S111 1 . 1 0 `S120 1 . 1 0 `S129 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES133  1 e 1 @4082 ]
-"10173
+"8999
 [v _LATA0 LATA0 `VEb  1 e 0 @31816 ]
-"10471
+"9213
 [v _RA0 RA0 `VEb  1 e 0 @31744 ]
-"10473
+"9215
 [v _RA1 RA1 `VEb  1 e 0 @31745 ]
-"10845
+"9537
 [v _TRISA0 TRISA0 `VEb  1 e 0 @31888 ]
 "3 /Users/pandor/Documents/Wireless_Heater.X/DS18B20/DS18B20.c
 [v _DeviceAddress DeviceAddress `[2][8]uc  1 e 16 0 ]
@@ -348,7 +348,7 @@
 "19 /Users/pandor/Documents/Wireless_Heater.X/main.c
 [v _main main `(i  1 e 2 0 ]
 {
-"55
+"56
 [v main@Sucess Sucess `uc  1 a 1 64 ]
 "24
 [v main@tx_buf tx_buf `[32]uc  1 a 32 32 ]
@@ -358,7 +358,7 @@
 [v main@nrf24l01_response nrf24l01_response `uc  1 a 1 66 ]
 "26
 [v main@ds18b20_response ds18b20_response `uc  1 a 1 65 ]
-"69
+"70
 } 0
 "98 /Users/pandor/Documents/Wireless_Heater.X/DS18B20/DS18B20.c
 [v _search_Devices search_Devices `(uc  1 e 1 0 ]
@@ -481,7 +481,7 @@
 [v _init_sensor init_sensor `(uc  1 e 1 0 ]
 {
 "7
-[v init_sensor@reponse reponse `uc  1 a 1 1 ]
+[v init_sensor@reponse reponse `uc  1 a 1 0 ]
 "19
 } 0
 "62 /Applications/microchip/xc8/v1.34/sources/common/ftmul.c
@@ -620,13 +620,13 @@
 [v OpenSPI@sync_mode sync_mode `uc  1 a 1 2 ]
 "102
 } 0
-"71 /Users/pandor/Documents/Wireless_Heater.X/main.c
+"72 /Users/pandor/Documents/Wireless_Heater.X/main.c
 [v _fill_SendBuff fill_SendBuff `(v  1 e 0 0 ]
 {
-"72
+"73
 [v fill_SendBuff@i i `uc  1 a 1 5 ]
-"71
+"72
 [v fill_SendBuff@temperature temperature `f  1 p 3 0 ]
 [v fill_SendBuff@buffer buffer `*.39uc  1 p 2 3 ]
-"81
+"82
 } 0

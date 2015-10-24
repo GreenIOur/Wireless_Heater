@@ -4,9 +4,9 @@
 #ifdef	__cplusplus
 extern "C" {
 #endif
-#include <p18f4550.h>
+#include <p18f2550.h>
 
-#define _XTAL_FREQ 20000000     
+#define _XTAL_FREQ 8000000     
 #define USE_AND_MASKS
     
 

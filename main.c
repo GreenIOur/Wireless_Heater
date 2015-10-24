@@ -29,7 +29,7 @@ int main(int argc, char** argv) {
     
     //general MCU configurations
     
-    OSCCONbits.SCS = 0; //20 Mhz ext OSC
+    OSCCONbits.IRCF = 0xF; //8 Mhz ext OSC
     ADCON1 |= 0xF; //ANSEL digital pins
     ei();     // This is like fliping the master switch to enable interrupt
     
@@ -42,6 +42,7 @@ int main(int argc, char** argv) {
     TRIS_MISO = 1;
     TRIS_MOSI = 0;
     
+    RA1=1; 
     nrf_init();
     delay50ms();
     nrf_txmode(); // set the NRF module to send temperature OTA
