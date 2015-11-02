@@ -1,0 +1,47 @@
+LABCENTER PROTEUS TOOL INFORMATION FILE
+=======================================
+
+In case of difficulty, please e-mail support@labcenter.co.uk
+
+Tool set up for Proteus layout 'Wireless_temperature.pdsprj'.
+CADCAM generated at 13:04:34 on lundi 2 novembre 2015.
+
+File List
+---------
+Top Copper              : Wireless_temperature - CADCAM Top Copper.TXT
+Bottom Copper           : Wireless_temperature - CADCAM Bottom Copper.TXT
+Top Silk Screen         : Wireless_temperature - CADCAM Top Silk Screen.TXT
+Top Solder Resist       : Wireless_temperature - CADCAM Top Solder Resist.TXT
+Bottom Solder Resist    : Wireless_temperature - CADCAM Bottom Solder Resist.TXT
+Mechanical 1            : Wireless_temperature - CADCAM Mechanical 1.TXT
+Drill                   : Wireless_temperature - CADCAM Drill.TXT
+
+Photoplotter Setup
+------------------
+Format: RS274X, ASCII, 2.4, imperial, absolute, eob=*, LZO
+Notes:  D=Diameter, S=Side, W=Width, H=Height, C=Chamfer
+
+D10	CIRCLE  D=20th                                                            DRAW
+D11	CIRCLE  D=60th                                                            FLASH
+D12	SQUARE  S=50th                                                            FLASH
+D13	CIRCLE  D=50th                                                            FLASH
+D14	CIRCLE  D=80th                                                            FLASH
+D15	CIRCLE  D=70th                                                            FLASH
+D16	SQUARE  S=80th                                                            FLASH
+D17	CIRCLE  D=8th                                                             DRAW
+D18	CIRCLE  D=100th                                                           FLASH
+D19	SQUARE  S=70th                                                            FLASH
+D70	CIRCLE  D=90th                                                            FLASH
+D71	SQUARE  S=100th                                                           FLASH
+
+NC Drill Setup
+--------------
+Format: ASCII, 2.4, imperial, absolute, eob=<CR><LF>, no zero suppression.
+Notes:  Tool sizes are diameters. Layer sets are in brackets - 0=TOP, 15=BOTTOM, 1-14=INNER.
+
+T01	20th (0-15)
+T02	30th (0-15)
+T03	40th (0-15)
+
+
+[END OF FILE]
