@@ -17,7 +17,7 @@ void fill_SendBuff(float temperature, unsigned char* buffer);
  * 
  */
 int main(int argc, char** argv) {
-    
+    TRISCbits.TRISC6 = 0;
     //debug
     TRISAbits.TRISA1 = 0;
     //Variables declaration
@@ -44,7 +44,35 @@ int main(int argc, char** argv) {
     
     RA1=1; 
     nrf_init();
+    int cpt;
+    int rampe = 0,cpt2;
     delay50ms();
+    while(1){
+        rampe = 0;
+        for( cpt2 = 0; cpt2 < 30 ; cpt2++){
+            PORTCbits.RC6 = 0;
+            for(cpt = 0; cpt < rampe; cpt++){
+                __delay_ms(10);
+            }
+            PORTCbits.RC6 = 1;
+            for(cpt = 0; cpt < rampe; cpt++){
+                __delay_ms(10);
+            }
+            rampe++;
+        }
+        for( cpt2 = 0; cpt2 < 30 ; cpt2++){
+            PORTCbits.RC6 = 0;
+            for(cpt = 0; cpt < rampe; cpt++){
+                __delay_ms(10);
+            }
+            PORTCbits.RC6 = 1;
+            for(cpt = 0; cpt < rampe; cpt++){
+                __delay_ms(10);
+            }
+            rampe--;
+        }
+    }
+    /*
     nrf_txmode(); // set the NRF module to send temperature OTA
     
     //DS18B20 configurations
@@ -55,8 +83,11 @@ int main(int argc, char** argv) {
     {
         unsigned char Sucess;
         Sucess=search_Devices();
+        int cpt;
         do
         {
+            
+            
          
          temp_union.temperature=read_temp(DeviceAddress[0]);
          fill_SendBuff(temp_union.temperature,&tx_buf);
@@ -64,7 +95,8 @@ int main(int argc, char** argv) {
          if(nrf24l01_response){RA1 = 1;}else{RA1 = 0;}
          delay750ms();
         }while(1);
-    };
+     
+    };*/
 
     return (EXIT_SUCCESS);
 }

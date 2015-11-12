@@ -3,7 +3,21 @@ Version 3.2 HI-TECH Software Intermediate Code
 [u S545 `f 1 `uc -> # `f `ui ]
 [n S545 . temperature value ]
 [p mainexit ]
-"3422 /Applications/microchip/xc8/v1.34/include/pic18f2550.h
+"3840 /Applications/microchip/xc8/v1.34/include/pic18f2550.h
+[s S276 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S276 . TRISC0 TRISC1 TRISC2 . TRISC6 TRISC7 ]
+"3848
+[s S277 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S277 . RC0 RC1 RC2 . RC6 RC7 ]
+"3856
+[s S278 :3 `uc 1 :1 `uc 1 ]
+[n S278 . . TRISC3 ]
+"3839
+[u S275 `S276 1 `S277 1 `S278 1 ]
+[n S275 . . . . ]
+"3861
+[v _TRISCbits `VS275 ~T0 @X0 0 e@3988 ]
+"3422
 [s S264 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S264 . TRISA0 TRISA1 TRISA2 TRISA3 TRISA4 TRISA5 TRISA6 ]
 "3431
@@ -47,20 +61,6 @@ Version 3.2 HI-TECH Software Intermediate Code
 [n S499 . . . . . . ]
 "8051
 [v _INTCONbits `VS499 ~T0 @X0 0 e@4082 ]
-"3840
-[s S276 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S276 . TRISC0 TRISC1 TRISC2 . TRISC6 TRISC7 ]
-"3848
-[s S277 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S277 . RC0 RC1 RC2 . RC6 RC7 ]
-"3856
-[s S278 :3 `uc 1 :1 `uc 1 ]
-[n S278 . . TRISC3 ]
-"3839
-[u S275 `S276 1 `S277 1 `S278 1 ]
-[n S275 . . . . ]
-"3861
-[v _TRISCbits `VS275 ~T0 @X0 0 e@3988 ]
 "3619
 [s S270 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S270 . TRISB0 TRISB1 TRISB2 TRISB3 TRISB4 TRISB5 TRISB6 TRISB7 ]
@@ -80,23 +80,36 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _nrf_init `(v ~T0 @X0 0 ef ]
 "42 DS18B20/DS18B20.h
 [v _delay50ms `(v ~T0 @X0 0 ef ]
-"74 NRF_24L01/nRF2401.h
-[v _nrf_txmode `(v ~T0 @X0 0 ef ]
-"33 DS18B20/DS18B20.h
-[v _init_sensor `(uc ~T0 @X0 0 ef ]
-"39
-[v _search_Devices `(uc ~T0 @X0 0 ef ]
-"40
-[v _read_temp `(f ~T0 @X0 0 ef1`uc ]
-[v F4953 `uc ~T0 @X0 -> 8 `i t ]
-"29
-[v _DeviceAddress `F4953 ~T0 @X0 -> 0 `x e ]
-"15 main.c
-[v _fill_SendBuff `(v ~T0 @X0 0 ef2`f`*uc ]
-"69 NRF_24L01/nRF2401.h
-[v _nrf_send `(uc ~T0 @X0 0 ef2`*uc`*uc ]
-"43 DS18B20/DS18B20.h
-[v _delay750ms `(v ~T0 @X0 0 ef ]
+"2649 /Applications/microchip/xc8/v1.34/include/pic18f2550.h
+[s S199 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S199 . RC0 RC1 RC2 . RC4 RC5 RC6 RC7 ]
+"2659
+[s S200 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S200 . T1OSO T1OSI CCP1 . TX RX ]
+"2667
+[s S201 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S201 . T13CKI . P1A . CK DT ]
+"2675
+[s S202 :1 `uc 1 :1 `uc 1 ]
+[n S202 . . CCP2 ]
+"2679
+[s S203 :2 `uc 1 :1 `uc 1 ]
+[n S203 . . PA1 ]
+"2683
+[s S204 :1 `uc 1 :1 `uc 1 ]
+[n S204 . . PA2 ]
+"2687
+[s S205 :3 `uc 1 :1 `uc 1 ]
+[n S205 . . RC3 ]
+"2648
+[u S198 `S199 1 `S200 1 `S201 1 `S202 1 `S203 1 `S204 1 `S205 1 ]
+[n S198 . . . . . . . . ]
+"2692
+[v _PORTCbits `VS198 ~T0 @X0 0 e@3970 ]
+[v F4945 `(v ~T0 @X0 1 tf1`ul ]
+"161 /Applications/microchip/xc8/v1.34/include/pic18.h
+[v __delay `JF4945 ~T0 @X0 0 e ]
+[p i __delay ]
 [; ;stdio.h: 8: typedef int ptrdiff_t;
 [; ;stdio.h: 9: typedef unsigned size_t;
 [; ;stdio.h: 10: typedef unsigned short wchar_t;
@@ -4687,6 +4700,9 @@ Version 3.2 HI-TECH Software Intermediate Code
 [v _argc `i ~T0 @X0 1 r1 ]
 [v _argv `**uc ~T0 @X0 1 r2 ]
 [f ]
+[; ;main.c: 20: TRISCbits.TRISC6 = 0;
+"20
+[e = . . _TRISCbits 0 4 -> -> 0 `i `uc ]
 [; ;main.c: 22: TRISAbits.TRISA1 = 0;
 "22
 [e = . . _TRISAbits 0 1 -> -> 0 `i `uc ]
@@ -4740,126 +4756,157 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;main.c: 46: nrf_init();
 "46
 [e ( _nrf_init ..  ]
-[; ;main.c: 47: delay50ms();
 "47
-[e ( _delay50ms ..  ]
-[; ;main.c: 48: nrf_txmode();
+[v _cpt `i ~T0 @X0 1 a ]
 "48
-[e ( _nrf_txmode ..  ]
-[; ;main.c: 51: ds18b20_response=init_sensor();
+[v _rampe `i ~T0 @X0 1 a ]
+[; ;main.c: 47: int cpt;
+[; ;main.c: 48: int rampe = 0,cpt2;
+[e = _rampe -> 0 `i ]
+[v _cpt2 `i ~T0 @X0 1 a ]
+[; ;main.c: 49: delay50ms();
+"49
+[e ( _delay50ms ..  ]
+[; ;main.c: 50: while(1){
+"50
+[e :U 548 ]
+{
+[; ;main.c: 51: rampe = 0;
 "51
-[e = _ds18b20_response ( _init_sensor ..  ]
-[; ;main.c: 54: if(ds18b20_response==0)
-"54
-[e $ ! == -> _ds18b20_response `i -> 0 `i 547  ]
-[; ;main.c: 55: {
-"55
+[e = _rampe -> 0 `i ]
+[; ;main.c: 52: for( cpt2 = 0; cpt2 < 30 ; cpt2++){
+"52
 {
-"56
-[v _Sucess `uc ~T0 @X0 1 a ]
-[; ;main.c: 56: unsigned char Sucess;
-[; ;main.c: 57: Sucess=search_Devices();
-"57
-[e = _Sucess ( _search_Devices ..  ]
-[; ;main.c: 58: do
-"58
+[e = _cpt2 -> 0 `i ]
+[e $ < _cpt2 -> 30 `i 550  ]
+[e $U 551  ]
 [e :U 550 ]
-[; ;main.c: 59: {
+{
+[; ;main.c: 53: PORTCbits.RC6 = 0;
+"53
+[e = . . _PORTCbits 0 6 -> -> 0 `i `uc ]
+[; ;main.c: 54: for(cpt = 0; cpt < rampe; cpt++){
+"54
+{
+[e = _cpt -> 0 `i ]
+[e $U 556  ]
+[e :U 553 ]
+{
+[; ;main.c: 55: _delay((unsigned long)((10)*(8000000/4000.0)));
+"55
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"56
+}
+"54
+[e ++ _cpt -> 1 `i ]
+[e :U 556 ]
+[e $ < _cpt _rampe 553  ]
+[e :U 554 ]
+"56
+}
+[; ;main.c: 56: }
+[; ;main.c: 57: PORTCbits.RC6 = 1;
+"57
+[e = . . _PORTCbits 0 6 -> -> 1 `i `uc ]
+[; ;main.c: 58: for(cpt = 0; cpt < rampe; cpt++){
+"58
+{
+[e = _cpt -> 0 `i ]
+[e $U 560  ]
+[e :U 557 ]
+{
+[; ;main.c: 59: _delay((unsigned long)((10)*(8000000/4000.0)));
 "59
-{
-[; ;main.c: 61: temp_union.temperature=read_temp(DeviceAddress[0]);
+[e ( __delay (1 -> * -> -> 10 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"60
+}
+"58
+[e ++ _cpt -> 1 `i ]
+[e :U 560 ]
+[e $ < _cpt _rampe 557  ]
+[e :U 558 ]
+"60
+}
+[; ;main.c: 60: }
+[; ;main.c: 61: rampe++;
 "61
-[e = . _temp_union 0 ( _read_temp (1 -> &U *U + &U _DeviceAddress * -> -> -> 0 `i `ui `ux -> * -> # *U &U *U &U _DeviceAddress `ui -> -> 8 `i `ui `ux `uc ]
-[; ;main.c: 62: fill_SendBuff(temp_union.temperature,&tx_buf);
+[e ++ _rampe -> 1 `i ]
 "62
-[e ( _fill_SendBuff (2 , . _temp_union 0 &U _tx_buf ]
-[; ;main.c: 63: nrf24l01_response = nrf_send(&tx_buf,&rx_buf);
-"63
-[e = _nrf24l01_response ( _nrf_send (2 , &U _tx_buf &U _rx_buf ]
-[; ;main.c: 64: if(nrf24l01_response){RA1 = 1;}else{RA1 = 0;}
-"64
-[e $ ! != -> _nrf24l01_response `i -> -> -> 0 `i `uc `i 551  ]
-{
-[e = _RA1 -> -> 1 `i `b ]
 }
-[e $U 552  ]
+"52
+[e ++ _cpt2 -> 1 `i ]
+[e $ < _cpt2 -> 30 `i 550  ]
 [e :U 551 ]
-{
-[e = _RA1 -> -> 0 `i `b ]
+"62
 }
-[e :U 552 ]
-[; ;main.c: 65: delay750ms();
-"65
-[e ( _delay750ms ..  ]
-"66
-}
-[; ;main.c: 66: }while(1);
-[e $ != -> 1 `i -> 0 `i 550  ]
-[e :U 549 ]
-"67
+"63
 }
 [e :U 547 ]
-[; ;main.c: 67: };
-[; ;main.c: 69: return (0);
-"69
+"50
+[e $U 548  ]
+[e :U 549 ]
+[; ;main.c: 62: }
+[; ;main.c: 63: }
+[; ;main.c: 90: return (0);
+"90
 [e ) -> 0 `i ]
 [e $UE 546  ]
-[; ;main.c: 70: }
-"70
+[; ;main.c: 91: }
+"91
 [e :UE 546 ]
 }
-"72
+"93
 [v _fill_SendBuff `(v ~T0 @X0 1 ef2`f`*uc ]
 {
-[; ;main.c: 72: void fill_SendBuff(float temperature, unsigned char* buffer){
+[; ;main.c: 93: void fill_SendBuff(float temperature, unsigned char* buffer){
 [e :U _fill_SendBuff ]
 [v _temperature `f ~T0 @X0 1 r1 ]
 [v _buffer `*uc ~T0 @X0 1 r2 ]
 [f ]
-"73
+"94
 [v _i `uc ~T0 @X0 1 a ]
-[; ;main.c: 73: unsigned char i;
-[; ;main.c: 75: for(i = 0; i< sizeof(float); i++){
-"75
+[; ;main.c: 94: unsigned char i;
+[; ;main.c: 96: for(i = 0; i< sizeof(float); i++){
+"96
 {
 [e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `ui -> # `f `ui 554  ]
-[e $U 555  ]
-[e :U 554 ]
+[e $ < -> _i `ui -> # `f `ui 562  ]
+[e $U 563  ]
+[e :U 562 ]
 {
-[; ;main.c: 76: buffer[i] = temp_union.value[i];
-"76
+[; ;main.c: 97: buffer[i] = temp_union.value[i];
+"97
 [e = *U + _buffer * -> _i `ux -> -> # *U _buffer `ui `ux *U + &U . _temp_union 1 * -> _i `ux -> -> # *U &U . _temp_union 1 `ui `ux ]
-"77
+"98
 }
-"75
+"96
 [e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `ui -> # `f `ui 554  ]
-[e :U 555 ]
-"77
+[e $ < -> _i `ui -> # `f `ui 562  ]
+[e :U 563 ]
+"98
 }
-[; ;main.c: 77: }
-[; ;main.c: 78: for( i = sizeof(float) ; i < 32 ; i++){
-"78
+[; ;main.c: 98: }
+[; ;main.c: 99: for( i = sizeof(float) ; i < 32 ; i++){
+"99
 {
 [e = _i -> -> # `f `ui `uc ]
-[e $ < -> _i `i -> 32 `i 557  ]
-[e $U 558  ]
-[e :U 557 ]
+[e $ < -> _i `i -> 32 `i 565  ]
+[e $U 566  ]
+[e :U 565 ]
 {
-[; ;main.c: 79: buffer[i] = 0;
-"79
+[; ;main.c: 100: buffer[i] = 0;
+"100
 [e = *U + _buffer * -> _i `ux -> -> # *U _buffer `ui `ux -> -> 0 `i `uc ]
-"80
+"101
 }
-"78
+"99
 [e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 32 `i 557  ]
-[e :U 558 ]
-"80
+[e $ < -> _i `i -> 32 `i 565  ]
+[e :U 566 ]
+"101
 }
-[; ;main.c: 80: }
-[; ;main.c: 82: }
-"82
-[e :UE 553 ]
+[; ;main.c: 101: }
+[; ;main.c: 103: }
+"103
+[e :UE 561 ]
 }
